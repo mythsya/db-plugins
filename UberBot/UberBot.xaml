@@ -1,0 +1,56 @@
+<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:Height="240" Background="Black" Foreground="White" Width="450">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="350*" />
+            <RowDefinition Height="5*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+        
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Width="225">
+                <Rectangle Height="1" Fill="Gray" Margin="0,0,0,2"/>
+                <TextBlock Text="一般設定" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="15"/>
+                <Rectangle Height="1" Fill="Gray" Margin="0,5,0,2"/>
+                <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="20" Margin="10,5,0,0">
+                    <CheckBox IsChecked="{Binding IgnoreLeoricsRegretEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0,1,5,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Text="忽略墮落藥水" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="20" Margin="10,0,0,0">
+                     <CheckBox IsChecked="{Binding IgnoreVialofPutridnessEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0,1,5,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Text="忽略墮落藥水" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="20" Margin="10,0,0,0">
+                    <CheckBox IsChecked="{Binding IgnoreIdolofTerrorEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0,1,5,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Text="忽略恐懼化身" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="20" Margin="10,0,0,0">
+                    <CheckBox IsChecked="{Binding IgnoreHeartofEvilEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0,1,5,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Text="忽略惡魔之心" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,12,0,0">
+                    <TextBlock Text="最大死亡次數:" ToolTip="Right for infinite" Height="21" HorizontalAlignment="Left" Width="155"/>
+                    <TextBox Width="30" Height="23" HorizontalAlignment="Right" Text="{Binding MaxDeathsAllowed}" IsReadOnly="True" />
+                </WrapPanel>
+                <Slider Maximum="10" Minimum="1" SmallChange="1" LargeChange="1" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding MaxDeathsAllowed}" Margin="10,0,10,0" Style="{x:Null}"/>
+            </StackPanel>
+            <Rectangle Width="2" Fill="Gray"/>
+            <StackPanel Width="225">
+            <Rectangle Height="1" Fill="Gray" Margin="0,0,0,2"/>
+                <TextBlock Text="日誌記錄設置" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="15"/>
+                <Rectangle Height="1" Fill="Gray" Margin="0,5,0,2"/>
+                <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="20" Margin="10,5,0,0">
+                    <CheckBox IsChecked="{Binding LoggingEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0,1,5,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Text="Logging" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <CheckBox IsChecked="{Binding DebugLoggingEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="15,1,5,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Text="Debug Logging" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                </WrapPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
