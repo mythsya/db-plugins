@@ -158,7 +158,7 @@ namespace Trinity
                 TownRun.PreTownRunPosition = Vector3.Zero;
                 TownRun.PreTownRunWorldId = -1;
                 TownRun.LastCheckBackpackDurability = DateTime.MinValue;
-                SpellHistory.HistoryQueue.Clear();
+                SpellHistory.History.Clear();
                 TrinityItemManager.ResetBackPackCheck();
             }
         }
@@ -199,7 +199,7 @@ namespace Trinity
                 TownRun.WasVendoring = false;
 
                 CacheData.AbilityLastUsed.Clear();
-                SpellHistory.HistoryQueue.Clear();
+                SpellHistory.History.Clear();
 
                 DeathsThisRun = 0;
                 LastDeathTime = DateTime.UtcNow;

@@ -19,8 +19,11 @@ using Trinity.Technicals;
 using Trinity.UI;
 using Zeta.Bot;
 using Zeta.Bot.Navigation;
+using Zeta.Common;
 using Zeta.Common.Plugins;
 using Zeta.Game;
+using Zeta.TreeSharp;
+using Logger = Trinity.Technicals.Logger;
 
 namespace Trinity
 {
@@ -36,7 +39,7 @@ namespace Trinity
 
         public Version Version
         {
-            get { return new Version(2, 13, 47); }
+            get { return new Version(2, 13, 60); }
         }
 
         public string Author
@@ -217,6 +220,8 @@ namespace Trinity
             TabUi.RemoveTab();
             BotManager.ReplaceTreeHooks();
 
+
+
             Navigator.PlayerMover = new DefaultPlayerMover();
             Navigator.StuckHandler = new DefaultStuckHandler();
             CombatTargeting.Instance.Provider = new DefaultCombatTargetingProvider();
@@ -226,6 +231,8 @@ namespace Trinity
 
             GameEvents.OnPlayerDied -= TrinityOnDeath;
             BotMain.OnStop -= TrinityBotStop;
+
+ 
 
             GameEvents.OnPlayerDied -= TrinityOnDeath;
             GameEvents.OnGameJoined -= TrinityOnJoinGame;
@@ -336,7 +343,7 @@ namespace Trinity
 
             if (_mainWindow == null)
             {
-                Application.Current.Dispatcher.BeginInvoke(new Action(() => _mainWindow = Application.Current.MainWindow));
+                Application.Current.Dispatcher.BeginInvoke(new System.Action(() => _mainWindow = Application.Current.MainWindow));
             }
 
             if (_mainWindow == null || !ZetaDia.Service.IsValid || !ZetaDia.Service.Platform.IsValid || !ZetaDia.Service.Platform.IsConnected)
@@ -394,12 +401,12 @@ namespace Trinity
             });
         }
 
-        internal static void BeginInvoke(Action action)
+        internal static void BeginInvoke(System.Action action)
         {
             Application.Current.Dispatcher.BeginInvoke(action);
         }
 
-        internal static void Invoke(Action action)
+        internal static void Invoke(System.Action action)
         {
             Application.Current.Dispatcher.Invoke(action);
         }

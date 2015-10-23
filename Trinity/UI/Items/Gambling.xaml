@@ -135,7 +135,7 @@
                         </WrapPanel>
                         <WrapPanel Margin="5,5,0,0" Orientation="Horizontal">
                             <Slider x:Name="SaveShardsSlider"
-        					Interval="25" Maximum="{Binding Gambling.MaximumBloodShards}" Minimum="50" SmallChange="25" TickFrequency="25" IsSnapToTickEnabled="True" TickPlacement="BottomRight" 
+        					Interval="25" Maximum="1500" Minimum="50" SmallChange="25" TickFrequency="25" IsSnapToTickEnabled="True" TickPlacement="BottomRight" 
         					Value="{Binding Gambling.SaveShardsThreshold, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
         					HorizontalAlignment="Stretch" Width="243" Style="{x:Null}" />
                             <TextBlock Text="{Binding Value, ElementName=SaveShardsSlider, StringFormat=\{0:#\}}" Width="39" TextAlignment="Center" ToolTip="Bot will save shards until you have this many, then spend down to minimum" />

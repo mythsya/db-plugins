@@ -32,7 +32,7 @@ namespace Trinity.Items
             if (item.Drop())
             {
                 DroppedItems.Add(item.DynamicId);
-                Thread.Sleep(25);
+                Thread.Sleep(250);
                 return true;
             }
 

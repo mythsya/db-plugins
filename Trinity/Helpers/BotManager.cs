@@ -40,6 +40,11 @@ namespace Trinity.Helpers
                 ReplaceVendorRunHook();
                 ReplaceLootHook();
                 InsertOutOfGameHooks();
+
+                //Pulsator.OnPulse += (s, arg) => Logger.Log("Pulse!");
+                //TreeHooks.Instance.InsertHook("TreeStart", 0, new Action(ret => { Logger.Log("TreeStart!"); return RunStatus.Failure; }));
+                //TreeHooks.Instance.InsertHook("BotBehavior", 0, new Action(ret => { Logger.Log("BotBehavior!"); return RunStatus.Failure; }));
+                //TreeHooks.Instance.InsertHook("VendorRun", 0, new Action(ret => { Logger.Log("VendorRun!"); return RunStatus.Failure; }));
             }
             else
             {

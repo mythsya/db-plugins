@@ -47,7 +47,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Container Open Range:" FontWeight="Bold" TextAlignment="Center"/>
-                        <Slider Grid.Row="1" Template="{DynamicResource Slider}" 
+                        <Slider Grid.Row="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="60" Minimum="6" 
                     SmallChange="1" LargeChange="5" TickFrequency="5" 
                     TickPlacement="BottomRight" Value="{Binding Path=WorldObject.ContainerOpenRange}" 
@@ -71,7 +71,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Wait delay after opening containers:" FontWeight="Bold" TextAlignment="Center"/>
-                        <Slider Grid.Row="1" Template="{DynamicResource Slider}" 
+                        <Slider Grid.Row="1" Template="{DynamicResource SliderEditable}" 
                                 Interval="100" IsSnapToTickEnabled="True"
                                 Maximum="1500" Minimum="0" SmallChange="100" TickFrequency="50" TickPlacement="BottomRight" 
                                 Value="{Binding Path=WorldObject.OpenContainerDelay}" 
@@ -86,7 +86,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="Health Well Minimum Health %:" FontWeight="Bold" TextAlignment="Center"/>
-                <Slider Grid.Row="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Row="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="100" Minimum="0" 
                     SmallChange="1" LargeChange="5" TickFrequency="5" 
                     TickPlacement="BottomRight" Value="{Binding Path=WorldObject.HealthWellMinHealth}" 
@@ -134,7 +134,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Destructible attack range:" FontWeight="Bold" TextAlignment="Center"/>
-                        <Slider Grid.Row="1" Template="{DynamicResource Slider}" 
+                        <Slider Grid.Row="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="30" Minimum="1" 
                     SmallChange="1" LargeChange="5" TickFrequency="1" 
                     TickPlacement="BottomRight" Value="{Binding Path=WorldObject.DestructibleRange}" 

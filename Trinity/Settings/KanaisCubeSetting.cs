@@ -43,7 +43,7 @@ namespace Trinity.Config
         #region Properties
 
         [DataMember(IsRequired = false)]
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool CreateReusableParts
         {
             get
@@ -61,7 +61,7 @@ namespace Trinity.Config
         }
 
         [DataMember(IsRequired = false)]
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool CreateVeiledCrystals
         {
             get
@@ -79,7 +79,7 @@ namespace Trinity.Config
         }
 
         [DataMember(IsRequired = false)]
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool CreateArcaneDust
         {
             get
@@ -206,8 +206,13 @@ namespace Trinity.Config
         [OnDeserializing()]
         internal void OnDeserializingMethod(StreamingContext context)
         {
-            RareUpgradeTypes = default(ItemSelectionType);
-            ConversionQuantityThreshold = 25000;
+            foreach (var p in GetType().GetProperties())
+            {
+                foreach (var dv in p.GetCustomAttributes(true).OfType<DefaultValueAttribute>())
+                {
+                    p.SetValue(this, dv.Value);
+                }
+            }
         }
         #endregion Methods
     }

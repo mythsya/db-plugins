@@ -4,13 +4,15 @@ using System.Linq;
 using Trinity.Reference;
 using Zeta.Common;
 using Zeta.Game.Internals.Actors;
+using Trinity.Technicals;
+using Logger = Trinity.Technicals.Logger;
 
 namespace Trinity.Combat.Abilities
 {
     public static class SpellHistory
     {
-        private const int SpellHistorySize = 1000;
-        private static List<SpellHistoryItem> _historyQueue = new List<SpellHistoryItem>(SpellHistorySize * 2);
+        private const int SpellHistorySize = 300;
+        private static List<SpellHistoryItem> _history = new List<SpellHistoryItem>(SpellHistorySize * 2);
 
         private static DateTime _lastSpenderCast = DateTime.MinValue;
         public static double TimeSinceSpenderCast 
@@ -24,16 +26,16 @@ namespace Trinity.Combat.Abilities
             get { return DateTime.UtcNow.Subtract(_lastGeneratorCast).TotalMilliseconds; }
         }
 
-        internal static List<SpellHistoryItem> HistoryQueue
+        internal static List<SpellHistoryItem> History
         {
-            get { return _historyQueue; }
-            set { _historyQueue = value; }
+            get { return _history; }
+            set { _history = value; }
         }
 
         public static void RecordSpell(TrinityPower power)
         {
-            if (_historyQueue.Count >= SpellHistorySize)
-                _historyQueue.RemoveAt(_historyQueue.Count() - 1);
+            if (_history.Count >= SpellHistorySize)
+                _history.RemoveAt(0);
 
             var skill = SkillUtils.ById(power.SNOPower);
             
@@ -43,14 +45,15 @@ namespace Trinity.Combat.Abilities
             if (skill.IsGeneratorOrPrimary)
                 _lastGeneratorCast = DateTime.UtcNow;
 
-            _historyQueue.Add(new SpellHistoryItem
+            _history.Add(new SpellHistoryItem
             {
                 Power = power,
                 UseTime = DateTime.UtcNow,
                 MyPosition = Trinity.Player.Position,
                 TargetPosition = power.TargetPosition
             });
-            //Logger.Log("Recorded {0}", power);
+
+            Logger.LogVerbose(LogCategory.Targetting, "Recorded {0}", power);
 
             CacheData.AbilityLastUsed[power.SNOPower] = DateTime.UtcNow;
             Trinity.LastPowerUsed = power.SNOPower;
@@ -63,15 +66,15 @@ namespace Trinity.Combat.Abilities
 
         public static TrinityPower GetLastTrinityPower()
         {
-            if (HistoryQueue.Any())
-                return _historyQueue.OrderByDescending(i => i.UseTime).FirstOrDefault().Power;
+            if (History.Any())
+                return _history.OrderByDescending(i => i.UseTime).FirstOrDefault().Power;
             return new TrinityPower();
         }
 
         public static SNOPower GetLastSNOPower()
         {
-            if (HistoryQueue.Any())
-                return _historyQueue.OrderByDescending(i => i.UseTime).FirstOrDefault().Power.SNOPower;
+            if (History.Any())
+                return _history.OrderByDescending(i => i.UseTime).FirstOrDefault().Power.SNOPower;
             return SNOPower.None;
         }
 
@@ -98,10 +101,10 @@ namespace Trinity.Combat.Abilities
 
         public static int SpellUseCountInTime(SNOPower power, TimeSpan time)
         {
-            if (_historyQueue.Any(i => i.Power.SNOPower == power))
+            if (_history.Any(i => i.Power.SNOPower == power))
             {
-                var spellCount = _historyQueue.Count(i => i.Power.SNOPower == power && i.TimeSinceUse <= time);
-                //Logger.Log("Found {0}/{1} spells in {2} time for {3} power", spellCount, _historyQueue.Count(i => i.Power.SNOPower == power), time, power);
+                var spellCount = _history.Count(i => i.Power.SNOPower == power && i.TimeSinceUse <= time);
+                Logger.LogVerbose(LogCategory.Targetting, "Found {0}/{1} spells in {2} time for {3} power", spellCount, _history.Count(i => i.Power.SNOPower == power), time, power);
                 return spellCount;
             }
             return 0;
@@ -109,7 +112,7 @@ namespace Trinity.Combat.Abilities
 
         public static bool HasUsedSpell(SNOPower power)
         {
-            if (_historyQueue.Any() && _historyQueue.Any(i => i.Power.SNOPower == power))
+            if (_history.Any() && _history.Any(i => i.Power.SNOPower == power))
                 return true;
             return false;
         }
@@ -117,16 +120,16 @@ namespace Trinity.Combat.Abilities
         public static Vector3 GetSpellLastTargetPosition(SNOPower power)
         {
             Vector3 lastUsed = Vector3.Zero;
-            if (_historyQueue.Any(i => i.Power.SNOPower == power))
-                lastUsed = _historyQueue.FirstOrDefault(i => i.Power.SNOPower == power).TargetPosition;
+            if (_history.Any(i => i.Power.SNOPower == power))
+                lastUsed = _history.FirstOrDefault(i => i.Power.SNOPower == power).TargetPosition;
             return lastUsed;
         }
 
         public static Vector3 GetSpellLastMyPosition(SNOPower power)
         {
             Vector3 lastUsed = Vector3.Zero;
-            if (_historyQueue.Any(i => i.Power.SNOPower == power))
-                lastUsed = _historyQueue.FirstOrDefault(i => i.Power.SNOPower == power).MyPosition;
+            if (_history.Any(i => i.Power.SNOPower == power))
+                lastUsed = _history.FirstOrDefault(i => i.Power.SNOPower == power).MyPosition;
             return lastUsed;
         }
 

@@ -33,11 +33,11 @@ namespace TrinityCoroutines
                 if (item == null || !item.IsValid || item.IsDisposed)
                 {
                     Logger.Log(" --> Invalid Item Found {0}");
-                    ZetaDia.Actors.Update();
                     return false;
                 }
 
-                Logger.Log(" --> {0} StackQuantity={1} Quality={2}", item.Name, item.ItemStackQuantity, item.GetItemQuality());
+                Logger.Log(" --> {0} StackQuantity={1} Quality={2} CraftingMaterial={3}", 
+                    item.Name, item.ItemStackQuantity, item.GetItemQuality(), item.IsCraftingReagent);
             }
 
             await Coroutine.Yield();

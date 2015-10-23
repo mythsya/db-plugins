@@ -138,7 +138,7 @@ namespace TrinityCoroutines
                 sacraficialItems.Remove(item);
 
                 // Make sure we include enough materials by adding multiple stacks if nessesary.
-                var materialStacks = Inventory.GetMaterialStacksUpToQuantity(Inventory.Backpack.OfType(from), 50).ToList();
+                var materialStacks = Inventory.GetStacksUpToQuantity(Inventory.Backpack.OfType(from), 50).ToList();
                 if (materialStacks.Any(m => !m.IsValid || m.IsDisposed) || !item.IsValid || item.IsDisposed)
                 {
                     Logger.LogError("[ConvertMaterials] something is terribly wrong our items are not valid");
@@ -165,7 +165,7 @@ namespace TrinityCoroutines
 				    ConsecutiveFailures++;
 				    if (ConsecutiveFailures > 3)
 				    {
-				        BlacklistedACDGuids.Add(item.ACDGuid);
+                        Inventory.InvalidItemDynamicIds.Add(item.ACDGuid);
 				    }
 
 					Logger.LogError("[ConvertMaterials] Failed to convert materials");
@@ -224,14 +224,7 @@ namespace TrinityCoroutines
                 sacraficialItems.RemoveAll(i => upgradeRares.Contains(i));
             }
 
-            if (BlacklistedACDGuids.Any())
-            {
-                sacraficialItems.RemoveAll(i => BlacklistedACDGuids.Contains(i.ACDGuid));
-
-                if (BlacklistedACDGuids.Count > 25)
-                    BlacklistedACDGuids.Remove(BlacklistedACDGuids.First());
-            }
-
+            sacraficialItems.RemoveAll(i => Inventory.InvalidItemDynamicIds.Contains(i.ACDGuid));
             return sacraficialItems;
         }
 

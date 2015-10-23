@@ -32,6 +32,13 @@ namespace Trinity.Combat.Abilities
             if (UseDestructiblePower)
                 return DestroyObjectPower;
 
+            if (UseOOCBuff)
+            {
+                if (Gems.Taeguk.IsEquipped && CanCast(SNOPower.X1_Crusader_BlessedHammer) && !Player.IsIncapacitated && !Player.IsInTown &&
+                    Player.PrimaryResource >= 10 && TimeSincePowerUse(SNOPower.X1_Crusader_BlessedHammer) >= 2500)
+                    return new TrinityPower(SNOPower.X1_Crusader_BlessedHammer);
+            }
+
             if (!UseOOCBuff && !IsCurrentlyAvoiding && CurrentTarget != null)
             {
                 /*
@@ -88,7 +95,8 @@ namespace Trinity.Combat.Abilities
                 }
 
                 // Provoke
-                if (CanCast(SNOPower.X1_Crusader_Provoke) && (TargetUtil.EliteOrTrashInRange(15f) || TargetUtil.AnyMobsInRange(15f, CrusaderSettings.ProvokeAoECount)))
+                if (CanCast(SNOPower.X1_Crusader_Provoke) && (TargetUtil.EliteOrTrashInRange(15f) ||
+                    TargetUtil.AnyMobsInRange(15f, CrusaderSettings.ProvokeAoECount) || Sets.SeekerOfTheLight.IsFullyEquipped && Player.PrimaryResourcePct <= 0.25))
                 {
                     return new TrinityPower(SNOPower.X1_Crusader_Provoke);
                 }
@@ -187,7 +195,7 @@ namespace Trinity.Combat.Abilities
                 // Blessed Hammer
                 if (CanCastBlessedHammer())
                 {
-                    return new TrinityPower(SNOPower.X1_Crusader_BlessedHammer, 20f, TargetUtil.GetBestClusterUnit(8f, 20f).Position);
+                    return new TrinityPower(SNOPower.X1_Crusader_BlessedHammer, 15f);
                 }
 
                 // Provoke
@@ -203,13 +211,6 @@ namespace Trinity.Combat.Abilities
                     var bestTarget = CurrentTarget.IsBoss ? CurrentTarget : TargetUtil.GetBestClusterUnit(15, 50f, 1, true, false);
                     if (bestTarget != null)
                         return new TrinityPower(SNOPower.X1_Crusader_ShieldBash2, 65f, bestTarget.ACDGuid);
-                }
-
-                // Blessed Hammer, spin outwards 
-                // Limitless rune can spawn new hammers
-                if (CanCast(SNOPower.X1_Crusader_BlessedHammer) && (TargetUtil.EliteOrTrashInRange(20f) || TargetUtil.AnyTrashInRange(10f, 3)))
-                {
-                    return new TrinityPower(SNOPower.X1_Crusader_BlessedHammer);
                 }
 
                 // Sweep Attack
@@ -316,7 +317,7 @@ namespace Trinity.Combat.Abilities
         private static bool CanCastBlessedHammer()
         {
             return CanCast(SNOPower.X1_Crusader_BlessedHammer) &&
-                (TargetUtil.ClusterExists(8f, 8f, 1) || TargetUtil.EliteOrTrashInRange(8f) || Player.PrimaryResourcePct > 0.5);
+                (TargetUtil.ClusterExists(8f, 8f, 1) || TargetUtil.EliteOrTrashInRange(8f) || Player.PrimaryResourcePct > 0.5 || Sets.SeekerOfTheLight.IsFullyEquipped && Player.PrimaryResource > 10);
         }
 
         private static bool CanCastBlessedShield()
@@ -362,7 +363,15 @@ namespace Trinity.Combat.Abilities
 
         private static bool CanCastFallingSword()
         {
-            return CanCast(SNOPower.X1_Crusader_FallingSword) && (CurrentTarget.IsEliteRareUnique || TargetUtil.ClusterExists(15f, 65f, CrusaderSettings.FallingSwordAoECount)) && Player.PrimaryResource >= 25 * (1-Player.ResourceCostReductionPct);
+            if (!CanCast(SNOPower.X1_Crusader_FallingSword))
+                return false;
+
+            if (Sets.SeekerOfTheLight.IsFullyEquipped && !GetHasBuff(SNOPower.X1_Crusader_FallingSword) && Player.PrimaryResource >= 25 &&
+                (CacheData.Buffs.ConventionElement != Element.Holy || Player.CurrentHealthPct <= 0.5))
+                return true;
+
+            return !Sets.SeekerOfTheLight.IsFullyEquipped && (CurrentTarget.IsEliteRareUnique || TargetUtil.ClusterExists(15f, 65f, CrusaderSettings.FallingSwordAoECount)) &&
+                Player.PrimaryResource >= 25 * (1-Player.ResourceCostReductionPct);
         }
 
         private static bool CanCastBombardment()

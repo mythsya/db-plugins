@@ -67,6 +67,9 @@ namespace TrinityCoroutines
             {
                 try
                 {
+                    if (!item.IsValid || item.IsDisposed)
+                        continue;
+
                     var stackSize = item.ItemStackQuantity;
                     var numTakenAlready = amountWithdrawn[item.ActorSNO];
 
@@ -86,7 +89,7 @@ namespace TrinityCoroutines
                         var lastItem = lastStackTaken[item.ActorSNO];
                         var amountRequiredToMax = maxAmount - numTakenAlready;
 
-                        if (willBeOverMax && lastItem != null && stackSize > amountRequiredToMax)
+                        if (willBeOverMax && lastItem != null && lastItem.IsValid && !lastItem.IsDisposed && stackSize > amountRequiredToMax)
                         {
                             // Tried InventoryManager.SplitStack but it didnt work, reverting to moving onto existing stacks.
 
@@ -100,7 +103,7 @@ namespace TrinityCoroutines
                         else
                         {
                             Logger.Log("Removing {0} ({3}) from stash. StackSize={1} WithdrawnAlready={2}", item.Name, stackSize, numTakenAlready, item.ActorSNO);
-                            if (item != null && item.IsValid && !item.IsDisposed)
+                            if (item.IsValid && !item.IsDisposed)
                             {
                                 ZetaDia.Me.Inventory.QuickWithdraw(item);
                                 amountWithdrawn[item.ActorSNO] += stackSize;

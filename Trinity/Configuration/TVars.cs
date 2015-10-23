@@ -106,7 +106,7 @@ namespace Trinity
             Set(new TVar("Barbarian.SeismicSlam.TrashRange", 20f, "Seismic Slam Trash Check Range"));
             Set(new TVar("Barbarian.SeismicSlam.EliteRange", 20f, "Elite Target Range"));
             Set(new TVar("Barbarian.SeismicSlam.UseRange", 40f, "Power Use Range"));
-            Set(new TVar("Barbarian.HammerOfTheAncients.UseRange", 10f, "Use Range"));
+            Set(new TVar("Barbarian.HammerOfTheAncients.UseRange", 11f, "Use Range"));
             Set(new TVar("Barbarian.AncientSpear.MinHealthPct", 0.2, "Minimum Target Health Percent for Ancient Spear"));
 
             // Misc Spells
@@ -161,6 +161,7 @@ namespace Trinity
             Set(new TVar("SpellDelay.X1_Monk_MantraOfHealing_v2", 2800, "Spell Use Delay/Interval, milliseconds"));
             Set(new TVar("SpellDelay.X1_Monk_MantraOfConviction_v2", 2800, "Spell Use Delay/Interval, milliseconds"));
             Set(new TVar("SpellDelay.X1_Monk_Epiphany", 60000, "Spell Use Delay/Interval, milliseconds"));
+            Set(new TVar("Monk.Epiphany.EmergencyHealth", 0.49, "Always pop Epiphany when below this % Health"));
 
             // Wizard skills
             Set(new TVar("SpellDelay.Wizard_MagicMissile", 5, "Spell Use Delay/Interval, milliseconds"));

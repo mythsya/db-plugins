@@ -30,6 +30,8 @@ namespace Trinity
         /// <returns></returns>
         internal static bool TargetCheck(object ret)
         {
+            Logger.LogVerbose("TargetCheck Tick");
+
             using (new PerformanceLogger("TargetCheck"))
             {
                 if (Player.IsDead)
@@ -42,6 +44,7 @@ namespace Trinity
                 lastMovementCommand = DateTime.MinValue;
                 _isWaitingForPower = false;
                 _isWaitingAfterPower = false;
+                _isWaitingBeforePower = false;
                 _isWaitingForPotion = false;
                 wasRootedLastTick = false;
 

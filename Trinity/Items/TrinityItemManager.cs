@@ -75,6 +75,10 @@ namespace Trinity.Items
             if (Trinity.Player.ParticipatingInTieredLootRun)
                 return false;
 
+            // Never salvage unidentified items
+            if (item.IsUnidentified)
+                return false;
+
             bool action = ShouldSalvageItem(item, ItemEvaluationType.Salvage);
             if (action)
                 ItemStashSellAppender.Instance.AppendItem(CachedACDItem.GetCachedItem(item), "Salvage");
@@ -103,6 +107,10 @@ namespace Trinity.Items
         {
             // Salvage/Sell/Stashing is disabled during greater rifts
             if (Trinity.Player.ParticipatingInTieredLootRun)
+                return false;
+
+            // Never sell unidentified items
+            if (item.IsUnidentified)
                 return false;
 
             bool action = ShouldSellItem(item, ItemEvaluationType.Sell);
@@ -426,7 +434,7 @@ namespace Trinity.Items
             }
 
             // Item List
-            if (cItem.Quality >= ItemQuality.Legendary && Trinity.Settings.Loot.ItemFilterMode == ItemFilterMode.ItemList && IsEquipment(cItem))
+            if (cItem.Quality >= ItemQuality.Legendary && Trinity.Settings.Loot.ItemFilterMode == ItemFilterMode.ItemList && (IsEquipment(cItem) || cItem.TrinityItemBaseType == TrinityItemBaseType.FollowerItem))
             {
                 var result = ItemList.ShouldStashItem(cItem);
                 Logger.Log(TrinityLogLevel.Info, LogCategory.UserInformation, "{0} [{1}] [{2}] = {3}", cItem.RealName, cItem.InternalName, tItemType, "ItemListCheck=" + (result ? "KEEP" : "TRASH"));

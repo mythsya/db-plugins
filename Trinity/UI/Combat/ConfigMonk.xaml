@@ -4,7 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:ut="clr-namespace:Trinity.UIComponents"
              mc:Ignorable="d"  Foreground="{DynamicResource TextBrush}"
-             d:DesignHeight="440" d:DesignWidth="390">
+             d:DesignHeight="640" d:DesignWidth="390">
     <UserControl.Resources>
         <ResourceDictionary>
             <!-- Don't format this line otherwise Db can't open config window -->
@@ -14,8 +14,10 @@
             <ut:EnumBooleanConverter x:Key="enumBooleanConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
+    <ScrollViewer>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -36,7 +38,7 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="Potion %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-            <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+            <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="99" Minimum="0" 
                     SmallChange="1" LargeChange="5"
                     TickPlacement="None" 
@@ -52,14 +54,14 @@
             <ColumnDefinition Width="*"/>
           </Grid.ColumnDefinitions>
           <TextBlock Text="Globe Health %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-          <Slider Grid.Column="1" Template="{DynamicResource Slider}"
+          <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}"
                   Interval="500" Maximum="100" Minimum="0"
                   SmallChange="1" LargeChange="5"
                   TickPlacement="None"
                   Value="{Binding Path=Monk.HealthGlobeLevel, Converter={StaticResource percentConverter}}"
                   HorizontalAlignment="Stretch" Margin="2"/>
           <TextBlock Grid.Column="2" Text="Globe Resource %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-          <Slider Grid.Column="3" Template="{DynamicResource Slider}"
+          <Slider Grid.Column="3" Template="{DynamicResource SliderEditable}"
                   Interval="500" Maximum="100" Minimum="0"
                   SmallChange="1" LargeChange="5"
                   TickPlacement="None"
@@ -79,7 +81,6 @@
                 <CheckBox Margin="2" IsChecked="{Binding Path=Monk.DisableMantraSpam}" ToolTip="Disable Spamming Mantras (for the 3-sec. buff)">Disable Mantra Spam</CheckBox>
                 <CheckBox Margin="2" IsChecked="{Binding Path=Monk.SpamSweepingWindOnLowHP}" ToolTip="Use with Transcendance Passive for Health Regen">Spam Sweeping Wind on Low HP</CheckBox>
                 <CheckBox Margin="2" IsChecked="{Binding Path=Monk.UseDashingStrikeOOC}" ToolTip="Use Dashing Strike for OOC Movement">Use Dashing Strike OOC</CheckBox>
-                <CheckBox Margin="2" IsChecked="{Binding Path=Monk.EpiphanyOffCD}" ToolTip="Use Epiphany Off Cooldown">Use Epiphany Off CD</CheckBox>
                 <CheckBox Margin="2" IsChecked="{Binding Path=Monk.DisableExplodingPalm}" ToolTip="Prevent the bot from casting Exploding Palm" Content="Disable Exploding Palm"/>
                 <CheckBox Margin="2" IsChecked="{Binding Path=Monk.PrimaryBeforeSSS}" ToolTip="Cast primariy until exploding palm is applied (only works with Uliana's build)" Content="Cast Primary Before SSS"/>
                 <CheckBox Margin="2" IsChecked="{Binding Monk.SSSOffCD}" ToolTip="Cast cast Seven-Sided-Strike as soon as it's available" Content="Use SSS Off CD"/>
@@ -94,7 +95,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="Min. Cyclone Strike Trash Count" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-            <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+            <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                 Interval="1" Maximum="10" Minimum="1"
                 SmallChange="1" LargeChange="10"
                 TickPlacement="BottomRight"  IsSnapToTickEnabled="True"
@@ -107,7 +108,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" ToolTip="Time to wait (in Milliseconds) between cyclone strikes" Text="Cyclone Strike Delay (ms)" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-            <Slider Grid.Column="1" ToolTip="Time to wait (in Milliseconds) between casting cyclone strikes" Template="{DynamicResource Slider}" 
+            <Slider Grid.Column="1" ToolTip="Time to wait (in Milliseconds) between casting cyclone strikes" Template="{DynamicResource SliderEditable}" 
                 Interval="1" Maximum="8000" Minimum="0"
                 SmallChange="1" LargeChange="5"
                 TickPlacement="BottomRight" IsSnapToTickEnabled="True"
@@ -120,7 +121,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="Min. Wave of Light Trash Count" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-            <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+            <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                 Interval="1" Maximum="15" Minimum="1"
                 SmallChange="1" LargeChange="5"
                 TickPlacement="BottomRight" IsSnapToTickEnabled="True"
@@ -133,7 +134,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" ToolTip="Time to wait (in Milliseconds) between casting dashing strikes" Text="Dashing Strike Delay (ms)" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-            <Slider Grid.Column="1" ToolTip="Time to wait (in Milliseconds) between casting dashing strikes" Template="{DynamicResource Slider}" 
+            <Slider Grid.Column="1" ToolTip="Time to wait (in Milliseconds) between casting dashing strikes" Template="{DynamicResource SliderEditable}" 
                 Interval="1" Maximum="8000" Minimum="0"
                 SmallChange="1" LargeChange="5"
                 TickPlacement="BottomRight" IsSnapToTickEnabled="True"
@@ -147,7 +148,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="Apply Exploading Palm to" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-            <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+            <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                 Interval="1" Maximum="15" Minimum="1"
                 SmallChange="1" LargeChange="5"
                 TickPlacement="BottomRight" IsSnapToTickEnabled="True"
@@ -162,7 +163,7 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="Apply Static Charge to" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-            <Slider Grid.Column="1" ToolTip="Apply Static Charge to % of mobs within 20 yards" Template="{DynamicResource Slider}"
+            <Slider Grid.Column="1" ToolTip="Apply Static Charge to % of mobs within 20 yards" Template="{DynamicResource SliderEditable}"
                 Interval="1" Maximum="100" Minimum="0"
                 SmallChange="1" LargeChange="5"
                 TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True"
@@ -171,9 +172,21 @@
             <TextBlock Grid.Column="3" Text="% of Units" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
 
+        <GroupBox Grid.Row="9">
+            <GroupBox.Header>Epiphany</GroupBox.Header>
+            <UniformGrid Columns="2">
+                <RadioButton GroupName="EpiphanyMode" Content="Use on Hard Elites Only" IsChecked="{Binding Path=Monk.EpiphanyMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=HardElitesOnly}"  />
+                <RadioButton GroupName="EpiphanyMode" Content="Use when Elites are nearby" IsChecked="{Binding Path=Monk.EpiphanyMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Normal}" />
+                <RadioButton GroupName="EpiphanyMode" Content="Use When not on Cooldown" IsChecked="{Binding Path=Monk.EpiphanyMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=WhenReady}" />
+                <RadioButton GroupName="EpiphanyMode" Content="Use Whenever in Combat" IsChecked="{Binding Path=Monk.EpiphanyMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=WhenInCombat}" />
+                <CheckBox Margin="2" IsChecked="{Binding Path=Monk.UseEpiphanyGoblin}">Use on Goblins</CheckBox>
+                <CheckBox Margin="2" IsChecked="{Binding Path=Monk.EpiphanyEmergencyHealth}" ToolTip="Force use Epiphany if health is below emergency health" Content="Use Epiphany on emergencies"/>
+            </UniformGrid>
+        </GroupBox>
+
 
         <!--Options for TR-->
-        <GroupBox Grid.Row="9" Margin="2" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+        <GroupBox Grid.Row="10" Margin="2" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <GroupBox.Header>
                 Tempest Rush
             </GroupBox.Header>
@@ -194,14 +207,14 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="Min Spirit" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-                    <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                    <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                         Interval="1" Maximum="150" Minimum="25"
                         SmallChange="1" LargeChange="10"
                         TickPlacement="BottomRight"  IsSnapToTickEnabled="True"
                         Value="{Binding Path=Monk.TR_MinSpirit}" 
                         HorizontalAlignment="Stretch" Margin="2"/>
                     <TextBlock Grid.Column="2" Text="Min Dist." FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-                    <Slider Grid.Column="3" Template="{DynamicResource Slider}" 
+                    <Slider Grid.Column="3" Template="{DynamicResource SliderEditable}" 
                         Interval="1" Maximum="50" Minimum="0"
                         SmallChange="1" LargeChange="5"
                         TickPlacement="BottomRight"  IsSnapToTickEnabled="True"
@@ -212,10 +225,11 @@
         </GroupBox>
 
 
-        <Grid Grid.Row="10" Margin="2">
+        <Grid Grid.Row="11" Margin="2">
             <ScrollViewer Tag="Combat\Avoidance.xaml" DataContext="{Binding Path=Monk}"/>
         </Grid>
         <!--Reset Button-->
-        <Button Grid.Row="11" Margin="5" HorizontalAlignment="Center" Command="{Binding ResetMonkCommand}">Reset</Button>
+        <Button Grid.Row="12" Margin="5" HorizontalAlignment="Center" Command="{Binding ResetMonkCommand}">Reset</Button>
     </Grid>
+    </ScrollViewer>
 </UserControl>

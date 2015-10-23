@@ -7,6 +7,7 @@ using Trinity.Config.Combat;
 using Trinity.DbProvider;
 using Trinity.Items;
 using Trinity.Reference;
+using Trinity.Settings.Loot;
 using Trinity.Technicals;
 using Zeta.Bot;
 using Zeta.Bot.Navigation;
@@ -194,6 +195,15 @@ namespace Trinity
                                     break;
                                 }
 
+                                // If any units between us and target, reduce weight, for monk only
+                                if (CombatBase.KiteDistance <= 0 && cacheObject.RadiusDistance > 9f &&
+                                    Player.ActorClass == ActorClass.Monk && !CombatBase.CanCast(SNOPower.X1_Monk_DashingStrike) &&
+                                    CacheData.MonsterObstacles.Any(cp => MathUtil.IntersectsPath(cp.Position, cp.Radius * 1.2f, Player.Position, cacheObject.Position)))
+                                {
+                                    objWeightInfo += "MonsterObstacles";
+                                    cacheObject.Weight = 1;
+                                }
+
                                 bool isInHotSpot = GroupHotSpots.CacheObjectIsInHotSpot(cacheObject);
 
                                 bool ignoring = false;
@@ -255,12 +265,12 @@ namespace Trinity
                                         break;
                                     }
 
-                 
+                                    var isMinion = cacheObject.CommonData.MonsterQualityLevel == Zeta.Game.Internals.Actors.MonsterQuality.Minion;
 
                                     // Ignore elite option, except if trying to town portal
                                     if (((!cacheObject.IsBoss || shouldIgnoreBosses) && !cacheObject.IsBountyObjective &&
-                                        shouldIgnoreElites && cacheObject.IsEliteRareUnique && !isInHotSpot &&
-                                        !(cacheObject.HitPointsPct <= (Settings.Combat.Misc.ForceKillElitesHealth / 100)))
+                                        shouldIgnoreElites && (cacheObject.IsEliteRareUnique || isMinion) && !isInHotSpot &&
+                                        !(cacheObject.HitPointsPct <= Settings.Combat.Misc.ForceKillElitesHealth))
                                         || healthGlobeEmergency || getHiPriorityShrine || getHiPriorityContainer || goblinKamikaze)
                                     {
                                         objWeightInfo += "Ignoring ";
@@ -596,6 +606,15 @@ namespace Trinity
                                 if (Player.ParticipatingInTieredLootRun && ObjectCache.Any(m => m.IsUnit && m.IsBoss))
                                 {
                                     objWeightInfo += " LR Boss";
+                                    cacheObject.Weight = 0;
+                                    break;
+                                }
+
+                                var dropAllLegendaries = Settings.Loot.TownRun.DropInTownOption == DropInTownOption.All && ZetaDia.IsInTown;
+                                var dropUnidentified = Settings.Loot.TownRun.KeepLegendaryUnid && Settings.Loot.TownRun.DropInTownOption != DropInTownOption.None && ZetaDia.IsInTown;
+                                if (dropAllLegendaries || dropUnidentified)
+                                {
+                                    objWeightInfo += " DisabledLootingInTownDropLegendaries";
                                     cacheObject.Weight = 0;
                                     break;
                                 }

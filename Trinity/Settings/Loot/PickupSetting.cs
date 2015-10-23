@@ -35,7 +35,6 @@ namespace Trinity.Config.Loot
         private bool _infernalKeys;
         private bool _pickupLowLevel;
         private bool _lootRunKey;
-        private bool _trialKeys;
         private bool _ramadalinisGift;
         private bool _legendaryPotions;
         private bool _bloodShards;
@@ -534,24 +533,6 @@ namespace Trinity.Config.Loot
 
         [DataMember(IsRequired = false)]
         [DefaultValue(true)]
-        public bool TrialKeys
-        {
-            get
-            {
-                return _trialKeys;
-            }
-            set
-            {
-                if (_trialKeys != value)
-                {
-                    _trialKeys = value;
-                    OnPropertyChanged("TrialKeys");
-                }
-            }
-        }
-
-        [DataMember(IsRequired = false)]
-        [DefaultValue(true)]
         public bool RamadalinisGift
         {
             get
@@ -772,7 +753,6 @@ namespace Trinity.Config.Loot
             LootRunKey = true;
             PickupGold = true;
             RamadalinisGift = true;
-            TrialKeys = true;
             PickupLegendaries = true;
             LegendaryPotions = true;
             PickupLegendaryFollowerItems = true;

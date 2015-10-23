@@ -84,6 +84,11 @@ namespace Trinity
         private static bool _isWaitingAfterPower;
 
         /// <summary>
+        /// A special post power use pause, causes targetHandler to wait on any new decisions
+        /// </summary>
+        private static bool _isWaitingBeforePower;
+
+        /// <summary>
         /// If TargetHandle is waiting waiting before popping a potion - we won't refresh cache/change targets/unstuck/etc
         /// </summary>
         private static bool _isWaitingForPotion;

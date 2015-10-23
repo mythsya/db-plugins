@@ -229,7 +229,7 @@ namespace Trinity.UI.UIComponents
                 }
                 catch (Exception ex)
                 {
-                    Logger.Log("Exception in AddRequiredRuleCommand: {0} {1}", ex.Message, ex.InnerException);
+                    Logger.Log("Exception in AddRequiredRuleCommand: {0} {1}", ex.Message, ex.InnerException, ex);
                 }
 
             });

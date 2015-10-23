@@ -595,8 +595,8 @@ namespace Trinity.Settings.Loot
 
                     if (selectedDictionary.TryGetValue(item.Id, out selectedItem))
                     {
-                        if(!item.IsSelected)
-                            Logger.LogVerbose("Update: Selecting {0} ({1}) with {2} rules", item.Name, item.Id, item.Rules.Count);
+                        //if(!item.IsSelected)
+                            //Logger.LogVerbose("Update: Selecting {0} ({1}) with {2} rules", item.Name, item.Id, item.Rules.Count);
                       
                         selectedItem.Rules.ForEach(r =>
                         {

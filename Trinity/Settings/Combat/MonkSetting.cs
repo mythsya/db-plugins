@@ -68,6 +68,9 @@ namespace Trinity.Config.Combat
         private float _dashingStrikeDelay;
         private bool _waitForCritChance;
         private float _cycloneStrikeDelay;
+        private bool _useEpiphanyGoblin;
+        private MonkEpiphanyMode _EpiphanyMode;
+        private bool _epiphanyEmergencyHealth;
         #endregion Events
 
         #region Constructors
@@ -81,6 +84,60 @@ namespace Trinity.Config.Combat
         #endregion Constructors
 
         #region Properties
+
+        [DataMember(IsRequired = false)]
+        [DefaultValue(false)]
+        public bool EpiphanyEmergencyHealth
+        {
+            get
+            {
+                return _epiphanyEmergencyHealth;
+            }
+            set
+            {
+                if (_epiphanyEmergencyHealth != value)
+                {
+                    _epiphanyEmergencyHealth = value;
+                    OnPropertyChanged("EpiphanyEmergencyHealth");
+                }
+            }
+        }
+
+        [DataMember(IsRequired = false)]
+        [DefaultValue(MonkEpiphanyMode.Normal)]
+        public MonkEpiphanyMode EpiphanyMode
+        {
+            get
+            {
+                return _EpiphanyMode;
+            }
+            set
+            {
+                if (_EpiphanyMode != value)
+                {
+                    _EpiphanyMode = value;
+                    OnPropertyChanged("EpiphanyMode");
+                }
+            }
+        }
+
+        [DataMember(IsRequired = false)]
+        [DefaultValue(false)]
+        public bool UseEpiphanyGoblin
+        {
+            get
+            {
+                return _useEpiphanyGoblin;
+            }
+            set
+            {
+                if (_useEpiphanyGoblin != value)
+                {
+                    _useEpiphanyGoblin = value;
+                    OnPropertyChanged("UseEpiphanyGoblin");
+                }
+            }
+        }
 
         [DataMember(IsRequired = false)]
         [DefaultValue(false)]
@@ -1100,6 +1157,9 @@ namespace Trinity.Config.Combat
             SSSOffCD = false;
             DisableExplodingPalm = false;
             StaticChargeMaxMobPct = 0.5f;
+            UseEpiphanyGoblin = false;
+            EpiphanyMode = MonkEpiphanyMode.Normal;
+            EpiphanyEmergencyHealth = false;
         }
         #endregion Methods
 

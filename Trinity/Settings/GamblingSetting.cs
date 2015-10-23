@@ -266,13 +266,12 @@ namespace Trinity.Config
         }
 
         [DataMember(IsRequired = false)]
-        [DefaultValue(500)]                
+        [DefaultValue(1500)]                
         public int MaximumBloodShards
         {
             get
-            {       
-                _maximumBloodShards = GetMaxBloodShards();
-                return _maximumBloodShards;
+            {
+                return _maximumBloodShards;                 
             }
             set
             {
@@ -297,7 +296,10 @@ namespace Trinity.Config
         [DefaultValue(400)]
         public int SaveShardsThreshold
         {
-            get { return _saveShardsThreshold; }
+            get
+            {
+                return _saveShardsThreshold;
+            }
             set
             {
                 if (_saveShardsThreshold != value)

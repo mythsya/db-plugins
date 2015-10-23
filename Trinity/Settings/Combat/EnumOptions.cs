@@ -38,6 +38,14 @@ namespace Trinity.Config.Combat
         DestroyAll
     }
 
+    public enum MonkEpiphanyMode
+    {
+        HardElitesOnly,
+        Normal,
+        WhenReady,
+        WhenInCombat
+    }
+
     public enum BarbarianWOTBMode
     {
         HardElitesOnly,

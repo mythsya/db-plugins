@@ -33,7 +33,7 @@ namespace TrinityCoroutines
             if (!ZetaDia.IsInTown)
                 IsDumpingShards = false;
 
-            if (Trinity.Trinity.Settings.Gambling.ShouldTownRun && ZetaDia.CPlayer.BloodshardCount >= Trinity.Trinity.Settings.Gambling.SaveShardsThreshold)
+            if (Trinity.Trinity.Settings.Gambling.ShouldTownRun && ZetaDia.CPlayer.BloodshardCount >= Math.Min(Trinity.Trinity.Settings.Gambling.SaveShardsThreshold, Trinity.Trinity.Player.MaxBloodShards))
             {
                 if (CanRun() && !ShouldSaveShards && !TownRun.IsTryingToTownPortal() && !BrainBehavior.IsVendoring)
                 {
@@ -211,7 +211,7 @@ namespace TrinityCoroutines
                     return false;
                 }
 
-                if (!TrinityItemManager.IsAnyTwoSlotBackpackLocation)
+                if (!TrinityItemManager.IsAnyTwoSlotBackpackLocation || ZetaDia.Me.Inventory.NumFreeBackpackSlots < 5)
                 {
                     LogVerbose("No Backpack space!");
                     return false;
@@ -238,7 +238,7 @@ namespace TrinityCoroutines
             var debugInfo = string.Format(" Shards={0} SaveShards={1} SaveThreshold={2} CanAffordItem={3} SelectedSlots={4}",
                 ZetaDia.CPlayer.BloodshardCount,
                 Trinity.Trinity.Settings.Gambling.ShouldSaveShards,
-                Trinity.Trinity.Settings.Gambling.SaveShardsThreshold,
+                Math.Min(Trinity.Trinity.Settings.Gambling.SaveShardsThreshold, Trinity.Trinity.Player.MaxBloodShards),
                 CanAffordMostExpensiveItem,
                 Trinity.Trinity.Settings.Gambling.SelectedGambleSlots.Count);
 

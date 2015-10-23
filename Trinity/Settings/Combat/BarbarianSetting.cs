@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 
@@ -1132,15 +1133,11 @@ namespace Trinity.Config.Combat
         [OnDeserializing]
         internal void OnDeserializingMethod(StreamingContext context)
         {
-            foreach (PropertyInfo p in GetType().GetProperties())
+            foreach (var p in GetType().GetProperties())
             {
-                foreach (Attribute attr in p.GetCustomAttributes(true))
+                foreach (var dv in p.GetCustomAttributes(true).OfType<DefaultValueAttribute>())
                 {
-                    if (attr is DefaultValueAttribute)
-                    {
-                        DefaultValueAttribute dv = (DefaultValueAttribute)attr;
-                        p.SetValue(this, dv.Value);
-                    }
+                    p.SetValue(this, dv.Value);
                 }
             }
         }

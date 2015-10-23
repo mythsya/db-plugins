@@ -216,7 +216,6 @@ namespace Trinity.Combat.Abilities
         /// <summary>
         /// EnergReserve for using "Big" spells/powers        
         /// </summary>        
-        [Obsolete("Use EnergyReserve, Set in Class's CombatSettings() override")]
         public static int MinEnergyReserve
         {
             get
@@ -254,7 +253,7 @@ namespace Trinity.Combat.Abilities
             {
                 return
                    Trinity.ObjectCache.Any(o => o.IsEliteRareUnique &&
-                          o.MonsterAffixes.HasFlag(MonsterAffixes.ArcaneEnchanted | MonsterAffixes.Frozen | MonsterAffixes.Jailer | MonsterAffixes.Molten) ||
+                          o.MonsterAffixes.HasFlag(MonsterAffixes.ArcaneEnchanted | MonsterAffixes.Frozen | MonsterAffixes.Jailer | MonsterAffixes.Molten | MonsterAffixes.Nightmarish) ||
                           (o.MonsterAffixes.HasFlag(MonsterAffixes.Electrified) && o.MonsterAffixes.HasFlag(MonsterAffixes.ReflectsDamage))) ||
                         Trinity.ObjectCache.Any(o => o.IsBoss);
             }
@@ -971,16 +970,23 @@ namespace Trinity.Combat.Abilities
             if (!cacheObject.IsFullyValid())
                 return true;
 
+            var isRare = cacheObject.CommonData.MonsterQualityLevel == Zeta.Game.Internals.Actors.MonsterQuality.Rare;
+            var isMinion = cacheObject.CommonData.MonsterQualityLevel == Zeta.Game.Internals.Actors.MonsterQuality.Minion;
+            var isChampion = cacheObject.CommonData.MonsterQualityLevel == Zeta.Game.Internals.Actors.MonsterQuality.Champion;
+
+            if ((cacheObject.IsEliteRareUnique || cacheObject.IsBoss || isMinion) && cacheObject.HitPointsPct <= Settings.Combat.Misc.ForceKillElitesHealth)
+                return false;
+
             if (Trinity.Settings.Combat.Misc.IgnoreHighHitePointTrash && cacheObject.IsTrashMob)
             {
                 var unitName = cacheObject.InternalName.ToLower();
-                if (HighHitPointTrashMobNames.Any(name => unitName.Contains(name))) //|| cacheObject.MonsterSize == MonsterSize.Big)
+                if (HighHitPointTrashMobNames.Any(name => unitName.Contains(name)))
                 {
                     return true;
                 }
             }
 
-            if (Trinity.Settings.Combat.Misc.IgnoreRares && cacheObject.CommonData.MonsterQualityLevel == Zeta.Game.Internals.Actors.MonsterQuality.Rare && !cacheObject.IsBoss)
+            if ((Trinity.Settings.Combat.Misc.IgnoreRares && (isRare | isMinion) || Trinity.Settings.Combat.Misc.IgnoreChampions && isChampion) && !cacheObject.IsBoss)
             {
                 return true;
             }

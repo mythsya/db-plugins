@@ -168,5 +168,7 @@ namespace Trinity.Objects
         public TrinityItemType TrinityItemType { get; set; }
 
         public string IconUrl { get; set; }
+
+        public bool GameBalanceId { get; set; }
     }
 }

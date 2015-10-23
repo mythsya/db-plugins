@@ -429,6 +429,10 @@ namespace Trinity.Reference
             {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Shield, ItemProperty.PrimaryStat), new ItemStatRange {AncientMax = 650, AncientMin = 550, Max = 500, Min = 416 }},
             {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Dagger, ItemProperty.PrimaryStat), new ItemStatRange {AncientMax = 1000, AncientMin = 825, Max = 750, Min = 626 }},
             {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.CrusaderShield, ItemProperty.PrimaryStat), new ItemStatRange {AncientMax = 650, AncientMin = 550, Max = 500, Min = 416 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.FollowerEnchantress, ItemProperty.PrimaryStat), new ItemStatRange {AncientMax = 1000, AncientMin = 750, Max = 750, Min = 626 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.FollowerScoundrel, ItemProperty.PrimaryStat), new ItemStatRange {AncientMax = 1000, AncientMin = 750, Max = 750, Min = 626 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.FollowerTemplar, ItemProperty.PrimaryStat), new ItemStatRange {AncientMax = 1000, AncientMin = 750, Max = 750, Min = 626 }},
+
 
             //Vitality
 
@@ -473,6 +477,10 @@ namespace Trinity.Reference
             {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Shield, ItemProperty.Vitality), new ItemStatRange {AncientMax = 650, AncientMin = 550, Max = 500, Min = 416 }},
             {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Dagger, ItemProperty.Vitality), new ItemStatRange {AncientMax = 1000, AncientMin = 825, Max = 750, Min = 626 }},
             {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.CrusaderShield, ItemProperty.Vitality), new ItemStatRange {AncientMax = 650, AncientMin = 550, Max = 500, Min = 416 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.FollowerEnchantress, ItemProperty.Vitality), new ItemStatRange {AncientMax = 1000, AncientMin = 825, Max = 750, Min = 626 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.FollowerScoundrel, ItemProperty.Vitality), new ItemStatRange {AncientMax = 1000, AncientMin = 825, Max = 750, Min = 626 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.FollowerTemplar, ItemProperty.Vitality), new ItemStatRange {AncientMax = 1000, AncientMin = 825, Max = 750, Min = 626 }},
+
 
             //ResistAll
 
@@ -486,6 +494,10 @@ namespace Trinity.Reference
             {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.MightyBelt, ItemProperty.ResistAll), new ItemStatRange {AncientMax = 130, AncientMin = 110, Max = 100, Min = 91 }},
             {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Bracer, ItemProperty.ResistAll), new ItemStatRange {AncientMax = 130, AncientMin = 110, Max = 100, Min = 91 }},
             {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Boots, ItemProperty.ResistAll), new ItemStatRange {AncientMax = 130, AncientMin = 110, Max = 100, Min = 91 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.FollowerEnchantress, ItemProperty.ResistAll), new ItemStatRange {AncientMax = 130, AncientMin = 110, Max = 100, Min = 91 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.FollowerScoundrel, ItemProperty.ResistAll), new ItemStatRange {AncientMax = 130, AncientMin = 110, Max = 100, Min = 91 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.FollowerTemplar, ItemProperty.ResistAll), new ItemStatRange {AncientMax = 130, AncientMin = 110, Max = 100, Min = 91 }},
+
 
             // Reduce Damage From Elites
 
@@ -497,6 +509,10 @@ namespace Trinity.Reference
             {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Ring, ItemProperty.CriticalHitDamage), new ItemStatRange { Max = 50, Min = 26 }},
             {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Amulet, ItemProperty.CriticalHitDamage), new ItemStatRange { Max = 100, Min = 51 }},
             {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Gloves, ItemProperty.CriticalHitDamage), new ItemStatRange { Max = 50, Min = 26 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.FollowerEnchantress, ItemProperty.CriticalHitDamage), new ItemStatRange { Max = 100, Min = 51 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.FollowerScoundrel, ItemProperty.CriticalHitDamage), new ItemStatRange { Max = 100, Min = 51 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.FollowerTemplar, ItemProperty.CriticalHitDamage), new ItemStatRange { Max = 100, Min = 51 }},
+
 
             // CriticalChance
 
@@ -565,6 +581,8 @@ namespace Trinity.Reference
             {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.FistWeapon, ItemProperty.SkillDamage), new ItemStatRange { Max = 15, Min = 10 }},
             {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.TwoHandDaibo, ItemProperty.SkillDamage), new ItemStatRange { Max = 15, Min = 10 }},
             {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.TwoHandMighty, ItemProperty.SkillDamage), new ItemStatRange { Max = 15, Min = 10 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Shield, ItemProperty.SkillDamage), new ItemStatRange { Max = 15, Min = 10 }},
+
 
             // Base Damage
 
@@ -781,6 +799,191 @@ namespace Trinity.Reference
             {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Amulet, ItemProperty.ElementalDamage), new ItemStatRange { Max = 20, Min = 15 }},
             {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Bracer, ItemProperty.ElementalDamage), new ItemStatRange { Max = 20, Min = 15 }},
 
+            // New --
+
+            // Critical Hits Grant Arcane
+
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Orb, ItemProperty.CriticalHitsGrantArcane), new ItemStatRange {  Max = 4, Min = 3 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.WizardHat, ItemProperty.CriticalHitsGrantArcane), new ItemStatRange {  Max = 4, Min = 3 }},
+
+            // Armor 
+
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Chest, ItemProperty.Armor), new ItemStatRange { AncientMax = 775, AncientMin = 436, Max = 595, Min = 373 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Gloves, ItemProperty.Armor), new ItemStatRange { AncientMax = 516, AncientMin = 436, Max = 397, Min = 373 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Shoulder, ItemProperty.Armor), new ItemStatRange { AncientMax = 516, AncientMin = 436, Max = 397, Min = 373 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Helm, ItemProperty.Armor), new ItemStatRange { AncientMax = 775, AncientMin = 436, Max = 595, Min = 373 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Amulet, ItemProperty.Armor), new ItemStatRange { AncientMax = 775, AncientMin = 436, Max = 595, Min = 373 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Bracer, ItemProperty.Armor), new ItemStatRange { AncientMax = 516, AncientMin = 436, Max = 397, Min = 373 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Belt, ItemProperty.Armor), new ItemStatRange { AncientMax = 516, AncientMin = 436, Max = 397, Min = 373 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Legs, ItemProperty.Armor), new ItemStatRange { AncientMax = 775, AncientMin = 436, Max = 595, Min = 373 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Boots, ItemProperty.Armor), new ItemStatRange { AncientMax = 516, AncientMin = 436, Max = 397, Min = 373 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Shield, ItemProperty.Armor), new ItemStatRange { AncientMax = 775, AncientMin = 436, Max = 595, Min = 373 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.CrusaderShield, ItemProperty.Armor), new ItemStatRange { AncientMax = 775, AncientMin = 436, Max = 595, Min = 373 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Ring, ItemProperty.Armor), new ItemStatRange { AncientMax = 516, AncientMin = 436, Max = 397, Min = 373 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.WizardHat, ItemProperty.Armor), new ItemStatRange { AncientMax = 775, AncientMin = 436, Max = 595, Min = 373 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.VoodooMask, ItemProperty.Armor), new ItemStatRange { AncientMax = 775, AncientMin = 436, Max = 595, Min = 373 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.MightyBelt, ItemProperty.Armor), new ItemStatRange { AncientMax = 516, AncientMin = 436, Max = 397, Min = 373 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Cloak, ItemProperty.Armor), new ItemStatRange { AncientMax = 775, AncientMin = 436, Max = 595, Min = 373 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.SpiritStone, ItemProperty.Armor), new ItemStatRange { AncientMax = 775, AncientMin = 436, Max = 595, Min = 373 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.FollowerEnchantress, ItemProperty.Armor), new ItemStatRange { AncientMax = 775, AncientMin = 436, Max = 595, Min = 373 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.FollowerScoundrel, ItemProperty.Armor), new ItemStatRange { AncientMax = 775, AncientMin = 436, Max = 595, Min = 373 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.FollowerTemplar, ItemProperty.Armor), new ItemStatRange { AncientMax = 775, AncientMin = 436, Max = 595, Min = 373 }},
+
+            // Block Chance
+
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Shield, ItemProperty.ChanceToBlock), new ItemStatRange {  Max = 11, Min = 11 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.CrusaderShield, ItemProperty.ChanceToBlock), new ItemStatRange {  Max = 11, Min = 11 }},
+
+            // Cooldown Reduction
+
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Helm, ItemProperty.Cooldown), new ItemStatRange { Max = 8, Min = 5 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Shield, ItemProperty.Cooldown), new ItemStatRange { Max = 8, Min = 5 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.CrusaderShield, ItemProperty.Cooldown), new ItemStatRange { Max = 8, Min = 5 }},
+
+            // Damage From Elites
+
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Shield, ItemProperty.DamageFromElites), new ItemStatRange {Max = 11, Min = 10 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.CrusaderShield, ItemProperty.DamageFromElites), new ItemStatRange {Max = 11, Min = 10 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Cloak, ItemProperty.DamageFromElites), new ItemStatRange {Max = 11, Min = 10 }},
+
+            // Hatred Regen
+
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Quiver, ItemProperty.HatredRegen), new ItemStatRange {  Max = 1.5, Min = 1.35 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Cloak, ItemProperty.HatredRegen), new ItemStatRange {  Max = 1.5, Min = 1.35 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.HandCrossbow, ItemProperty.HatredRegen), new ItemStatRange {  Max = 1.5, Min = 1.35 }},
+
+            // Life Percent
+
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Orb, ItemProperty.LifePercent), new ItemStatRange {  Max = 15, Min = 10 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Quiver, ItemProperty.LifePercent), new ItemStatRange {  Max = 15, Min = 10 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Mojo, ItemProperty.LifePercent), new ItemStatRange {  Max = 15, Min = 10 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Chest, ItemProperty.LifePercent), new ItemStatRange {  Max = 15, Min = 10 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Shoulder, ItemProperty.LifePercent), new ItemStatRange {  Max = 15, Min = 10 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Helm, ItemProperty.LifePercent), new ItemStatRange {  Max = 15, Min = 10 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Amulet, ItemProperty.LifePercent), new ItemStatRange {  Max = 15, Min = 10 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Belt, ItemProperty.LifePercent), new ItemStatRange {  Max = 15, Min = 10 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Shield, ItemProperty.LifePercent), new ItemStatRange {  Max = 15, Min = 10 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.CrusaderShield, ItemProperty.LifePercent), new ItemStatRange {  Max = 15, Min = 10 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Ring, ItemProperty.LifePercent), new ItemStatRange {  Max = 15, Min = 10 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.WizardHat, ItemProperty.LifePercent), new ItemStatRange {  Max = 15, Min = 10 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.VoodooMask, ItemProperty.LifePercent), new ItemStatRange {  Max = 15, Min = 10 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.MightyBelt, ItemProperty.LifePercent), new ItemStatRange {  Max = 15, Min = 10 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Cloak, ItemProperty.LifePercent), new ItemStatRange {  Max = 15, Min = 10 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.SpiritStone, ItemProperty.LifePercent), new ItemStatRange {  Max = 15, Min = 10 }},
+
+            // Life Per Fury Spent
+
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.MightyWeapon, ItemProperty.LifePerFury), new ItemStatRange { AncientMax = 1215, AncientMin = 1034, Max = 936, Min = 788 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.TwoHandMighty, ItemProperty.LifePerFury), new ItemStatRange { AncientMax = 2435, AncientMin = 2059, Max = 1872, Min = 1572}},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.MightyBelt, ItemProperty.LifePerFury), new ItemStatRange { AncientMax = 1215, AncientMin = 1034, Max = 936, Min = 788 }},
+
+            // Life Per Spirit Spent
+
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.FistWeapon, ItemProperty.LifePerSpirit), new ItemStatRange { AncientMax = 540, AncientMin = 456, Max = 415, Min = 353}},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.TwoHandDaibo, ItemProperty.LifePerSpirit), new ItemStatRange { AncientMax = 1080, AncientMin = 915, Max = 832, Min = 703}},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.SpiritStone, ItemProperty.LifePerSpirit), new ItemStatRange { AncientMax = 540, AncientMin = 456, Max = 415, Min = 353}},
+
+            // Life Per Wrath Spent
+
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Flail, ItemProperty.LifePerWrath), new ItemStatRange { AncientMax = 1660, AncientMin = 1408, Max = 1276, Min = 1077 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.TwoHandFlail, ItemProperty.LifePerWrath), new ItemStatRange { AncientMax = 3320, AncientMin = 2810, Max = 2555, Min = 2149}},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.CrusaderShield, ItemProperty.LifePerWrath), new ItemStatRange { AncientMax = 1660, AncientMin = 1408, Max = 1276, Min = 1077 }},
+
+            // Life Per Hit
+
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Axe, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 23950, AncientMin = 20271, Max = 18429, Min = 15474 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Dagger, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 23950, AncientMin = 20271, Max = 18429, Min = 15474 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Mace, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 23950, AncientMin = 20271, Max = 18429, Min = 15474 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Spear, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 23950, AncientMin = 20271, Max = 18429, Min = 15474 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Sword, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 23950, AncientMin = 20271, Max = 18429, Min = 15474 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.CeremonialKnife, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 23950, AncientMin = 20271, Max = 18429, Min = 15474 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.TwoHandAxe, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 35940, AncientMin = 30408, Max = 27644, Min = 23211 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.TwoHandMace, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 35940, AncientMin = 30408, Max = 27644, Min = 23211 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.TwoHandPolearm, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 35940, AncientMin = 30408, Max = 27644, Min = 23211 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.TwoHandStaff, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 35940, AncientMin = 30408, Max = 27644, Min = 23211 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.TwoHandSword, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 35940, AncientMin = 30408, Max = 27644, Min = 23211 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.TwoHandBow, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 23950, AncientMin = 20271, Max = 18429, Min = 15474 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.TwoHandCrossbow, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 23950, AncientMin = 20271, Max = 18429, Min = 15474 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.MightyWeapon, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 23950, AncientMin = 20271, Max = 18429, Min = 15474 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.FistWeapon, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 23950, AncientMin = 20271, Max = 18429, Min = 15474 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Wand, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 23950, AncientMin = 20271, Max = 18429, Min = 15474 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Flail, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 23950, AncientMin = 20271, Max = 18429, Min = 15474 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.TwoHandFlail, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 35940, AncientMin = 30408, Max = 27644, Min = 23211 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.TwoHandMighty, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 35940, AncientMin = 30408, Max = 27644, Min = 23211 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.TwoHandDaibo, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 35940, AncientMin = 30408, Max = 27644, Min = 23211 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Gloves, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 11975, AncientMin = 10135, Max = 9214, Min = 7737 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Helm, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 11975, AncientMin = 10135, Max = 9214, Min = 7737 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Amulet, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 23950, AncientMin = 20271, Max = 18429, Min = 15474 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Bracer, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 11975, AncientMin = 10135, Max = 9214, Min = 7737 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Ring, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 11975, AncientMin = 10135, Max = 9214, Min = 7737 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.WizardHat, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 11975, AncientMin = 10135, Max = 9214, Min = 7737 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.VoodooMask, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 11975, AncientMin = 10135, Max = 9214, Min = 7737 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.SpiritStone, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 11975, AncientMin = 10135, Max = 9214, Min = 7737 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.HandCrossbow, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 23950, AncientMin = 20271, Max = 18429, Min = 15474 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.FollowerEnchantress, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 23950, AncientMin = 20271, Max = 18429, Min = 15474 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.FollowerScoundrel, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 23950, AncientMin = 20271, Max = 18429, Min = 15474 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.FollowerTemplar, ItemProperty.LifePerHit), new ItemStatRange { AncientMax = 23950, AncientMin = 20271, Max = 18429, Min = 15474 }},
+
+            // Life Per Second
+
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Orb, ItemProperty.RegenerateLifePerSecond), new ItemStatRange { AncientMax = 7185, AncientMin = 6080, Max = 5528, Min = 4643}},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Quiver, ItemProperty.RegenerateLifePerSecond), new ItemStatRange { AncientMax = 7185, AncientMin = 6080, Max = 5528, Min = 4643}},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Mojo, ItemProperty.RegenerateLifePerSecond), new ItemStatRange { AncientMax = 7185, AncientMin = 6080, Max = 5528, Min = 4643}},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Chest, ItemProperty.RegenerateLifePerSecond), new ItemStatRange { AncientMax = 7185, AncientMin = 6080, Max = 5528, Min = 4643}},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Gloves, ItemProperty.RegenerateLifePerSecond), new ItemStatRange { AncientMax = 10000, AncientMin = 8445, Max = 7678, Min = 6448}},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Shoulder, ItemProperty.RegenerateLifePerSecond), new ItemStatRange { AncientMax = 7185, AncientMin = 6080, Max = 5528, Min = 4643}},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Helm, ItemProperty.RegenerateLifePerSecond), new ItemStatRange { AncientMax = 10000, AncientMin = 8445, Max = 7678, Min = 6448}},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Amulet, ItemProperty.RegenerateLifePerSecond), new ItemStatRange { AncientMax = 10000, AncientMin = 8445, Max = 7678, Min = 6448}},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Bracer, ItemProperty.RegenerateLifePerSecond), new ItemStatRange { AncientMax = 10000, AncientMin = 8445, Max = 7678, Min = 6448}},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Belt, ItemProperty.RegenerateLifePerSecond), new ItemStatRange { AncientMax = 7185, AncientMin = 6080, Max = 5528, Min = 4643}},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Legs, ItemProperty.RegenerateLifePerSecond), new ItemStatRange { AncientMax = 7185, AncientMin = 6080, Max = 5528, Min = 4643}},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Boots, ItemProperty.RegenerateLifePerSecond), new ItemStatRange { AncientMax = 7185, AncientMin = 6080, Max = 5528, Min = 4643}},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Shield, ItemProperty.RegenerateLifePerSecond), new ItemStatRange { AncientMax = 7185, AncientMin = 6080, Max = 5528, Min = 4643}},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.CrusaderShield, ItemProperty.RegenerateLifePerSecond), new ItemStatRange { AncientMax = 7185, AncientMin = 6080, Max = 5528, Min = 4643}},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Ring, ItemProperty.RegenerateLifePerSecond), new ItemStatRange { AncientMax = 10000, AncientMin = 8445, Max = 7678, Min = 6448}},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.WizardHat, ItemProperty.RegenerateLifePerSecond), new ItemStatRange { AncientMax = 10000, AncientMin = 8445, Max = 7678, Min = 6448}},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.VoodooMask, ItemProperty.RegenerateLifePerSecond), new ItemStatRange { AncientMax = 10000, AncientMin = 8445, Max = 7678, Min = 6448}},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.MightyBelt, ItemProperty.RegenerateLifePerSecond), new ItemStatRange { AncientMax = 7185, AncientMin = 6080, Max = 5528, Min = 4643}},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Cloak, ItemProperty.RegenerateLifePerSecond), new ItemStatRange { AncientMax = 7185, AncientMin = 6080, Max = 5528, Min = 4643}},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.SpiritStone, ItemProperty.RegenerateLifePerSecond), new ItemStatRange { AncientMax = 10000, AncientMin = 8445, Max = 7678, Min = 6448}},
+
+            // Mana Regen
+
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.CeremonialKnife, ItemProperty.ManaRegen), new ItemStatRange {  Max = 14, Min = 12 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Mojo, ItemProperty.ManaRegen), new ItemStatRange {  Max = 14, Min = 12 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.VoodooMask, ItemProperty.ManaRegen), new ItemStatRange {  Max = 14, Min = 12 }},
+
+            // Move Speed
+
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Boots, ItemProperty.MovementSpeed), new ItemStatRange {  Max = 12, Min = 10 }},
+
+            //// Resistance to All
+
+            //{new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Gloves, ItemProperty.ResistAll), new ItemStatRange {AncientMax = 130, AncientMin = 110, Max = 100, Min = 91 }},
+            //{new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Shield, ItemProperty.ResistAll), new ItemStatRange {AncientMax = 130, AncientMin = 110, Max = 100, Min = 91 }},
+            //{new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.CrusaderShield, ItemProperty.ResistAll), new ItemStatRange {AncientMax = 130, AncientMin = 110, Max = 100, Min = 91 }},
+            //{new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.WizardHat, ItemProperty.ResistAll), new ItemStatRange {AncientMax = 130, AncientMin = 110, Max = 100, Min = 91 }},
+            //{new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.MightyBelt, ItemProperty.ResistAll), new ItemStatRange {AncientMax = 130, AncientMin = 110, Max = 100, Min = 91 }},
+            //{new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Cloak, ItemProperty.ResistAll), new ItemStatRange {AncientMax = 130, AncientMin = 110, Max = 100, Min = 91 }},
+            //{new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.SpiritStone, ItemProperty.ResistAll), new ItemStatRange {AncientMax = 130, AncientMin = 110, Max = 100, Min = 91 }},
+
+            // Resource Reduction 
+
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Shield, ItemProperty.ResourceCost), new ItemStatRange { Max = 8, Min = 5 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.CrusaderShield, ItemProperty.ResourceCost), new ItemStatRange { Max = 8, Min = 5 }},
+
+            // Spirit Regeneration
+
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.FistWeapon, ItemProperty.SpiritRegen), new ItemStatRange {  Max = 3, Min = 2.17 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.TwoHandDaibo, ItemProperty.SpiritRegen), new ItemStatRange {  Max = 6, Min = 4.33 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.SpiritStone, ItemProperty.SpiritRegen), new ItemStatRange {  Max = 3, Min = 2.17 }},
+
+            // Wrath Regeneration
+
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Flail, ItemProperty.WrathRegen), new ItemStatRange {  Max = 2, Min = 1.85 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.TwoHandFlail, ItemProperty.WrathRegen), new ItemStatRange {  Max = 4, Min = 3.7 }},
+            {new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.CrusaderShield, ItemProperty.WrathRegen), new ItemStatRange {  Max = 2, Min = 1.85 }},
+
 
             //{new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Ring, ItemProperty.CritcalHitDamage), new ItemStatRange { Max = 50, Min = 26 }},
             //{new KeyValuePair<TrinityItemType, ItemProperty>(TrinityItemType.Amulet, ItemProperty.CritcalHitDamage), new ItemStatRange { Max = 100, Min = 51 }},
@@ -871,7 +1074,14 @@ namespace Trinity.Reference
             {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.SpiritStone, ActorClass.Monk), Skills.Monk.TempestRush},
             {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.SpiritStone, ActorClass.Monk), Skills.Monk.ExplodingPalm},
             {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.SpiritStone, ActorClass.Monk), Skills.Monk.WaveOfLight},
-            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.SpiritStone, ActorClass.Monk), Skills.Monk.LashingTailKick},  
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.SpiritStone, ActorClass.Monk), Skills.Monk.LashingTailKick},
+
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Helm, ActorClass.Crusader), Skills.Crusader.BlessedHammer},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Helm, ActorClass.Crusader), Skills.Crusader.Phalanx},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Helm, ActorClass.Crusader), Skills.Crusader.FistOfTheHeavens},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Helm, ActorClass.Crusader), Skills.Crusader.BlessedShield},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Helm, ActorClass.Crusader), Skills.Crusader.ShieldBash},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Helm, ActorClass.Crusader), Skills.Crusader.SweepAttack},
 
             // Shoulders
 
@@ -910,6 +1120,8 @@ namespace Trinity.Reference
 
             {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Shoulder, ActorClass.Crusader), Skills.Crusader.FallingSword},
             {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Shoulder, ActorClass.Crusader), Skills.Crusader.HeavensFury},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Shoulder, ActorClass.Crusader), Skills.Crusader.Condemn},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Shoulder, ActorClass.Crusader), Skills.Crusader.Bombardment},
 
             // Chest
 
@@ -954,6 +1166,8 @@ namespace Trinity.Reference
 
             {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Chest, ActorClass.Crusader), Skills.Crusader.FallingSword},
             {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Chest, ActorClass.Crusader), Skills.Crusader.HeavensFury},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Chest, ActorClass.Crusader), Skills.Crusader.Bombardment},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Chest, ActorClass.Crusader), Skills.Crusader.Condemn},
 
             // Belt
 
@@ -1019,6 +1233,9 @@ namespace Trinity.Reference
             {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Legs, ActorClass.Monk), Skills.Monk.FistsOfThunder},
 
             {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Legs, ActorClass.Crusader), Skills.Crusader.Punish},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Legs, ActorClass.Crusader), Skills.Crusader.Justice},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Legs, ActorClass.Crusader), Skills.Crusader.Slash},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Legs, ActorClass.Crusader), Skills.Crusader.Smite},
             
             // Boots
 
@@ -1052,7 +1269,14 @@ namespace Trinity.Reference
             {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Boots, ActorClass.Monk), Skills.Monk.TempestRush},
             {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Boots, ActorClass.Monk), Skills.Monk.ExplodingPalm},
             {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Boots, ActorClass.Monk), Skills.Monk.WaveOfLight},
-            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Boots, ActorClass.Monk), Skills.Monk.LashingTailKick},  
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Boots, ActorClass.Monk), Skills.Monk.LashingTailKick},
+
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Boots, ActorClass.Crusader), Skills.Crusader.BlessedHammer},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Boots, ActorClass.Crusader), Skills.Crusader.Phalanx},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Boots, ActorClass.Crusader), Skills.Crusader.FistOfTheHeavens},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Boots, ActorClass.Crusader), Skills.Crusader.BlessedShield},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Boots, ActorClass.Crusader), Skills.Crusader.ShieldBash},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Boots, ActorClass.Crusader), Skills.Crusader.SweepAttack},
 
             // Offhand
 
@@ -1097,6 +1321,21 @@ namespace Trinity.Reference
             {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Mojo, ActorClass.Witchdoctor), Skills.WitchDoctor.PoisonDart},
             {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Mojo, ActorClass.Witchdoctor), Skills.WitchDoctor.WallOfDeath},
 
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Shield, ActorClass.Crusader), Skills.Crusader.FallingSword},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Shield, ActorClass.Crusader), Skills.Crusader.Condemn},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Shield, ActorClass.Crusader), Skills.Crusader.Justice},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Shield, ActorClass.Crusader), Skills.Crusader.FistOfTheHeavens},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Shield, ActorClass.Crusader), Skills.Crusader.Bombardment},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Shield, ActorClass.Crusader), Skills.Crusader.HeavensFury},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Shield, ActorClass.Crusader), Skills.Crusader.Phalanx},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Shield, ActorClass.Crusader), Skills.Crusader.BlessedShield},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Shield, ActorClass.Crusader), Skills.Crusader.Slash},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Shield, ActorClass.Crusader), Skills.Crusader.ShieldBash},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Shield, ActorClass.Crusader), Skills.Crusader.Smite},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Shield, ActorClass.Crusader), Skills.Crusader.SweepAttack},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Shield, ActorClass.Crusader), Skills.Crusader.Punish},
+            {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.Shield, ActorClass.Crusader), Skills.Crusader.BlessedHammer},
+
             // One Hand Weapon
 
             {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.MightyWeapon, ActorClass.Barbarian), Skills.Barbarian.WeaponThrow},
@@ -1134,6 +1373,7 @@ namespace Trinity.Reference
             {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.TwoHandDaibo, ActorClass.Monk), Skills.Monk.MysticAlly},
             {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.TwoHandDaibo, ActorClass.Monk), Skills.Monk.SweepingWind},
             {new KeyValuePair<TrinityItemType, ActorClass>(TrinityItemType.TwoHandDaibo, ActorClass.Monk), Skills.Monk.CycloneStrike},
+
 
         };
 

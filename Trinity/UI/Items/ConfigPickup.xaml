@@ -96,7 +96,6 @@
                     <CheckBox Content="Legendary Plans" IsChecked="{Binding Path=Pickup.LegendaryPlans}" Margin="5"/>
                     <CheckBox Content="Craft Materials" IsChecked="{Binding Path=Pickup.CraftMaterials}" Margin="5"/>
                     
-                    <CheckBox Content="Trial Keys" IsChecked="{Binding Path=Pickup.TrialKeys}" Margin="5" ToolTip="Pickup Rift Key Fragments"/>
                     <CheckBox Content="Low Level Items" IsChecked="{Binding Path=Pickup.PickupLowLevel}" Margin="5" ToolTip="Pickup Grey and White Items to level 6/11 (for questing)"/>
                     <CheckBox Content="Blood Shards" IsChecked="{Binding Path=Pickup.BloodShards}" Margin="5" ToolTip="Pickup Blood Shards"/>
                     <CheckBox Content="Rift Keys" IsChecked="{Binding Path=Pickup.LootRunKey}" Margin="5" ToolTip="Pickup Rift Key Fragments"/>
@@ -175,7 +174,7 @@
             <GroupBox Header="Gold Pickup Settings">
                 <DockPanel LastChildFill="True">
                     <CheckBox DockPanel.Dock="Left" IsChecked="{Binding Path=Pickup.PickupGold}" Content="Pickup Gold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"  />
-                    <Slider Template="{DynamicResource Slider}" IsEnabled="{Binding Path=Pickup.PickupGold}"
+                    <Slider Template="{DynamicResource SliderEditable}" IsEnabled="{Binding Path=Pickup.PickupGold}"
                         Interval="500" Maximum="30000" Minimum="0" SmallChange="10" LargeChange="100"
                         TickFrequency="100" TickPlacement="BottomRight" IsSnapToTickEnabled="True"
                         Value="{Binding Path=Pickup.MinimumGoldStack}" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>

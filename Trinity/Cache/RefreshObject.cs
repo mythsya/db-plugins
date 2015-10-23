@@ -768,12 +768,20 @@ namespace Trinity
                     if (CurrentCacheObject.Type == TrinityObjectType.Unit && Player.InActiveEvent)
                         return true;
                 }
+
+                // Always pickup globes
+                if (CurrentCacheObject.TrinityItemType == TrinityItemType.ProgressionGlobe)
+                {
+                    c_IgnoreSubStep = "";
+                    return true;
+                }
+
                 // Everything except items and the current target
                 if (CurrentCacheObject.RActorGuid != LastTargetRactorGUID && CurrentCacheObject.Type != TrinityObjectType.Unknown)
                 {
                     var importantItem = CurrentCacheObject.TrinityItemType == TrinityItemType.ProgressionGlobe;
 
-                    if (CurrentCacheObject.Distance < 95 || importantItem && CurrentCacheObject.Distance <= 150f)
+                    if (CurrentCacheObject.Distance < 95 && !(importantItem && CurrentCacheObject.Distance <= 200f))
                     {
                         using (new PerformanceLogger("RefreshLoS.2"))
                         {

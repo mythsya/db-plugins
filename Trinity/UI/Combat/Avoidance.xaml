@@ -35,13 +35,13 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin="2" Text="Arcane" FontWeight="Bold" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
                             Value="{Binding Path=DataContext.Avoid.Arcane, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=2}}" 
                             HorizontalAlignment="Stretch" Margin="2"/>
-                <Slider Grid.Column="2" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="2" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="100" Minimum="0" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
@@ -56,13 +56,13 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin="2" Text="Azmo Bodies" FontWeight="Bold" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="60" Minimum="2" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
                             Value="{Binding Path=DataContext.Avoid.AzmoBodies, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=2}}" 
                             HorizontalAlignment="Stretch" Margin="2"/>
-                <Slider Grid.Column="2" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="2" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="100" Minimum="0" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
@@ -77,13 +77,13 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin="2" Text="Azmo Pools" FontWeight="Bold" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="60" Minimum="2" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
                             Value="{Binding Path=DataContext.Avoid.AzmoPools, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=2}}" 
                             HorizontalAlignment="Stretch" Margin="2"/>
-                <Slider Grid.Column="2" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="2" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="100" Minimum="0" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
@@ -98,13 +98,13 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin="2" Text="Bee/Wasps" FontWeight="Bold" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
                             Value="{Binding Path=DataContext.Avoid.BeesWasps, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=2}}" 
                             HorizontalAlignment="Stretch" Margin="2"/>
-                <Slider Grid.Column="2" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="2" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="100" Minimum="0" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
@@ -119,13 +119,13 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin="2" Text="Desecrator" FontWeight="Bold" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
                             Value="{Binding Path=DataContext.Avoid.Desecrator, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=2}}" 
                             HorizontalAlignment="Stretch" Margin="2"/>
-                <Slider Grid.Column="2" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="2" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="100" Minimum="0" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
@@ -140,13 +140,13 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin="2" Text="FrozenPulse" FontWeight="Bold" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
                             Value="{Binding Path=DataContext.Avoid.FrozenPulse, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=2}}" 
                             HorizontalAlignment="Stretch" Margin="2"/>
-                <Slider Grid.Column="2" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="2" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="100" Minimum="0" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
@@ -161,13 +161,13 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin="2" Text="Ghom Gas" FontWeight="Bold" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
                             Value="{Binding Path=DataContext.Avoid.GhomGas, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=2}}" 
                             HorizontalAlignment="Stretch" Margin="2"/>
-                <Slider Grid.Column="2" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="2" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="100" Minimum="0" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
@@ -182,13 +182,13 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin="2" Text="Grotesque" FontWeight="Bold" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
                             Value="{Binding Path=DataContext.Avoid.Grotesque, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=2}}" 
                             HorizontalAlignment="Stretch" Margin="2"/>
-                <Slider Grid.Column="2" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="2" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="100" Minimum="0" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
@@ -203,13 +203,13 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin="2" Text="Ice Balls" FontWeight="Bold" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
                             Value="{Binding Path=DataContext.Avoid.IceBalls, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=2}}" 
                             HorizontalAlignment="Stretch" Margin="2"/>
-                <Slider Grid.Column="2" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="2" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="100" Minimum="0" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
@@ -224,13 +224,13 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin="2" Text="Orbiter" FontWeight="Bold" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
                             Value="{Binding Path=DataContext.Avoid.Orbiter, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=2}}" 
                             HorizontalAlignment="Stretch" Margin="2"/>
-                <Slider Grid.Column="2" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="2" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="100" Minimum="0" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
@@ -245,13 +245,13 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin="2" Text="Molten Core" FontWeight="Bold" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
                             Value="{Binding Path=DataContext.Avoid.MoltenCore, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=2}}" 
                             HorizontalAlignment="Stretch" Margin="2"/>
-                <Slider Grid.Column="2" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="2" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="100" Minimum="0" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
@@ -266,13 +266,13 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin="2" Text="Molten Trail" FontWeight="Bold" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
                             Value="{Binding Path=DataContext.Avoid.MoltenTrail, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=2}}" 
                             HorizontalAlignment="Stretch" Margin="2"/>
-                <Slider Grid.Column="2" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="2" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="100" Minimum="0" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
@@ -287,13 +287,13 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin="2" Text="Poison Enchanted" FontWeight="Bold" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
                             Value="{Binding Path=DataContext.Avoid.PoisonEnchanted, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=2}}" 
                             HorizontalAlignment="Stretch" Margin="2"/>
-                <Slider Grid.Column="2" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="2" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="100" Minimum="0" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
@@ -308,13 +308,13 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin="2" Text="Poison Tree" FontWeight="Bold" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
                             Value="{Binding Path=DataContext.Avoid.PoisonTree, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=2}}" 
                             HorizontalAlignment="Stretch" Margin="2"/>
-                <Slider Grid.Column="2" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="2" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="100" Minimum="0" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
@@ -329,13 +329,13 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin="2" Text="Plague Cloud" FontWeight="Bold" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
                             Value="{Binding Path=DataContext.Avoid.PlagueCloud, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=2}}" 
                             HorizontalAlignment="Stretch" Margin="2"/>
-                <Slider Grid.Column="2" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="2" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="100" Minimum="0" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
@@ -350,13 +350,13 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin="2" Text="Plague Hands" FontWeight="Bold" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
                             Value="{Binding Path=DataContext.Avoid.PlagueHands, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=2}}" 
                             HorizontalAlignment="Stretch" Margin="2"/>
-                <Slider Grid.Column="2" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="2" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="100" Minimum="0" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
@@ -371,13 +371,13 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin="2" Text="Shaman Fire" FontWeight="Bold" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
                             Value="{Binding Path=DataContext.Avoid.ShamanFire, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=2}}" 
                             HorizontalAlignment="Stretch" Margin="2"/>
-                <Slider Grid.Column="2" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="2" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="100" Minimum="0" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
@@ -392,13 +392,13 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin="2" Text="Wormhole" FontWeight="Bold" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
                             Value="{Binding Path=DataContext.Avoid.Wormhole, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=2}}" 
                             HorizontalAlignment="Stretch" Margin="2"/>
-                <Slider Grid.Column="2" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="2" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="100" Minimum="0" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
@@ -413,13 +413,13 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin="2" Text="Thunderstorm" FontWeight="Bold" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"
                             Value="{Binding Path=DataContext.Avoid.Thunderstorm, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=2}}" 
                             HorizontalAlignment="Stretch" Margin="2"/>
-                <Slider Grid.Column="2" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="2" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="100" Minimum="0" 
                             SmallChange="1" LargeChange="5"
                             TickPlacement="None" IsMoveToPointEnabled="True"

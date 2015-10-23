@@ -2,6 +2,7 @@
 using Trinity.Combat.Abilities;
 using Trinity.Objects;
 using Trinity.Reference;
+using Zeta.Bot;
 using Zeta.Common;
 using Zeta.Game.Internals.Actors;
 
@@ -16,7 +17,10 @@ namespace Trinity
         // 66 == 15 tps or 1/15th a second
         // 50 = 20 tps or 1/20th a second
         // 20 == 50 tps or 1/50th a second
-        private const int TickTimeMs = 66;        
+        private static int TickTimeMs
+        {
+            get { return BotMain.TicksPerSecond/60; }
+        }
 
         public SNOPower SNOPower { get; set; }
         /// <summary>
@@ -63,14 +67,14 @@ namespace Trinity
 
         /// <summary>
         /// The minimum delay we should wait before using a power
-        /// </summary>
+        /// </summary>        
         public double WaitBeforeUseDelay
         {
-            get
-            {
-                return WaitTicksBeforeUse * TickTimeMs;
-            }
+            get { return _WaitBeforeUseDelay ?? (_WaitBeforeUseDelay = WaitTicksBeforeUse*TickTimeMs).Value; }
+            set { _WaitBeforeUseDelay  = value; }
         }
+
+        private double? _WaitBeforeUseDelay;
 
         /// <summary>
         /// The minimum delay in millseconds we should wait after using a power
@@ -141,8 +145,8 @@ namespace Trinity
             TargetPosition = Vector3.Zero;
             TargetDynamicWorldId = -1;
             TargetACDGUID = -1;
-            WaitTicksBeforeUse = V.F("Combat.DefaultTickPreDelay");
-            WaitTicksAfterUse = V.F("Combat.DefaultTickPostDelay");
+            WaitTicksBeforeUse = 0;
+            WaitTicksAfterUse = 0;
             IsCastOnSelf = false;
         }
 
@@ -158,8 +162,8 @@ namespace Trinity
             TargetPosition = Vector3.Zero;
             TargetDynamicWorldId = CombatBase.Player.WorldDynamicID;
             TargetACDGUID = -1;
-            WaitTicksBeforeUse = V.F("Combat.DefaultTickPreDelay");
-            WaitTicksAfterUse = V.F("Combat.DefaultTickPostDelay");
+            WaitTicksBeforeUse = 0;
+            WaitTicksAfterUse = 0;
             PowerAssignmentTime = DateTime.UtcNow;
         }
 
@@ -196,8 +200,8 @@ namespace Trinity
             TargetPosition = Vector3.Zero;
             TargetDynamicWorldId = CombatBase.Player.WorldDynamicID;
             TargetACDGUID = targetAcdGuid;
-            WaitTicksBeforeUse = V.F("Combat.DefaultTickPreDelay");
-            WaitTicksAfterUse = V.F("Combat.DefaultTickPostDelay");
+            WaitTicksBeforeUse = 0;
+            WaitTicksAfterUse = 0;
             PowerAssignmentTime = DateTime.UtcNow;
         }
 
@@ -214,8 +218,8 @@ namespace Trinity
             TargetPosition = Vector3.Zero;
             TargetDynamicWorldId = CombatBase.Player.WorldDynamicID;
             TargetACDGUID = -1;
-            WaitTicksBeforeUse = V.F("Combat.DefaultTickPreDelay");
-            WaitTicksAfterUse = V.F("Combat.DefaultTickPostDelay");
+            WaitTicksBeforeUse = 0;
+            WaitTicksAfterUse = 0;
             PowerAssignmentTime = DateTime.UtcNow;
         }
 
@@ -233,8 +237,8 @@ namespace Trinity
             TargetPosition = position;
             TargetDynamicWorldId = CombatBase.Player.WorldDynamicID;
             TargetACDGUID = -1;
-            WaitTicksBeforeUse = V.F("Combat.DefaultTickPreDelay");
-            WaitTicksAfterUse = V.F("Combat.DefaultTickPostDelay");
+            WaitTicksBeforeUse = 0;
+            WaitTicksAfterUse = 0;
             PowerAssignmentTime = DateTime.UtcNow;
         }
 
@@ -307,7 +311,7 @@ namespace Trinity
 
         public static int MillisecondsToTickDelay(int milliseconds)
         {
-            const int totalTps = 1000 / TickTimeMs;
+            var totalTps = 1000 / TickTimeMs;
 
             return totalTps / (1000 / milliseconds);
         }
@@ -318,5 +322,9 @@ namespace Trinity
         }
 
         public bool IsCastOnSelf { get; set; }
+
+        public int CastAttempts { get; set; }
+
+        public int MaxFailedCastReTryAttempts { get; set; }
     }
 }

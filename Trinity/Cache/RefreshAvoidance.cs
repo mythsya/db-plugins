@@ -29,7 +29,7 @@ namespace Trinity
             }
 
             double minAvoidanceHealth = GetAvoidanceHealth(CurrentCacheObject.ActorSNO);
-            double minAvoidanceRadius = GetAvoidanceRadius(CurrentCacheObject.ActorSNO, CurrentCacheObject.Radius);
+            double minAvoidanceRadius = GetAvoidanceRadius(CurrentCacheObject.ActorSNO, CurrentCacheObject.Radius+5);
 
             // Add Navigation cell weights to path around avoidance
             MainGridProvider.AddCellWeightingObstacle(CurrentCacheObject.ActorSNO, (float)minAvoidanceRadius);

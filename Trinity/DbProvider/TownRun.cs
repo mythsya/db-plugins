@@ -152,9 +152,10 @@ namespace Trinity.DbProvider
                             List<ACDItem> equippedItems = ZetaDia.Me.Inventory.Equipped.Where(i => i.DurabilityMax > 0 && i.DurabilityCurrent != i.DurabilityMax).ToList();
                             if (equippedItems.Any())
                             {
-                                double min = equippedItems.Min(i => i.DurabilityPercent);
+                                double min = equippedItems.Average(i => i.DurabilityPercent);
+                                var dbsetting = CharacterSettings.Instance.RepairWhenDurabilityBelow;
 
-                                float threshold = Trinity.Player.IsInTown ? 0.50f : CharacterSettings.Instance.RepairWhenDurabilityBelow;
+                                float threshold = Trinity.Player.IsInTown ? Math.Min(0.50f, dbsetting) : dbsetting;
                                 bool needsRepair = min <= threshold;
 
                                 if (needsRepair)

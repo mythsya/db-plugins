@@ -209,7 +209,7 @@ namespace Trinity.Combat.Abilities
 
                 int baseRecastDelay = HasPrimarySkill || Player.PrimaryResource < 60 ? 14 : 3;
                 bool baseRecast = TimeSpanSincePowerUse(SNOPower.Wizard_Hydra) > TimeSpan.FromSeconds(baseRecastDelay);
-                var lastCast = SpellHistory.HistoryQueue
+                var lastCast = SpellHistory.History
                     .Where(p => p.Power.SNOPower == SNOPower.Wizard_Hydra && p.TimeSinceUse < _14s)
                     .OrderBy(s => s.TimeSinceUse).ThenBy(p => p.Power.TargetPosition.Distance2DSqr(CurrentTarget.Position))
                     .FirstOrDefault();

@@ -92,6 +92,8 @@ namespace Trinity.UI
                     //CreateButton("Test2", btnClick_HijackTest);
                     CreateButton("Log Run Time", btnClick_LogRunTime);
 
+                    CreateButton("Test ItemList", btnClick_TestItemList);
+
 
                     _tabItem = new TabItem
                     {
@@ -124,6 +126,21 @@ namespace Trinity.UI
             try
             {
                 Logger.Log("Bot {0} has been running for {1} hours {2} minutes and {3} seconds", ZetaDia.CPlayer.HeroName, GameStats.Instance.RunTime.Hours, GameStats.Instance.RunTime.Minutes, GameStats.Instance.RunTime.Seconds);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("Exception {0}", ex);
+            }
+        }
+
+        private static void btnClick_TestItemList(object sender, RoutedEventArgs routedEventArgs)
+        {
+            try
+            {
+                using (new MemoryHelper())
+                {
+                    DebugUtil.ItemListTest();
+                }
             }
             catch (Exception ex)
             {

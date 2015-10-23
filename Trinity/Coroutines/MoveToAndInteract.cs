@@ -45,7 +45,7 @@ namespace TrinityCoroutines
                 for (int i = 1; i <= interactLimit; i++)
                 {
                     Logger.LogVerbose("Interacting with {0} ({1}) Attempt={2}", obj.Name, obj.ActorSNO, i);
-                    if (obj.Interact())
+                    if (obj.Interact() && i > 1)
                         break;
 
                     await Coroutine.Sleep(500);
@@ -57,10 +57,10 @@ namespace TrinityCoroutines
 
             Navigator.PlayerMover.MoveTowards(obj.Position);
             await Coroutine.Sleep(500);
-            //obj.Interact();
+            obj.Interact();
 
             Navigator.PlayerMover.MoveStop();
-            await Coroutine.Sleep(250);
+            await Coroutine.Sleep(1000);
             await Interact(obj);
             return true;
         }
@@ -102,7 +102,7 @@ namespace TrinityCoroutines
                 for (int i = 1; i <= interactLimit; i++)
                 {
                     Logger.Log("Interacting with {0} ({1}) Attempt={2}", actor.Name, actor.ActorSNO, i);    
-                    if (actor.Interact())
+                    if (actor.Interact() && i > 1)
                         break;
 
                     await Coroutine.Sleep(100);
@@ -114,10 +114,10 @@ namespace TrinityCoroutines
 
             Navigator.PlayerMover.MoveTowards(actor.Position);
             await Coroutine.Sleep(250);
-            //actor.Interact();
+            actor.Interact();
 
             Navigator.PlayerMover.MoveStop();
-            await Coroutine.Sleep(250);
+            await Coroutine.Sleep(1000);
             await Interact(actor);
             return true;
         }

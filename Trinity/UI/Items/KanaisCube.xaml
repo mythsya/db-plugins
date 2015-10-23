@@ -17,7 +17,7 @@
     <ScrollViewer>
         <DockPanel LastChildFill="True">
             <StackPanel DockPanel.Dock="Top" Background="Transparent">
-                <!--<GroupBox Background="Transparent" Header="Convert Crafting Materials">
+               <GroupBox Background="Transparent" Header="Convert Crafting Materials">
                     <StackPanel Margin="3,0,3,0">
                         <TextBlock Margin="3,8,3,10" TextWrapping="Wrap">During a town run Trinity can convert non-legendary items into crafting materials. When you have less than the amount selected below, the bot will start creating more of it, consuming your highest crafting material in the process.</TextBlock>
 
@@ -50,7 +50,7 @@
                                 HorizontalAlignment="Stretch" Margin="10,0,25,0" />
                         </Grid>
                     </StackPanel>
-                </GroupBox>-->
+                </GroupBox>
                 <GroupBox Header="Upgrade Rares to Legendary">
                     <!--<GroupBox.HeaderTemplate>
                         <DataTemplate>

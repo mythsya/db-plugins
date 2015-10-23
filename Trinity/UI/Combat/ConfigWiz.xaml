@@ -37,7 +37,7 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="Potion %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-            <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+            <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="99" Minimum="0" 
                     SmallChange="1" LargeChange="5"
                     TickPlacement="None" 
@@ -53,14 +53,14 @@
             <ColumnDefinition Width="*"/>
           </Grid.ColumnDefinitions>
             <TextBlock Text="Globe Health %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-            <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+            <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="100" Minimum="0" 
                     SmallChange="1" LargeChange="5"
                     TickPlacement="None" 
                     Value="{Binding Path=Wiz.HealthGlobeLevel, Converter={StaticResource percentConverter}}" 
                     HorizontalAlignment="Stretch" Margin="2"/>
             <TextBlock Grid.Column="2" Text="Globe Resource %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-            <Slider Grid.Column="3" Template="{DynamicResource Slider}"
+            <Slider Grid.Column="3" Template="{DynamicResource SliderEditable}"
                     Interval="500" Maximum="100" Minimum="0"
                     SmallChange="1" LargeChange="5"
                     TickPlacement="None"
@@ -77,7 +77,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Text="Min-Distance before Kite" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-            <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+            <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="80" Minimum="0" 
                     SmallChange="1" LargeChange="5" 
                     TickPlacement="BottomRight" TickFrequency="1"
@@ -91,7 +91,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="Black Hole AoE Count" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-            <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+            <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                                 Interval="1" Maximum="10" Minimum="1"
                                 SmallChange="1" LargeChange="10"
                                 TickPlacement="BottomRight"  IsSnapToTickEnabled="True"
@@ -135,7 +135,7 @@
 
             <TextBlock Text="Cancel Archon After" FontWeight="Normal" TextAlignment="Center" VerticalAlignment="Center"
                 Visibility="{Binding Path=Wiz.ArchonCancelOption, Converter={StaticResource enumVisibilityConverter}, ConverterParameter=Timer}" />
-            <Slider Grid.Column="1" Template="{DynamicResource Slider}" Width="180" 
+            <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" Width="180" 
                 Visibility="{Binding Path=Wiz.ArchonCancelOption, Converter={StaticResource enumVisibilityConverter}, ConverterParameter=Timer}"
                 Interval="500" Maximum="300" Minimum="5" 
                 SmallChange="1" LargeChange="5"  IsSnapToTickEnabled="True"
@@ -162,7 +162,7 @@
             <!-- Mob Count-->
 
             <TextBlock Grid.Row="0" Text="Archon Mob Count" FontWeight="Normal" TextAlignment="Center" VerticalAlignment="Center"/>
-            <Slider Grid.Row="0" Grid.Column="1" Template="{DynamicResource Slider}" 
+            <Slider Grid.Row="0" Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                 Interval="500" Maximum="10" Minimum="1" 
                 SmallChange="1" LargeChange="5" IsSnapToTickEnabled="True"
                 TickPlacement="BottomRight" TickFrequency="1"
@@ -170,7 +170,7 @@
                 HorizontalAlignment="Stretch"  Margin="5,0,0,0"/>
             <!-- Range -->
             <TextBlock Grid.Row="1" Grid.Column="0"  Text="Min Range" FontWeight="Normal" TextAlignment="Center" VerticalAlignment="Center"  Margin="5,0,0,0"/>
-            <Slider Grid.Row="1" Grid.Column="1" Template="{DynamicResource Slider}" 
+            <Slider Grid.Row="1" Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                 Interval="500" Maximum="50" Minimum="2" 
                 SmallChange="1" LargeChange="5"  IsSnapToTickEnabled="True"
                 TickPlacement="BottomRight" TickFrequency="2"
@@ -179,7 +179,7 @@
 
             <!-- Archon Elite Range-->
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Archon Elite Trigger Range" FontWeight="Normal" TextAlignment="Center" VerticalAlignment="Center"  Margin="5,0,0,0"/>
-            <Slider Grid.Row="2" Grid.Column="1" Template="{DynamicResource Slider}" 
+            <Slider Grid.Row="2" Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                 Interval="500" Maximum="50" Minimum="5" 
                 SmallChange="1" LargeChange="5"  IsSnapToTickEnabled="True"
                 TickPlacement="BottomRight" TickFrequency="1"
@@ -187,7 +187,7 @@
                 HorizontalAlignment="Stretch"  Margin="5,0,0,0"/>
 
             <!--<TextBlock Grid.Row="3" Grid.Column="0" ToolTip="Time to wait (in Milliseconds) between teleports" Text="Cyclone Strike Delay (ms)" TextAlignment="Center" VerticalAlignment="Center"/>
-            <Slider HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="1" ToolTip="Time to wait (in Milliseconds) between casting teleport" Template="{DynamicResource Slider}" 
+            <Slider HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="1" ToolTip="Time to wait (in Milliseconds) between casting teleport" Template="{DynamicResource SliderEditable}" 
                 Interval="100" Maximum="8000" Minimum="0"
                 SmallChange="100" LargeChange="500"
                 TickPlacement="BottomRight" IsSnapToTickEnabled="True"

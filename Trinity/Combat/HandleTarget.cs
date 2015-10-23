@@ -71,6 +71,8 @@ namespace Trinity
 
         }
 
+        private static int _waitedTicks = 0;
+
         /// <summary>
         /// Handles all aspects of moving to and attacking the current target
         /// </summary>
@@ -81,6 +83,7 @@ namespace Trinity
             {
                 try
                 {
+                    Logger.LogVerbose("HandleTarget Tick");
 
                     if (!Player.IsValid)
                     {
@@ -99,15 +102,55 @@ namespace Trinity
                     PlayerMover.vSafeMovementLocation = Vector3.Zero;
                     PlayerMover.TimeLastRecordedPosition = DateTime.UtcNow;
 
-                    if (!_isWaitingForPower && CombatBase.CurrentPower == null && CurrentTarget != null)
-                        CombatBase.CurrentPower = AbilitySelector();
-
                     // Time based wait delay for certain powers with animations
-                    if (_isWaitingAfterPower && CombatBase.CurrentPower != null && CombatBase.CurrentPower.ShouldWaitAfterUse)
+                    if (CombatBase.CurrentPower != null && (CombatBase.CurrentPower.ShouldWaitAfterUse && _isWaitingAfterPower || _isWaitingBeforePower && CombatBase.CurrentPower.ShouldWaitBeforeUse))
                     {
-                        return GetRunStatus(RunStatus.Running, "IsWaitingAfterPower");
+                        var type = _isWaitingAfterPower ? "IsWaitingAfterPower" : "IsWaitingBeforePower";
+                        _waitedTicks++;
+                        Logger.LogVerbose("Waiting... {0} TicksWaited={1}", type, _waitedTicks);
+                        return GetRunStatus(RunStatus.Running, type);
                     }
+
+                    if (ShouldWaitForLootDrop)
+                    {
+                        Logger.LogVerbose("Wait for loot drop");
+                    }
+
+
+                    if (WaitForAttackToFinish)
+                    {
+                        Logger.LogVerbose("Wait for Attack to finish");
+                    }
+
+                    if (_isWaitingBeforePower)
+                    {
+                        Logger.LogVerbose("Wait for Power");
+                    }
+
+                    if (_isWaitingForPotion)
+                    {
+                        Logger.LogVerbose("Wait for Potion");
+                    }
+
+                    if (CurrentTarget == null)
+                    {
+                        Logger.LogVerbose("CurrentTarget == null");
+                    }
+
+                    _waitedTicks = 0;
                     _isWaitingAfterPower = false;
+                    _isWaitingBeforePower = false;
+
+                    if (!_isWaitingForPower && !_isWaitingBeforePower && CombatBase.CurrentPower == null && CurrentTarget != null)
+                    {
+                        CombatBase.CurrentPower = AbilitySelector();
+                    }
+                    else
+                    {
+                        Logger.LogVerbose(LogCategory.Behavior, "Not Selecting Ability WaitingForPower={0} WaitingBeforePower={1} CurrentPowerNull={2} CurrentTargetNull={3}",
+                            _isWaitingForPower, _isWaitingBeforePower, CombatBase.CurrentPower == null, CurrentTarget != null);
+                    }
+                        
 
                     //// Change to close range target when blocked
                     //if (PlayerMover.IsBlocked && CurrentTarget != null && CurrentTarget.Distance >= 12f && !CombatBase.IsDoingGoblinKamakazi && !CurrentTarget.IsBoss)
@@ -328,6 +371,7 @@ namespace Trinity
                                     AvoidanceManager.CurrentSafeSpot.Distance, _currentAvoidance.Distance);
 
                                 AvoidanceManager.IsLockedMovingToSafeSpot = false;
+                                return GetRunStatus(RunStatus.Success, "BreakFromSafeSpotLock");
                             }
                         }
 
@@ -335,7 +379,7 @@ namespace Trinity
                         var isTooCloseToAvoidance = ObjectCache.Any(o => criticalAvoidances.Contains(o.AvoidanceType) && o.Distance < GetAvoidanceRadius(o.ActorSNO, 30f) && Player.CurrentHealthPct < GetAvoidanceHealth(o.ActorSNO));
 
                         // If we're standing in an avoidance. We're not messing around anymore, hijack this train and move now.
-                        if (_standingInAvoidance || Player.IsRanged && (isTooCloseToMonster || isTooCloseToAvoidance))
+                        if (_standingInAvoidance || Player.IsRanged && isTooCloseToMonster || isTooCloseToAvoidance)
                         {
                             if (isTooCloseToMonster && Player.IsRanged)
                             {
@@ -347,7 +391,8 @@ namespace Trinity
                             if (safespot == null || safespot.Position == Vector3.Zero || safespot.Distance > 200f)
                             {
                                 var monstersToAvoid = isTooCloseToMonster ? new List<TrinityCacheObject>() { CurrentTarget } : new List<TrinityCacheObject>();
-                                var newSafeSpotPosition = NavHelper.MainFindSafeZone(Player.Position, false, false, monstersToAvoid, false, CombatBase.KiteDistance);
+                                var minDistance = Math.Max(CombatBase.KiteDistance, _currentAvoidance.AvoidanceRadius);
+                                var newSafeSpotPosition = NavHelper.MainFindSafeZone(Player.Position, false, false, monstersToAvoid, false, minDistance);
                                 var distance = newSafeSpotPosition.Distance(Player.Position);                                
                                 if (newSafeSpotPosition != null && newSafeSpotPosition != Vector3.Zero && distance < 200f)
                                 {
@@ -523,8 +568,10 @@ namespace Trinity
 
             //Monk DashingStrike                      
             if (Player.ActorClass == ActorClass.Monk && CombatBase.CanCast(SNOPower.X1_Monk_DashingStrike) &&
-                !CombatBase.WasUsedWithinMilliseconds(SNOPower.X1_Monk_DashingStrike, Settings.Combat.Monk.DashingStrikeDelay) &&
-                ((Skills.Monk.DashingStrike.Charges > 1 && ZetaDia.Me.CurrentPrimaryResource > 75) || CacheData.Buffs.HasCastingShrine))
+                (!CombatBase.WasUsedWithinMilliseconds(SNOPower.X1_Monk_DashingStrike, Settings.Combat.Monk.DashingStrikeDelay) ||
+                CurrentTarget != null && NavHelper.CanRayCast(Player.Position, CurrentTarget.Position)) &&
+                ((Skills.Monk.DashingStrike.Charges > 1 && !ShouldWaitForLootDrop &&
+                (!Sets.ThousandStorms.IsSecondBonusActive || ZetaDia.Me.CurrentPrimaryResource > 75)) || CacheData.Buffs.HasCastingShrine))
             {
                 Logger.Log("Dash towards: {0}, charges={1}", GetTargetName(), Skills.Monk.DashingStrike.Charges);
                 Skills.Monk.DashingStrike.Cast(CurrentDestination);
@@ -539,9 +586,9 @@ namespace Trinity
             if (Player.ActorClass == ActorClass.Barbarian)
             {
                 // Whirlwind against everything within range
-                if (Player.PrimaryResource >= 10 && CombatBase.CanCast(SNOPower.Barbarian_Whirlwind) && NavHelper.CanRayCast(CurrentTarget.Position) &&
-                    (TargetUtil.AnyMobsInRange(20, false) || Sets.BulKathossOath.IsFullyEquipped) && !IsWaitingForSpecial && 
-                    (CurrentTarget.Type != TrinityObjectType.Item || (CurrentTarget.Type == TrinityObjectType.Item && CurrentTarget.Distance > 10f)))
+                if (Player.PrimaryResource >= 10 && CombatBase.CanCast(SNOPower.Barbarian_Whirlwind) && 
+                    (TargetUtil.AnyMobsInRange(20, false) || Sets.BulKathossOath.IsFullyEquipped) && !IsWaitingForSpecial &&
+                    !(CurrentTarget != null && (CurrentTarget.Type == TrinityObjectType.Item || CurrentTarget.IsNPC || CurrentTarget.Type == TrinityObjectType.Shrine) && CurrentTarget.Distance < 12f))
                 {
                     Skills.Barbarian.Whirlwind.Cast(CurrentDestination);
                     LastMoveToTarget = CurrentDestination;
@@ -945,7 +992,7 @@ namespace Trinity
             using (new PerformanceLogger("HandleTarget.AssignMonsterTargetPower"))
             {
                 // Find a valid ability if the target is a monster
-                if (_shouldPickNewAbilities && !_isWaitingForPower && !_isWaitingForPotion)
+                if (_shouldPickNewAbilities && !_isWaitingForPower && !_isWaitingForPotion && !_isWaitingBeforePower)
                 {
                     _shouldPickNewAbilities = false;
                     if (CurrentTarget.IsUnit)
@@ -1505,6 +1552,14 @@ namespace Trinity
                     return;
                 }
 
+                // See if we should force a long wait BEFORE casting
+                _isWaitingBeforePower = CombatBase.CurrentPower.ShouldWaitBeforeUse;
+                if (_isWaitingBeforePower)
+                {
+                    Logger.LogVerbose("Starting wait before use {0} ms", CombatBase.CurrentPower.WaitBeforeUseDelay);
+                    return;
+                }
+                    
                 // For "no-attack" logic
                 if (CombatBase.CurrentPower.SNOPower == SNOPower.Walk && CombatBase.CurrentPower.TargetPosition == Vector3.Zero)
                 {
@@ -1573,7 +1628,6 @@ namespace Trinity
                     else
                     {
                         Logger.LogVerbose("Used Power {0} " + target, CombatBase.CurrentPower.SNOPower);
-
                     }
 
                     SpellTracker.TrackSpellOnUnit(CombatBase.CurrentPower.TargetACDGUID, CombatBase.CurrentPower.SNOPower);
@@ -1587,6 +1641,8 @@ namespace Trinity
                     // Force waiting AFTER power use for certain abilities
                     _isWaitingAfterPower = CombatBase.CurrentPower.ShouldWaitAfterUse;
 
+                    _shouldPickNewAbilities = true;
+
                 }
                 else
                 {
@@ -1594,7 +1650,7 @@ namespace Trinity
                     {
 
 
-                        Logger.LogVerbose(LogCategory.Behavior, "Failed to use Power {0} ({1}) {2} Range={3} ({4} {5}) Delay={6}/{11} TargetDist={7} CurrentTarget={10}",
+                        Logger.LogVerbose(LogCategory.Behavior, "Failed to use Power {0} ({1}) {2} Range={3} ({4} {5}) Delay={6}/{11} TargetDist={7} CurrentTarget={10} CurrentAnimation={12}",
                                            skill.Name,
                                            CombatBase.CurrentPower.SNOPower,
                                            target,
@@ -1606,17 +1662,20 @@ namespace Trinity
                                            Player.IsFacing(CombatBase.CurrentPower.TargetPosition),
                                            CurrentTarget != null && Player.IsFacing(CurrentTarget.Position),
                                            CurrentTarget != null ? CurrentTarget.InternalName : "Null",
-                                           skill.Meta.AfterUseDelay
+                                           skill.Meta.AfterUseDelay, 
+                                           ZetaDia.Me.CommonData.CurrentAnimation
                                            );
                     }
                     else
                     {
-                        Logger.LogVerbose(LogCategory.Behavior, "Failed to use power {0} " + target, CombatBase.CurrentPower.SNOPower);
-
+                        Logger.LogVerbose(LogCategory.Behavior, "Failed to use power {0} (CurrentAnimation={1})" + target, CombatBase.CurrentPower.SNOPower, ZetaDia.Me.CommonData.CurrentAnimation);
                     }
+
+                    CombatBase.CurrentPower.CastAttempts++;
+                    _shouldPickNewAbilities = CombatBase.CurrentPower.CastAttempts >= CombatBase.CurrentPower.MaxFailedCastReTryAttempts;
                 }
 
-                _shouldPickNewAbilities = true;
+                
 
                 // Keep looking for monsters at "normal kill range" a few moments after we successfully attack a monster incase we can pull them into range
                 _keepKillRadiusExtendedForSeconds = 8;

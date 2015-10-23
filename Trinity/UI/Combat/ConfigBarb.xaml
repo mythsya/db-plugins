@@ -16,6 +16,7 @@
             <ut:EnumBooleanConverter x:Key="enumBooleanConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
+    <ScrollViewer>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -38,7 +39,7 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Potion %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="99" Minimum="0" 
                     SmallChange="1" LargeChange="5"
                     TickPlacement="None" 
@@ -53,14 +54,14 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Globe Health %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}"
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}"
                       Interval="500" Maximum="100" Minimum="0"
                       SmallChange="1" LargeChange="5"
                       TickPlacement="None"
                       Value="{Binding Path=Barb.HealthGlobeLevel, Converter={StaticResource percentConverter}}"
                       HorizontalAlignment="Stretch" Margin="2"/>
                 <TextBlock Grid.Column="2" Text="Globe Resource %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-                <Slider Grid.Column="3" Template="{DynamicResource Slider}"
+                <Slider Grid.Column="3" Template="{DynamicResource SliderEditable}"
                       Interval="500" Maximum="100" Minimum="0"
                       SmallChange="1" LargeChange="5"
                       TickPlacement="None"
@@ -76,7 +77,7 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="Hota/WW Threshold" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center" Width="Auto" Margin="10,0" 
                            ToolTip="Minimum Health to use Hammer of the Ancients, only applies when Whirlwind is available" />
-                    <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                    <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="99" Minimum="0" SmallChange="1" LargeChange="5"
                     TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True"
                     Value="{Binding Path=Barb.MinHotaHealth, Converter={StaticResource percentConverter}}"
@@ -93,7 +94,7 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" Text="Ignore Pain Min Health %" FontWeight="Bold" TextAlignment="Left" VerticalAlignment="Center" Width="Auto" Margin="10,0" 
                            ToolTip="Minimum Health to use Hammer of the Ancients, only applies when Whirlwind is available" />
-                            <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                            <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                                     Interval="500" Maximum="99" Minimum="0" SmallChange="1" LargeChange="5"
                                     TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True"
                                     Value="{Binding Path=Barb.IgnorePainMinHealthPct, Converter={StaticResource percentConverter}}"
@@ -109,7 +110,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="Min. Threating Shout Mob Count" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                 Interval="1" Maximum="5" Minimum="1"
                 SmallChange="1" LargeChange="10"
                 TickPlacement="BottomRight"  IsSnapToTickEnabled="True"
@@ -122,7 +123,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="Threatening Shout Delay (millisecond)" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="15000" Minimum="0" 
                     SmallChange="1" LargeChange="5" 
                     TickPlacement="BottomRight" TickFrequency="250"
@@ -136,7 +137,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Min-Distance before Kite" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="80" Minimum="0" 
                     SmallChange="1" LargeChange="5" 
                     TickPlacement="BottomRight" TickFrequency="1"
@@ -150,7 +151,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Rend Delay (millisecond)" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="15000" Minimum="0" 
                     SmallChange="1" LargeChange="5" 
                     TickPlacement="BottomRight" TickFrequency="250"
@@ -164,7 +165,7 @@
                 </Grid.ColumnDefinitions>
                 
                 <TextBlock Text="Ancient Spear Delay (millisecond)" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="15000" Minimum="0" 
                     SmallChange="1" LargeChange="5" 
                     TickPlacement="BottomRight" TickFrequency="250"
@@ -217,4 +218,5 @@
         <!--Reset Button-->
         <Button Grid.Row="10" Margin="5" HorizontalAlignment="Center" Command="{Binding ResetBarbCommand}">Reset</Button>
     </Grid>
+    </ScrollViewer>
 </UserControl>

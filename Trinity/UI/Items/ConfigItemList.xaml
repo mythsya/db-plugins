@@ -374,6 +374,55 @@
                     <DataTrigger Binding="{Binding Path=ItemProperty}" Value="AreaDamage">
                         <Setter Property="ContentTemplate" Value="{DynamicResource SliderFormTemplate}" />
                     </DataTrigger>
+                    <!-- New -->
+                    <DataTrigger Binding="{Binding Path=ItemProperty}" Value="CriticalHitsGrantArcane">
+                        <Setter Property="ContentTemplate" Value="{DynamicResource SliderFormTemplate}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Path=ItemProperty}" Value="Armor">
+                        <Setter Property="ContentTemplate" Value="{DynamicResource SliderFormTemplate}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Path=ItemProperty}" Value="ChanceToBlock">
+                        <Setter Property="ContentTemplate" Value="{DynamicResource SliderFormTemplate}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Path=ItemProperty}" Value="Cooldown">
+                        <Setter Property="ContentTemplate" Value="{DynamicResource SliderFormTemplate}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Path=ItemProperty}" Value="DamageFromElites">
+                        <Setter Property="ContentTemplate" Value="{DynamicResource SliderFormTemplate}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Path=ItemProperty}" Value="HatredRegen">
+                        <Setter Property="ContentTemplate" Value="{DynamicResource SliderFormTemplate}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Path=ItemProperty}" Value="LifePercent">
+                        <Setter Property="ContentTemplate" Value="{DynamicResource SliderFormTemplate}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Path=ItemProperty}" Value="LifePerFury">
+                        <Setter Property="ContentTemplate" Value="{DynamicResource SliderFormTemplate}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Path=ItemProperty}" Value="LifePerSpirit">
+                        <Setter Property="ContentTemplate" Value="{DynamicResource SliderFormTemplate}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Path=ItemProperty}" Value="LifePerWrath">
+                        <Setter Property="ContentTemplate" Value="{DynamicResource SliderFormTemplate}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Path=ItemProperty}" Value="LifePerHit">
+                        <Setter Property="ContentTemplate" Value="{DynamicResource SliderFormTemplate}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Path=ItemProperty}" Value="RegenerateLifePerSecond">
+                        <Setter Property="ContentTemplate" Value="{DynamicResource SliderFormTemplate}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Path=ItemProperty}" Value="ManaRegen">
+                        <Setter Property="ContentTemplate" Value="{DynamicResource SliderFormTemplate}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Path=ItemProperty}" Value="MovementSpeed">
+                        <Setter Property="ContentTemplate" Value="{DynamicResource SliderFormTemplate}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Path=ItemProperty}" Value="SpiritRegen">
+                        <Setter Property="ContentTemplate" Value="{DynamicResource SliderFormDecimalTemplate}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Path=ItemProperty}" Value="WrathRegen">
+                        <Setter Property="ContentTemplate" Value="{DynamicResource SliderFormDecimalTemplate}" />
+                    </DataTrigger>
                 </Style.Triggers>
             </Style>
 
@@ -421,6 +470,42 @@
                                     Minimum="{Binding Min, Mode=OneWay}"
                                     SmallChange="{Binding Step, Mode=OneWay}"
                                     TickFrequency="{Binding Step, Mode=OneWay}"
+                                    IsSnapToTickEnabled="True"
+                                    TickPlacement="BottomRight"
+                                    Value="{Binding Value}"
+                                    HorizontalAlignment="Stretch" Margin="5,0,25,0" />
+                        </Grid>
+                        <Button HorizontalAlignment="Right" Content=" X " Height="21" Width="25" Margin="10,-1,0,0"
+                                Background="Transparent"
+                                Command="{Binding Path=DataContext.RemoveRuleCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                CommandParameter="{Binding}"
+                                BorderBrush="Transparent" FontWeight="Heavy" BorderThickness="0" />
+                    </Grid>
+                </Border>
+            </DataTemplate>
+
+            <DataTemplate x:Key="SliderFormDecimalTemplate">
+                <Border Background="#55999999" BorderBrush="#CC999999" CornerRadius="1" Padding="2"
+                        BorderThickness="1,1,0,0">
+                    <Grid Width="Auto" HorizontalAlignment="Stretch">
+                        <Grid Margin="0,0,10,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20*" />
+                                <ColumnDefinition Width="37*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Foreground="White" VerticalContentAlignment="Center"
+                                   Style="{StaticResource UnselectedTitleLabelStyle}" Content="{Binding Name}" />
+
+                            <Slider Grid.Row="0" Grid.Column="1" Template="{DynamicResource SliderEditable}"                           
+                                    Maximum="{Binding Max, Mode=OneWay}"
+                                    Minimum="{Binding Min, Mode=OneWay}"
+                                    SmallChange="0.1"
+                                    TickFrequency="0.5"
                                     IsSnapToTickEnabled="True"
                                     TickPlacement="BottomRight"
                                     Value="{Binding Value}"
@@ -562,11 +647,11 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <Expander IsExpanded="True" Header="Options">
+                    <Expander IsExpanded="True" Header="Override Options">
                         <Border BorderThickness="2">
                             <StackPanel>
-                                <CheckBox Content="Always Keep Ancient Items" IsChecked="{Binding Path=ItemList.AlwaysStashAncients}" />
-                                <CheckBox Content="Always Sell/Salvage Non-Ancients" IsChecked="{Binding Path=ItemList.AlwaysTrashNonAncients}" />
+                                <CheckBox ToolTip="This will OVERRIDE specific item selections below and cause ALL ancients to be stashed." Content="Always Keep Ancient Items" IsChecked="{Binding Path=ItemList.AlwaysStashAncients}" />
+                                <CheckBox ToolTip="This will OVERRIDE specific item selections below and cause ALL non-ancients to be trashed." Content="Always Sell/Salvage Non-Ancients" IsChecked="{Binding Path=ItemList.AlwaysTrashNonAncients}" />
                                 <!--<Grid Background="Transparent">
                                     <TextBlock TextWrapping="Wrap" Text="Must have properties:" Foreground="White"
                                                FontWeight="Regular" HorizontalAlignment="Left">

@@ -30,7 +30,7 @@ namespace Trinity.Config.Combat
         private double _IgnoreTrashBelowHealthDoT;
         private bool _UseExperimentalSavageBeastAvoidance;
         private bool _UseExperimentalFireChainsAvoidance;
-        private int _ForceKillElitesHealth;
+        private float _ForceKillElitesHealth;
         private bool _ForceKillSummoners;
         private bool _ProfileTagOverride;
         private bool _AvoidAoEOutOfCombat;
@@ -46,6 +46,7 @@ namespace Trinity.Config.Combat
         private FollowerBossFightMode _followerBossFightDialogMode;
         private bool _ignoreHighHitePointTrash;
         private bool _ignoreRares;
+        private bool _ignoreChampions;
 
         #endregion Events
 
@@ -311,7 +312,7 @@ namespace Trinity.Config.Combat
         }
 
         [DataMember(IsRequired = false)]
-        [DefaultValue(150)]
+        [DefaultValue(600)]
         public int DelayAfterKill
         {
             get
@@ -504,8 +505,8 @@ namespace Trinity.Config.Combat
         }
 
         [DataMember(IsRequired = false)]
-        [DefaultValue(0)]
-        public int ForceKillElitesHealth
+        [DefaultValue(0f)]
+        public float ForceKillElitesHealth
         {
             get
             {
@@ -626,6 +627,24 @@ namespace Trinity.Config.Combat
                 {
                     _ignoreRares = value;
                     OnPropertyChanged("IgnoreRares");
+                }
+            }
+        }
+
+        [DataMember(IsRequired = false)]
+        [DefaultValue(false)]
+        public bool IgnoreChampions
+        {
+            get
+            {
+                return _ignoreChampions;
+            }
+            set
+            {
+                if (_ignoreChampions != value)
+                {
+                    _ignoreChampions = value;
+                    OnPropertyChanged("IgnoreChampions");
                 }
             }
         }

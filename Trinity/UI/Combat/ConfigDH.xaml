@@ -30,7 +30,7 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Potion %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="99" Minimum="0" 
                     SmallChange="1" LargeChange="5"
                     TickPlacement="None" 
@@ -46,14 +46,14 @@
                 <ColumnDefinition Width="*"/>
               </Grid.ColumnDefinitions>
               <TextBlock Text="Globe Health %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-              <Slider Grid.Column="1" Template="{DynamicResource Slider}"
+              <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}"
                       Interval="500" Maximum="100" Minimum="0"
                       SmallChange="1" LargeChange="5"
                       TickPlacement="None"
                       Value="{Binding Path=DH.HealthGlobeLevel, Converter={StaticResource percentConverter}}"
                       HorizontalAlignment="Stretch" Margin="2"/>
               <TextBlock Grid.Column="2" Text="Globe Resource %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-              <Slider Grid.Column="3" Template="{DynamicResource Slider}"
+              <Slider Grid.Column="3" Template="{DynamicResource SliderEditable}"
                       Interval="500" Maximum="100" Minimum="0"
                       SmallChange="1" LargeChange="5"
                       TickPlacement="None"
@@ -69,7 +69,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Kite Trigger Range" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="80" Minimum="0"
                     SmallChange="1" LargeChange="5" 
                     TickPlacement="BottomRight" TickFrequency="1"
@@ -83,7 +83,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Stop Kiting At Distance" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="100" Minimum="20"
                     SmallChange="1" LargeChange="5"
                     TickPlacement="BottomRight" TickFrequency="1"
@@ -110,7 +110,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Minimum Strafe Hatred" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="150" Minimum="12" 
                     SmallChange="1" LargeChange="5" IsSnapToTickEnabled="True"
                     TickPlacement="BottomRight" TickFrequency="12"
@@ -125,7 +125,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Minimum RapidFire Hatred" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="150" Minimum="30" 
                     SmallChange="1" LargeChange="5" IsSnapToTickEnabled="True"
                     TickPlacement="BottomRight" TickFrequency="10"
@@ -140,7 +140,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Vault movement delay" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-                <Slider Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="4000" Minimum="400" 
                     SmallChange="10" LargeChange="5" 
                     TickPlacement="BottomRight" TickFrequency="1"
@@ -154,7 +154,7 @@
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Preparation %" ToolTip="Percentage resource to use preparation skill" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-                <Slider ToolTip="Percentage resource to use preparation skill" Grid.Column="1" Template="{DynamicResource Slider}" 
+                <Slider ToolTip="Percentage resource to use preparation skill" Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="99" Minimum="0" 
                     SmallChange="1" LargeChange="5"
                     TickPlacement="None" 

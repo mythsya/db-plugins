@@ -352,10 +352,12 @@ namespace Trinity.Combat.Abilities
             if (!IsCurrentlyAvoiding && CanCast(SNOPower.Monk_FistsofThunder) && Runes.Monk.StaticCharge.IsActive &&
                 CanCast(SNOPower.Monk_WayOfTheHundredFists) && Runes.Monk.FistsOfFury.IsActive)
             {
-                if (!CurrentTarget.HasDebuff(SNOPower.Monk_FistsofThunder))
+                var nearbyEnemyCount = Trinity.ObjectCache.Count(u => u.IsUnit && u.HitPoints > 0 && u.Distance <= 30f);
+
+                if (!CurrentTarget.HasDebuff(SNOPower.Monk_FistsofThunder) || nearbyEnemyCount == 1)
                 {
                     Logger.Log(LogCategory.Behavior, "Putting Static Charge on Current Target {0}", CurrentTarget.InternalName);
-                    return new TrinityPower(SNOPower.Monk_FistsofThunder, 20f, CurrentTarget.ACDGuid);
+                    return new TrinityPower(SNOPower.Monk_FistsofThunder, 12f, CurrentTarget.ACDGuid);
                 }
 
                 if (ShouldSpreadStaticCharge())
@@ -363,11 +365,11 @@ namespace Trinity.Combat.Abilities
                     var target = GetNewStaticChargeTarget() ?? CurrentTarget;
                     if (target != null && !target.IsBoss)
                     {
-                        return new TrinityPower(SNOPower.Monk_FistsofThunder, 20f, target.ACDGuid);
+                        return new TrinityPower(SNOPower.Monk_FistsofThunder, 12f, target.ACDGuid);
                     }                  
                 }
 
-                return new TrinityPower(SNOPower.Monk_WayOfTheHundredFists, 20f, CurrentTarget.ACDGuid);
+                return new TrinityPower(SNOPower.Monk_WayOfTheHundredFists, 9f, CurrentTarget.ACDGuid);
             }
 
             /*
@@ -699,9 +701,34 @@ namespace Trinity.Combat.Abilities
 
         private static bool CanCastEpiphany()
         {
-            return !IsCurrentlyAvoiding && CanCast(SNOPower.X1_Monk_Epiphany, CanCastFlags.NoTimer) && (Settings.Combat.Monk.EpiphanyOffCD ||
-                            (TargetUtil.EliteOrTrashInRange(15f) || TargetUtil.AnyMobsInRange(15f, 5)) &&
-                            (Player.PrimaryResourcePct < 0.50 || ((Runes.Monk.DesertShroud.IsActive || Runes.Monk.SoothingMist.IsActive) && Player.CurrentHealthPct < 0.50)));
+            //Basic checks
+            if (!CanCast(SNOPower.X1_Monk_Epiphany) || GetHasBuff(SNOPower.X1_Monk_Epiphany) || Player.IsInTown)
+                return false;
+
+            // Epiphany mode is 'Off Cooldown'
+            if (Settings.Combat.Monk.EpiphanyMode == MonkEpiphanyMode.WhenReady)
+                return true;
+
+            // Let's check for Goblins, Current Health, CDR Pylon, movement impaired
+            if (CurrentTarget.IsTreasureGoblin && Settings.Combat.Monk.UseEpiphanyGoblin || Player.CurrentHealthPct <= V.F("Monk.Epiphany.EmergencyHealth") &&
+                Settings.Combat.Monk.EpiphanyEmergencyHealth || GetHasBuff(SNOPower.Pages_Buff_Infinite_Casting) ||
+                ZetaDia.Me.IsFrozen || ZetaDia.Me.IsRooted || ZetaDia.Me.IsFeared || ZetaDia.Me.IsStunned)
+                return true;
+
+            // Epiphany mode is 'Whenever in Combat'
+            if (Settings.Combat.Monk.EpiphanyMode == MonkEpiphanyMode.WhenInCombat && TargetUtil.AnyMobsInRange(80f))
+                return true;
+
+            // Epiphany mode is 'Use when Elites are nearby'
+            if (Settings.Combat.Monk.EpiphanyMode == MonkEpiphanyMode.Normal && TargetUtil.AnyElitesInRange(80f))
+                return true;
+
+            // Epiphany mode is 'Hard Elites Only'
+            if (Settings.Combat.Monk.EpiphanyMode == MonkEpiphanyMode.HardElitesOnly && HardElitesPresent)
+                return true;
+
+            return false;
+
         }
 
 
@@ -831,7 +858,8 @@ namespace Trinity.Combat.Abilities
         {
             get
             {
-                if (IsCurrentlyAvoiding || WasUsedWithinMilliseconds(SNOPower.X1_Monk_DashingStrike, Settings.Combat.Monk.DashingStrikeDelay))
+                if (IsCurrentlyAvoiding || WasUsedWithinMilliseconds(SNOPower.X1_Monk_DashingStrike, Settings.Combat.Monk.DashingStrikeDelay) ||
+                    Trinity.ShouldWaitForLootDrop)
                     return false;
 
                 var charges = Skills.Monk.DashingStrike.Charges;                

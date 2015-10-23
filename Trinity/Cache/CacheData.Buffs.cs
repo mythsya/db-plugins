@@ -50,6 +50,29 @@ namespace Trinity
             private Dictionary<int, CachedBuff> _buffsById = new Dictionary<int, CachedBuff>();
             private List<CachedBuff> _buffs = new List<CachedBuff>();
 
+            private Element GetElement(int id)
+            {
+                switch (id)
+                {
+                    case 1:
+                        return Element.Arcane;
+                    case 2:
+                        return Element.Cold;
+                    case 3:
+                        return Element.Fire;
+                    case 4:
+                        return Element.Holy;
+                    case 5:
+                        return Element.Lightning;
+                    case 6:
+                        return Element.Physical;
+                    case 7:
+                        return Element.Poison;
+                    default:
+                        return Element.Unknown;
+                }
+            }
+
             public void UpdateBuffsCache()
             {
                 if (!Player.IsValid)
@@ -73,16 +96,16 @@ namespace Trinity
                         cachedBuff.VariantName = GetBuffVariantName(cachedBuff);
 
                         // Convention of Elements
-                        if (cachedBuff.Id == (int) SNOPower.P2_ItemPassive_Unique_Ring_038)
+                        if (cachedBuff.Id == (int)SNOPower.P2_ItemPassive_Unique_Ring_038)
                         {
-                            ConventionElement = (Element)cachedBuff.VariantId;
+                            ConventionElement = GetElement(cachedBuff.VariantId);
                         }
 
-                        if(!_buffsById.ContainsKey(buff.SNOId))                      
-                            _buffsById.Add(buff.SNOId, cachedBuff);                        
+                        if (!_buffsById.ContainsKey(buff.SNOId))
+                            _buffsById.Add(buff.SNOId, cachedBuff);
 
                         _buffs.Add(cachedBuff);
-                       
+
                         Logger.Log(TrinityLogLevel.Debug, LogCategory.CacheManagement,
                             "ActiveBuffs: Id={0} Name={1} Stacks={2} VariantId={3} VariantName={4}", cachedBuff.Id, cachedBuff.InternalName, cachedBuff.StackCount, cachedBuff.VariantId, cachedBuff.VariantName);
                     }
@@ -94,8 +117,8 @@ namespace Trinity
                 }
 
                 // Bastians of Will
-                HasBastiansWillSpenderBuff = HasBuff(SNOPower.ItemPassive_Unique_Ring_735_x1,2);
-                HasBastiansWillGeneratorBuff = HasBuff(SNOPower.ItemPassive_Unique_Ring_735_x1,1);
+                HasBastiansWillSpenderBuff = HasBuff(SNOPower.ItemPassive_Unique_Ring_735_x1, 2);
+                HasBastiansWillGeneratorBuff = HasBuff(SNOPower.ItemPassive_Unique_Ring_735_x1, 1);
 
                 // Shrines
                 HasBlessedShrine = HasBuff(30476); //Blessed (+25% defence)
@@ -105,6 +128,62 @@ namespace Trinity
                 HasConduitShrine = HasBuff(SNOPower.Pages_Buff_Electrified) || HasBuff(SNOPower.Pages_Buff_Electrified_TieredRift);
 
             }
+
+            //public void UpdateBuffsCache()
+            //{
+            //    if (!Player.IsValid)
+            //        return;
+
+            //    using (new PerformanceLogger("UpdateCachedBuffsData"))
+            //    {
+            //        if (DateTime.UtcNow.Subtract(LastUpdated).TotalMilliseconds < 250)
+            //            return;
+
+            //        Clear();
+
+            //        foreach (var buff in ZetaDia.Me.GetAllBuffs())
+            //        {
+            //            if (!buff.IsValid)
+            //                return;
+
+            //            var cachedBuff = new CachedBuff(buff);
+
+            //            cachedBuff.VariantId = GetBuffVariantId((SNOPower)cachedBuff.Id);
+            //            cachedBuff.VariantName = GetBuffVariantName(cachedBuff);
+
+            //            // Convention of Elements
+            //            if (cachedBuff.Id == (int) SNOPower.P2_ItemPassive_Unique_Ring_038)
+            //            {
+            //                ConventionElement = (Element)cachedBuff.VariantId;
+            //            }
+
+            //            if(!_buffsById.ContainsKey(buff.SNOId))                      
+            //                _buffsById.Add(buff.SNOId, cachedBuff);                        
+
+            //            _buffs.Add(cachedBuff);
+
+            //            Logger.Log(TrinityLogLevel.Debug, LogCategory.CacheManagement,
+            //                "ActiveBuffs: Id={0} Name={1} Stacks={2} VariantId={3} VariantName={4}", cachedBuff.Id, cachedBuff.InternalName, cachedBuff.StackCount, cachedBuff.VariantId, cachedBuff.VariantName);
+            //        }
+
+            //        LastUpdated = DateTime.UtcNow;
+
+            //        Logger.Log(TrinityLogLevel.Debug, LogCategory.CacheManagement,
+            //            "Refreshed Inventory: ActiveBuffs={0}", ActiveBuffs.Count);
+            //    }
+
+            //    // Bastians of Will
+            //    HasBastiansWillSpenderBuff = HasBuff(SNOPower.ItemPassive_Unique_Ring_735_x1,2);
+            //    HasBastiansWillGeneratorBuff = HasBuff(SNOPower.ItemPassive_Unique_Ring_735_x1,1);
+
+            //    // Shrines
+            //    HasBlessedShrine = HasBuff(30476); //Blessed (+25% defence)
+            //    HasFrenzyShrine = HasBuff(30479); //Frenzy  (+25% atk speed)
+            //    HasInvulnerableShrine = HasBuff(SNOPower.Pages_Buff_Invulnerable);
+            //    HasCastingShrine = HasBuff(SNOPower.Pages_Buff_Infinite_Casting);
+            //    HasConduitShrine = HasBuff(SNOPower.Pages_Buff_Electrified) || HasBuff(SNOPower.Pages_Buff_Electrified_TieredRift);
+
+            //}
 
             public bool HasBuff(SNOPower power, int variantId)
             {

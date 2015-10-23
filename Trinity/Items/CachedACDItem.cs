@@ -95,8 +95,14 @@ namespace Trinity
         public bool IsAncient { get; set; }
         public bool IsEquipment { get; set; }
         public bool IsSalvageable { get; set; }
+        public int GameBalanceId { get; set; }
 
         public CachedACDItem(ItemStats stats)
+        {
+            CacheStats(stats);
+        }
+
+        private void CacheStats(ItemStats stats)
         {
             WeaponDamagePerSecond = stats.WeaponDamagePerSecond;
             Dexterity = stats.Dexterity;
@@ -202,6 +208,7 @@ namespace Trinity
                     Row = item.InventoryRow,
                     Column = item.InventoryColumn,
                     ItemLink = item.ItemLink,
+                    GameBalanceId = item.GameBalanceId,
                     TrinityItemType = TrinityItemManager.DetermineItemType(item.InternalName, item.ItemType, item.FollowerSpecialType),
                     IsAncient = item.GetAttribute<int>(ActorAttributeType.AncientRank) > 0,
 

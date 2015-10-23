@@ -12,6 +12,219 @@ namespace Trinity.Reference
         public class Sets : Reference.Sets { }
 
         /// <summary>
+        /// Ribald Etchings Equip on Follower: Gain access to all skills.
+        /// </summary>
+        public static Item RibaldEtchings = new Item
+        {
+            Id = 366971,
+            Name = "Ribald Etchings",
+            Quality = ItemQuality.Legendary,
+            Slug = "ribald-etchings",
+            ItemType = ItemType.FollowerSpecial,
+            TrinityItemType = TrinityItemType.FollowerScoundrel,
+            IsTwoHanded = false,
+            BaseType = ItemBaseType.None,
+            InternalName = "",
+            DataUrl = "https://us.battle.net/api/d3/data/item/ribald-etchings",
+            Url = "http://us.battle.net/d3/en/item/ribald-etchings",
+            IconUrl = "http://media.blizzard.com/d3/icons/items/large/x1_followeritem_scoundrel_legendary_02_demonhunter_male.png",
+            RelativeUrl = "",
+            IsCrafted = false,
+            LegendaryAffix = "Equip on Follower: Gain access to all skills.",
+            SetName = "",
+        };
+
+        /// <summary>
+        /// Skeleton Key Equip on Follower: Your follower cannot die.
+        /// </summary>
+        public static Item SkeletonKey = new Item
+        {
+            Id = 366970,
+            Name = "Skeleton Key",
+            Quality = ItemQuality.Legendary,
+            Slug = "skeleton-key",
+            ItemType = ItemType.FollowerSpecial,
+            TrinityItemType = TrinityItemType.FollowerScoundrel,
+            IsTwoHanded = false,
+            BaseType = ItemBaseType.None,
+            InternalName = "",
+            DataUrl = "https://us.battle.net/api/d3/data/item/skeleton-key",
+            Url = "http://us.battle.net/d3/en/item/skeleton-key",
+            IconUrl = "http://media.blizzard.com/d3/icons/items/large/x1_followeritem_scoundrel_legendary_01_demonhunter_male.png", 
+            RelativeUrl = "",
+            IsCrafted = false,
+            LegendaryAffix = "Equip on Follower: Your follower cannot die.",
+            SetName = "",
+        };
+
+        /// <summary>
+        /// Hand of the Prophet Equip on Follower: Gain access to all skills.
+        /// </summary>
+        public static Item HandOfTheProphet = new Item
+        {
+            //[Trinity 2.13.59] Hand Of The Prophet ActorSNO=366980 GameBalanceId=-450681607
+            Id = -450681607,
+            GameBalanceId = true,
+            Name = "Hand of the Prophet",
+            Quality = ItemQuality.Legendary,
+            Slug = "hand-of-the-prophet",
+            ItemType = ItemType.FollowerSpecial,
+            TrinityItemType = TrinityItemType.FollowerEnchantress,
+            IsTwoHanded = false,
+            BaseType = ItemBaseType.None,
+            InternalName = "",
+            DataUrl = "https://us.battle.net/api/d3/data/item/hand-of-the-prophet",
+            Url = "http://us.battle.net/d3/en/item/hand-of-the-prophet",
+            IconUrl = "http://media.blizzard.com/d3/icons/items/large/x1_followeritem_enchantress_legendary_02_demonhunter_male.png",
+            RelativeUrl = "",
+            IsCrafted = false,
+            LegendaryAffix = "Equip on Follower: Gain access to all skills.",
+            SetName = "",
+        };
+
+        /// <summary>
+        /// Slipka's Letter Opener Equip on Follower: Reduce the cooldown of all Follower skills by 50%.
+        /// </summary>
+        public static Item SlipkasLetterOpener = new Item
+        {
+            Id = 978821514, // ActorSNO = 366971 // Same as RibaldEtchings
+            GameBalanceId = true,
+            Name = "Slipka's Letter Opener",
+            Quality = ItemQuality.Legendary,
+            Slug = "slipkas-letter-opener",
+            ItemType = ItemType.FollowerSpecial,
+            TrinityItemType = TrinityItemType.FollowerScoundrel,
+            IsTwoHanded = false,
+            BaseType = ItemBaseType.None,
+            InternalName = "",
+            DataUrl = "https://us.battle.net/api/d3/data/item/slipkas-letter-opener",
+            Url = "http://us.battle.net/d3/en/item/slipkas-letter-opener",
+            IconUrl = "http://media.blizzard.com/d3/icons/items/large/x1_followeritem_scoundrel_legendary_03_demonhunter_male.png",
+            RelativeUrl = "",
+            IsCrafted = false,
+            LegendaryAffix = "Equip on Follower: Reduce the cooldown of all Follower skills by 50%.",
+            SetName = "",
+        };
+
+        /// <summary>
+        /// Vadim's Surge Equip on Follower: Reduce the cooldown of all Follower skills by 50%.
+        /// </summary>
+        public static Item VadimsSurge = new Item
+        {
+            //[Trinity 2.13.59] Vadim's Surge ActorSNO=366980 GameBalanceId=-450681606
+            Id = -450681606,
+            GameBalanceId = true,
+            Name = "Vadim's Surge",
+            Quality = ItemQuality.Legendary,
+            Slug = "vadims-surge",
+            ItemType = ItemType.FollowerSpecial,
+            TrinityItemType = TrinityItemType.FollowerEnchantress,
+            IsTwoHanded = false,
+            BaseType = ItemBaseType.None,
+            InternalName = "",
+            DataUrl = "https://us.battle.net/api/d3/data/item/vadims-surge",
+            Url = "http://us.battle.net/d3/en/item/vadims-surge",
+            IconUrl = "http://media.blizzard.com/d3/icons/items/large/x1_followeritem_enchantress_legendary_03_demonhunter_male.png",
+            RelativeUrl = "",
+            IsCrafted = false,
+            LegendaryAffix = "Equip on Follower: Reduce the cooldown of all Follower skills by 50%.",
+            SetName = "",
+        };
+
+        /// <summary>
+        /// Smoking Thurible Equip on Follower: Your follower cannot die.
+        /// </summary>
+        public static Item SmokingThurible = new Item
+        {
+            Id = 366979,
+            Name = "Smoking Thurible",
+            Quality = ItemQuality.Legendary,
+            Slug = "smoking-thurible",
+            ItemType = ItemType.FollowerSpecial,
+            TrinityItemType = TrinityItemType.FollowerEnchantress,
+            IsTwoHanded = false,
+            BaseType = ItemBaseType.None,
+            InternalName = "",
+            DataUrl = "https://us.battle.net/api/d3/data/item/smoking-thurible",
+            Url = "http://us.battle.net/d3/en/item/smoking-thurible",
+            IconUrl = "http://media.blizzard.com/d3/icons/items/large/x1_followeritem_enchantress_legendary_01_demonhunter_male.png",
+            RelativeUrl = "",
+            IsCrafted = false,
+            LegendaryAffix = "Equip on Follower: Your follower cannot die.",
+            SetName = "",
+        };
+
+        /// <summary>
+        /// Relic of Akarat Equip on Follower: Gain access to all skills.
+        /// </summary>
+        public static Item RelicOfAkarat = new Item
+        {
+            Id = -765770608, // ActorSNO = 366969 // Same as HillenbrandsTrainingSword
+            GameBalanceId = true,
+            Name = "Relic of Akarat",
+            Quality = ItemQuality.Legendary,
+            Slug = "relic-of-akarat",
+            ItemType = ItemType.FollowerSpecial,
+            TrinityItemType = TrinityItemType.FollowerTemplar,
+            IsTwoHanded = false,
+            BaseType = ItemBaseType.None,
+            InternalName = "",
+            DataUrl = "https://us.battle.net/api/d3/data/item/relic-of-akarat",
+            Url = "http://us.battle.net/d3/en/item/relic-of-akarat",
+            IconUrl = "http://media.blizzard.com/d3/icons/items/large/x1_followeritem_templar_legendary_02_demonhunter_male.png",
+            RelativeUrl = "",
+            IsCrafted = false,
+            LegendaryAffix = "Equip on Follower: Gain access to all skills.",
+            SetName = "",
+        };
+
+        /// <summary>
+        /// Enchanting Favor Equip on Follower: Your follower cannot die.
+        /// </summary>
+        public static Item EnchantingFavor = new Item
+        {
+            Id = 366968,
+            Name = "Enchanting Favor",
+            Quality = ItemQuality.Legendary,
+            Slug = "enchanting-favor",
+            ItemType = ItemType.FollowerSpecial,
+            TrinityItemType = TrinityItemType.FollowerTemplar,
+            IsTwoHanded = false,
+            BaseType = ItemBaseType.None,
+            InternalName = "",
+            DataUrl = "https://us.battle.net/api/d3/data/item/enchanting-favor",
+            Url = "http://us.battle.net/d3/en/item/enchanting-favor",
+            IconUrl = "http://media.blizzard.com/d3/icons/items/large/x1_followeritem_templar_legendary_01_demonhunter_male.png",
+            RelativeUrl = "",
+            IsCrafted = false,
+            LegendaryAffix = "Equip on Follower: Your follower cannot die.",
+            SetName = "",
+        };
+
+        /// <summary>
+        /// Hillenbrand's Training Sword Equip on Follower: Reduce the cooldown of all Follower skills by 50%.
+        /// </summary>
+        public static Item HillenbrandsTrainingSword = new Item
+        {
+            Id = 366969,
+            Name = "Hillenbrand's Training Sword",
+            Quality = ItemQuality.Legendary,
+            Slug = "hillenbrands-training-sword",
+            ItemType = ItemType.FollowerSpecial,
+            TrinityItemType = TrinityItemType.FollowerTemplar,
+            IsTwoHanded = false,
+            BaseType = ItemBaseType.None,
+            InternalName = "",
+            DataUrl = "https://us.battle.net/api/d3/data/item/hillenbrands-training-sword",
+            Url = "http://us.battle.net/d3/en/item/hillenbrands-training-sword",
+            IconUrl = "http://media.blizzard.com/d3/icons/items/large/x1_followeritem_templar_legendary_03_demonhunter_male.png",
+            RelativeUrl = "",
+            IsCrafted = false,
+            LegendaryAffix = "Equip on Follower: Reduce the cooldown of all Follower skills by 50%.",
+            SetName = "",
+        };
+
+        /// <summary>
         /// Deadly Rebirth
         /// </summary>
         public static Item DeadlyRebirth = new Item
@@ -5281,7 +5494,7 @@ namespace Trinity.Reference
             Quality = ItemQuality.Legendary,
             Slug = "girdle-of-giants",
             ItemType = ItemType.Belt,
-            TrinityItemType = TrinityItemType.Belt,
+            TrinityItemType = TrinityItemType.MightyBelt,
             IsTwoHanded = false,
             BaseType = ItemBaseType.Armor,
             InternalName = "BarbBelt_norm_unique_04",
@@ -5304,7 +5517,7 @@ namespace Trinity.Reference
             Quality = ItemQuality.Legendary,
             Slug = "the-undisputed-champion",
             ItemType = ItemType.Belt,
-            TrinityItemType = TrinityItemType.Belt,
+            TrinityItemType = TrinityItemType.MightyBelt,
             IsTwoHanded = false,
             BaseType = ItemBaseType.Armor,
             InternalName = "BarbBelt_norm_unique_06",
@@ -5327,7 +5540,7 @@ namespace Trinity.Reference
             Quality = ItemQuality.Legendary,
             Slug = "kotuurs-brace",
             ItemType = ItemType.Belt,
-            TrinityItemType = TrinityItemType.Belt,
+            TrinityItemType = TrinityItemType.MightyBelt,
             IsTwoHanded = false,
             BaseType = ItemBaseType.Armor,
             InternalName = "BarbBelt_norm_unique_07",
@@ -5350,7 +5563,7 @@ namespace Trinity.Reference
             Quality = ItemQuality.Legendary,
             Slug = "pride-of-cassius",
             ItemType = ItemType.Belt,
-            TrinityItemType = TrinityItemType.Belt,
+            TrinityItemType = TrinityItemType.MightyBelt,
             IsTwoHanded = false,
             BaseType = ItemBaseType.Armor,
             InternalName = "BarbBelt_norm_unique_02",
@@ -5373,7 +5586,7 @@ namespace Trinity.Reference
             Quality = ItemQuality.Legendary,
             Slug = "chilaniks-chain",
             ItemType = ItemType.Belt,
-            TrinityItemType = TrinityItemType.Belt,
+            TrinityItemType = TrinityItemType.MightyBelt,
             IsTwoHanded = false,
             BaseType = ItemBaseType.Armor,
             InternalName = "barbbelt_norm_unique_10",
@@ -5396,7 +5609,7 @@ namespace Trinity.Reference
             Quality = ItemQuality.Legendary,
             Slug = "lamentation",
             ItemType = ItemType.Belt,
-            TrinityItemType = TrinityItemType.Belt,
+            TrinityItemType = TrinityItemType.MightyBelt,
             IsTwoHanded = false,
             BaseType = ItemBaseType.Armor,
             InternalName = "barbbelt_norm_unique_05",
@@ -5419,7 +5632,7 @@ namespace Trinity.Reference
             Quality = ItemQuality.Legendary,
             Slug = "immortal-kings-tribal-binding",
             ItemType = ItemType.Belt,
-            TrinityItemType = TrinityItemType.Belt,
+            TrinityItemType = TrinityItemType.MightyBelt,
             IsTwoHanded = false,
             BaseType = ItemBaseType.Armor,
             InternalName = "BarbBelt_norm_unique_09",
@@ -5442,7 +5655,7 @@ namespace Trinity.Reference
             Quality = ItemQuality.Legendary,
             Slug = "dread-iron",
             ItemType = ItemType.Belt,
-            TrinityItemType = TrinityItemType.Belt,
+            TrinityItemType = TrinityItemType.MightyBelt,
             IsTwoHanded = false,
             BaseType = ItemBaseType.Armor,
             InternalName = "BarbBelt_norm_unique_01",
@@ -16063,12 +16276,20 @@ namespace Trinity.Reference
         #region Methods
 
         /// <summary>
-        /// Get a Legendary item by ActorSNO
+        /// Get a Legendary item by ActorSNO or GBID
         /// </summary>
-        public static Item GetItemById(int itemId)
+        public static Item GetItemByACD(ACDItem item)
         {
-            if (Items != null && itemId > 0 && Items.ContainsKey(itemId))
-                return Items[itemId];
+            if (Items == null || item == null || !item.IsValid || item.IsDisposed)
+                return null;
+
+            var gbid = item.GameBalanceId;
+            if (Items.ContainsKey(gbid))
+                return Items[gbid];
+
+            var sno = item.ActorSNO;
+            if (Items.ContainsKey(sno))
+                return Items[sno];
 
             return null;
         }

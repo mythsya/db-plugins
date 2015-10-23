@@ -348,5 +348,25 @@ namespace Trinity.Helpers
             return fullFilePath;
         }
 
+        public static void ItemListTest()
+        {
+            Logger.Log("Starting ItemList Backpack Test");
+           
+            var backpackItems = ZetaDia.Me.Inventory.Backpack.ToList();
+            var total = backpackItems.Count;
+            var stashCount = 0;
+         
+            foreach (var acdItem in backpackItems)
+            {
+                Logger.Log("{0} ActorSNO={1} GameBalanceId={2}", acdItem.Name, acdItem.ActorSNO, acdItem.GameBalanceId);
+                var cItem = CachedACDItem.GetCachedItem(acdItem);
+                if (ItemList.ShouldStashItem(cItem, true))
+                    stashCount++;
+            }
+
+            Logger.Log("Finished ItemList Backpack Test");
+
+            Logger.Log("Finished - Stash {0} / {1}", stashCount, total);
+        }
     }
 }

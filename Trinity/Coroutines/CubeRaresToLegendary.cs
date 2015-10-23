@@ -93,6 +93,9 @@ namespace TrinityCoroutines
 
             var rares = ZetaDia.Me.Inventory.Backpack.Where(i =>
             {
+                if (Inventory.InvalidItemDynamicIds.Contains(i.DynamicId))
+                    return false;
+
                 if (i.ItemBaseType != ItemBaseType.Armor && i.ItemBaseType != ItemBaseType.Weapon && i.ItemBaseType != ItemBaseType.Jewelry)
                     return false;
 
@@ -102,7 +105,9 @@ namespace TrinityCoroutines
 
                 if (i.ItemStackQuantity != 0 || !i.IsValid || i.IsDisposed)
                 {
-                    Logger.LogVerbose("Skipping Item - Invalid {0}", i.InternalName);
+                    Logger.LogVerbose("Skipping Item - Invalid {0} Disposed={1} IsValid={2} InvalidStackQuantity={3}", 
+                        i.InternalName, i.IsDisposed, i.IsValid, i.ItemStackQuantity != 0);
+
                     return false;
                 }
                     
@@ -169,25 +174,31 @@ namespace TrinityCoroutines
 
                 if (BackpackHasMaterials)
                 {
-                    if (!await MoveToAndInteract.Execute(Town.Locations.KanaisCube, Town.ActorIds.KanaisCube, 3f))
+                    if(Town.Locations.KanaisCube.Distance(ZetaDia.Me.Position) > 10f || !GameUI.KanaisCubeWindow.IsVisible)
                     {
-                        Logger.Log("Failed to move to the cube, quite unfortunate.");
-                        break;
+                        if (!await MoveToAndInteract.Execute(Town.Locations.KanaisCube, Town.ActorIds.KanaisCube, 3f))
+                        {
+                            Logger.Log("Failed to move to the cube, quite unfortunate.");
+                            break;
+                        }
+                        continue;
                     }
 
                     Logger.Log("[CubeRaresToLegendary] Ready to go, Lets transmute!");
 
                     var item = GetBackPackRares(types).First();
                     var itemName = item.Name;
+                    var itemDynamicId = item.DynamicId;
+                    var itemInternalName = item.InternalName;
                     var transmuteGroup = new List<ACDItem>
                     {
                         item,
                     };
 
-                    transmuteGroup.AddRange(Inventory.GetMaterialStacksUpToQuantity(Inventory.Backpack.ArcaneDust, 50));
-                    transmuteGroup.AddRange(Inventory.GetMaterialStacksUpToQuantity(Inventory.Backpack.VeiledCrystals, 50));
-                    transmuteGroup.AddRange(Inventory.GetMaterialStacksUpToQuantity(Inventory.Backpack.ReusableParts, 50));
-                    transmuteGroup.AddRange(Inventory.GetMaterialStacksUpToQuantity(Inventory.Backpack.DeathsBreath, 25));
+                    transmuteGroup.AddRange(Inventory.GetStacksUpToQuantity(Inventory.Backpack.ArcaneDust, 50));
+                    transmuteGroup.AddRange(Inventory.GetStacksUpToQuantity(Inventory.Backpack.VeiledCrystals, 50));
+                    transmuteGroup.AddRange(Inventory.GetStacksUpToQuantity(Inventory.Backpack.ReusableParts, 50));
+                    transmuteGroup.AddRange(Inventory.GetStacksUpToQuantity(Inventory.Backpack.DeathsBreath, 25));
 
                     await Transmute.Execute(transmuteGroup);
                     await Coroutine.Sleep(1500);
@@ -195,13 +206,18 @@ namespace TrinityCoroutines
                     var newItem = ZetaDia.Me.Inventory.Backpack.FirstOrDefault(i => !backpackGuids.Contains(i.ACDGuid));
                     if (newItem != null)
                     {
-                        var newLegendaryItem = Legendary.GetItemById(newItem.ActorSNO);
-                        Logger.Log("[CubeRaresToLegendary] Upgraded Rare '{0}' ---> '{1}' ({2})", itemName, newLegendaryItem.Name, newItem.ActorSNO);
+                        var newLegendaryItem = Legendary.GetItemByACD(newItem);
+
+                        Logger.Log("[CubeRaresToLegendary] Upgraded Rare '{0}' ---> '{1}' ({2})", 
+                            itemName, newLegendaryItem.Name, newItem.ActorSNO);
                     }
                     else
                     {
-                        Logger.Log("[CubeRaresToLegendary] Failed to upgrade Item '{0}' HasBackpackMaterials={1}", itemName, BackpackHasMaterials);
+                        Logger.Log("[CubeRaresToLegendary] Failed to upgrade Item '{0}' {1} DynId={2} HasBackpackMaterials={3}", 
+                            itemName, itemInternalName, itemDynamicId, BackpackHasMaterials);
                     }
+
+                    Inventory.InvalidItemDynamicIds.Add(itemDynamicId);
                 }
                 else if (StashHasMaterials)
                 {
@@ -214,12 +230,15 @@ namespace TrinityCoroutines
                     Logger.Log("[CubeRaresToLegendary] Oh no! Out of materials!");
                     return true;
                 }
-                await Coroutine.Sleep(100);
+
+                await Coroutine.Sleep(500);
                 await Coroutine.Yield();
             }
 
             return true;
         }
+
+
 
     }
 }

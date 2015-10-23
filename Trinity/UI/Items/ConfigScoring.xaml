@@ -60,12 +60,12 @@
                         <ColumnDefinition Width="3*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="When not in Town:" />
-                    <Slider Grid.Row="0" Grid.Column="1" Template="{DynamicResource Slider}"
+                    <Slider Grid.Row="0" Grid.Column="1" Template="{DynamicResource SliderEditable}"
                         Interval="500" Maximum="59" Minimum="0" SmallChange="1" LargeChange="10"
                         TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"
                         Value="{Binding Path=TownRun.FreeBagSlotsA}" />
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="When in Town:" />
-                    <Slider Grid.Row="1" Grid.Column="1" Template="{DynamicResource Slider}"
+                    <Slider Grid.Row="1" Grid.Column="1" Template="{DynamicResource SliderEditable}"
                         Interval="500" Maximum="59" Minimum="0" SmallChange="1" LargeChange="10"
                         TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"
                         Value="{Binding Path=TownRun.FreeBagSlotsInTownA}" />
@@ -122,31 +122,31 @@
                         <ColumnDefinition Width="3*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Max ForgottenSouls:" />
-                    <Slider Grid.Row="0" Grid.Column="1" Template="{DynamicResource Slider}"
+                    <Slider Grid.Row="0" Grid.Column="1" Template="{DynamicResource SliderEditable}"
                         Interval="500" Maximum="500000" Minimum="5000" SmallChange="5000" LargeChange="50000"
                         TickFrequency="5000" TickPlacement="BottomRight" IsSnapToTickEnabled="True"
                         Value="{Binding Path=TownRun.MaxStackForgottenSoul}" />
 
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="Max DeathsBreaths:" />
-                    <Slider Grid.Row="1" Grid.Column="1" Template="{DynamicResource Slider}"
+                    <Slider Grid.Row="1" Grid.Column="1" Template="{DynamicResource SliderEditable}"
                         Interval="500" Maximum="500000" Minimum="5000" SmallChange="5000" LargeChange="50000"
                         TickFrequency="5000" TickPlacement="BottomRight" IsSnapToTickEnabled="True"
                         Value="{Binding Path=TownRun.MaxStackDeathsBreath}" />
 
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="Max ReusableParts:" />
-                    <Slider Grid.Row="2" Grid.Column="1" Template="{DynamicResource Slider}"
+                    <Slider Grid.Row="2" Grid.Column="1" Template="{DynamicResource SliderEditable}"
                         Interval="500" Maximum="500000" Minimum="5000" SmallChange="5000" LargeChange="50000"
                         TickFrequency="5000" TickPlacement="BottomRight" IsSnapToTickEnabled="True"
                         Value="{Binding Path=TownRun.MaxStackReusableParts}" />
 
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="Max ArcaneDusts:" />
-                    <Slider Grid.Row="3" Grid.Column="1" Template="{DynamicResource Slider}"
+                    <Slider Grid.Row="3" Grid.Column="1" Template="{DynamicResource SliderEditable}"
                         Interval="500" Maximum="500000" Minimum="5000" SmallChange="5000" LargeChange="50000"
                         TickFrequency="5000" TickPlacement="BottomRight" IsSnapToTickEnabled="True"
                         Value="{Binding Path=TownRun.MaxStackArcaneDust}" />
 
                     <TextBlock Grid.Row="4" Grid.Column="0" Text="Max VeiledCrystals:" />
-                    <Slider Grid.Row="4" Grid.Column="1" Template="{DynamicResource Slider}"
+                    <Slider Grid.Row="4" Grid.Column="1" Template="{DynamicResource SliderEditable}"
                         Interval="500" Maximum="500000" Minimum="5000" SmallChange="5000" LargeChange="50000"
                         TickFrequency="5000" TickPlacement="BottomRight" IsSnapToTickEnabled="True"
                         Value="{Binding Path=TownRun.MaxStackVeiledCrystal}" />

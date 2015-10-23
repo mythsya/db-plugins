@@ -6,9 +6,12 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Markup;
 using Trinity.Technicals;
 using Trinity.UI.UIComponents;
+using Application = System.Windows.Application;
+using UserControl = System.Windows.Controls.UserControl;
 
 namespace Trinity.UI
 {
@@ -67,11 +70,20 @@ namespace Trinity.UI
                     Logger.Log(TrinityLogLevel.Verbose, LogCategory.UI, "Put MainControl to Window");
                     ConfigWindow.Content = _windowContent;
                     Logger.Log(TrinityLogLevel.Verbose, LogCategory.UI, "Configure Window");
-                    ConfigWindow.Height = 800;
-                    ConfigWindow.Width = 600;
+
+                    if (Screen.PrimaryScreen.Bounds.Width <= 1920 || Screen.PrimaryScreen.Bounds.Height <= 1080)
+                    {
+                        ConfigWindow.Height = 650;
+                        ConfigWindow.Width = 550;
+                    }
+                    else
+                    {
+                        ConfigWindow.Height = 800;
+                        ConfigWindow.Width = 600;
+                    }
+
                     ConfigWindow.MinHeight = 650;
-                    ConfigWindow.MinHeight = 750;
-                    ConfigWindow.MinWidth = 550;
+                    ConfigWindow.MinWidth = 500;
                     ConfigWindow.Title = "Trinity";
 
                     // Event handling for the config window loading up/closing

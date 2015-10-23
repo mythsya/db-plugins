@@ -9,6 +9,7 @@ namespace Trinity.UIComponents
     public enum RuleType
     {
         Required = 0,
-        Optional
+        Optional,
+        Test,
     }
 }

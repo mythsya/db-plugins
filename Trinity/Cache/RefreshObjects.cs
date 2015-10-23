@@ -814,28 +814,42 @@ namespace Trinity
                    where o.IsValid && o.CommonData != null && o.CommonData.IsValid
                    select o;
         }
-
         private static void RefreshWaitTimers()
         {
 
             // See if we should wait for [playersetting] milliseconds for possible loot drops before continuing run
-            if (CurrentTarget == null &&
-                (DateTime.UtcNow.Subtract(lastHadUnitInSights).TotalMilliseconds <= Settings.Combat.Misc.DelayAfterKill ||
-                DateTime.UtcNow.Subtract(lastHadEliteUnitInSights).TotalMilliseconds <= Settings.Combat.Misc.DelayAfterKill ||
-                DateTime.UtcNow.Subtract(lastHadBossUnitInSights).TotalMilliseconds <= 3000 ||
-                DateTime.UtcNow.Subtract(Composites.LastFoundHoradricCache).TotalMilliseconds <= 5000) ||
-                DateTime.UtcNow.Subtract(lastHadContainerInSights).TotalMilliseconds <= Settings.WorldObject.OpenContainerDelay)
+            if (ShouldWaitForLootDrop)
             {
                 CurrentTarget = new TrinityCacheObject()
-                                    {
-                                        Position = Player.Position,
-                                        Type = TrinityObjectType.Avoidance,
-                                        Weight = 20000,
-                                        Distance = 2f,
-                                        Radius = 2f,
-                                        InternalName = "WaitForLootDrops"
-                                    };
+                {
+                    Position = Player.Position,
+                    Type = TrinityObjectType.Avoidance,
+                    Weight = 20000,
+                    Distance = 2f,
+                    Radius = 2f,
+                    InternalName = "WaitForLootDrops"
+                };
                 Logger.Log(TrinityLogLevel.Debug, LogCategory.Behavior, "Waiting for loot to drop, delay: {0}ms", Settings.Combat.Misc.DelayAfterKill);
+            }
+        }
+
+        public static bool ShouldWaitForLootDrop
+        {
+            get
+            {
+                if (Player.ParticipatingInTieredLootRun)
+                {
+                    return CurrentTarget == null &&
+                           (DateTime.UtcNow.Subtract(lastHadEliteUnitInSights).TotalMilliseconds <= Settings.Combat.Misc.DelayAfterKill ||
+                            DateTime.UtcNow.Subtract(lastHadBossUnitInSights).TotalMilliseconds <= 3000);
+                }
+
+                return CurrentTarget == null &&
+                           (DateTime.UtcNow.Subtract(lastHadUnitInSights).TotalMilliseconds <= Settings.Combat.Misc.DelayAfterKill ||
+                            DateTime.UtcNow.Subtract(lastHadEliteUnitInSights).TotalMilliseconds <= Settings.Combat.Misc.DelayAfterKill ||
+                            DateTime.UtcNow.Subtract(lastHadBossUnitInSights).TotalMilliseconds <= 3000 ||
+                            DateTime.UtcNow.Subtract(Composites.LastFoundHoradricCache).TotalMilliseconds <= 5000) ||
+                           DateTime.UtcNow.Subtract(lastHadContainerInSights).TotalMilliseconds <= Settings.WorldObject.OpenContainerDelay;
             }
         }
     }

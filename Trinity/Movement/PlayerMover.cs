@@ -793,7 +793,10 @@ namespace Trinity.DbProvider
                     var charges = Skills.Monk.DashingStrike.Charges;
 
                     //Logger.LogVerbose("OOC Dash Charges={0}", charges);
-                    if (Sets.ThousandStorms.IsSecondBonusActive && ((charges > 1 && Trinity.Player.PrimaryResource >= 75) || CacheData.BuffsCache.Instance.HasCastingShrine))
+                    if (Sets.ThousandStorms.IsSecondBonusActive &&
+                        ((charges > 1 && Trinity.Player.PrimaryResource >= 75) || CacheData.BuffsCache.Instance.HasCastingShrine ||
+                        CurrentTarget != null && NavHelper.CanRayCast(Trinity.Player.Position, CurrentTarget.Position)) && 
+                        !Trinity.ShouldWaitForLootDrop)
                     {
                         if (Trinity.Settings.Advanced.LogCategories.HasFlag(LogCategory.Movement))
                             Logger.Log(TrinityLogLevel.Debug, LogCategory.Movement, "Using Dashing Strike for OOC movement, distance={0} charges={1}", destinationDistance, Skills.Monk.DashingStrike.Charges);
@@ -801,7 +804,7 @@ namespace Trinity.DbProvider
                         return;
                     }
 
-                    if (!Sets.ThousandStorms.IsSecondBonusActive && charges > 0 && PowerManager.CanCast(Skills.Monk.DashingStrike.SNOPower))
+                    if (!Sets.ThousandStorms.IsSecondBonusActive && charges > 0 && PowerManager.CanCast(Skills.Monk.DashingStrike.SNOPower) && !Trinity.ShouldWaitForLootDrop)
                     {
                         Skills.Monk.DashingStrike.Cast(destination);
                         if (Trinity.Settings.Advanced.LogCategories.HasFlag(LogCategory.Movement))
@@ -870,7 +873,7 @@ namespace Trinity.DbProvider
         private static bool TryBulKathosWWMovement(Vector3 destination, float destinationDistance)
         {
             // Whirlwind for Bul-Kathos Sword Set D3 2.2.0
-            if (CombatBase.CanCast(SNOPower.Barbarian_Whirlwind) && Trinity.Player.PrimaryResource > 10 && (Sets.BulKathossOath.IsFullyEquipped || Sets.WrathOfTheWastes.IsFullyEquipped)
+            if (CombatBase.CanCast(SNOPower.Barbarian_Whirlwind) && Trinity.Player.PrimaryResource > 10 && Sets.BulKathossOath.IsFullyEquipped
                 && !(CurrentTarget != null && (CurrentTarget.Type == TrinityObjectType.Item || CurrentTarget.IsNPC || CurrentTarget.Type == TrinityObjectType.Shrine) && CurrentTarget.Distance < 12f))
             {
                 Skills.Barbarian.Whirlwind.Cast(destination);

@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="..\Template.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <ut:EnumBooleanConverter x:Key="enumBooleanConverter" />
+            <ut:PercentConverter x:Key="percentConverter" />
             <ut:SliderValueToVisibilityConverter x:Key="sliderValueToVisibilityConverter" />
            
         </ResourceDictionary>
@@ -31,7 +32,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Trigger range for Elite combat:" FontWeight="Bold" TextAlignment="Center"/>
-                        <Slider Grid.Row="1" Template="{DynamicResource Slider}" 
+                        <Slider Grid.Row="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="150" Minimum="15" 
                     SmallChange="1" TickFrequency="5" IsSnapToTickEnabled="True"
                     TickPlacement="BottomRight" Value="{Binding Path=Misc.EliteRange}" 
@@ -43,10 +44,10 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Always kill elites below % Health" FontWeight="Bold" TextAlignment="Center"/>
-                        <Slider Grid.Row="1" Template="{DynamicResource Slider}" 
+                        <Slider Grid.Row="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="100" Minimum="0" 
                     SmallChange="1" TickFrequency="5" IsSnapToTickEnabled="True"
-                    TickPlacement="BottomRight" Value="{Binding Path=Misc.ForceKillElitesHealth}" 
+                    TickPlacement="BottomRight" Value="{Binding Path=Misc.ForceKillElitesHealth, Converter={StaticResource percentConverter}}" 
                     HorizontalAlignment="Stretch" Margin="25,0,25,0"/>
                     </Grid>
                     <UniformGrid Columns="2" HorizontalAlignment="Center" VerticalAlignment="Top">
@@ -54,7 +55,8 @@
                         <CheckBox Margin="5,0" IsChecked="{Binding Path=Misc.ProfileTagOverride}" 
                                   ToolTip="Ignore kill-everything logic for WaitTimer, TrinityTownPortal, UseTownPortal, TrinityTownRun"
                                   IsEnabled="{Binding Path=Misc.IgnoreElites}">Override Profile Tags</CheckBox>
-                        <CheckBox Margin="5,0" IsChecked="{Binding Misc.IgnoreRares}" Content="Ignore Rare Monsters"/>
+                        <CheckBox Margin="5,0" IsChecked="{Binding Misc.IgnoreRares}" Content="Ignore Yellow/Rare Packs"/>
+                        <CheckBox Margin="5,0" IsChecked="{Binding Misc.IgnoreChampions}" Content="Ignore Blue/Champ Packs"/>
                     </UniformGrid>
                 </StackPanel>
             </GroupBox>
@@ -73,7 +75,7 @@
                             <TextBlock Text="Ignore trash further away than:" FontWeight="Bold" TextAlignment="Center"/>
                             <TextBlock  TextWrapping="Wrap" Text="Warning! a low setting will cause face-tanking! and prevent ranged spell casting from working properly." FontWeight="Bold" Foreground="OrangeRed" Visibility="{Binding Value, ElementName=TrashTriggerSlider, Converter={StaticResource sliderValueToVisibilityConverter},ConverterParameter=40}" TextAlignment="Center"/>
                         </StackPanel>
-                        <Slider Grid.Row="1" Template="{DynamicResource Slider}" 
+                        <Slider Grid.Row="1" Template="{DynamicResource SliderEditable}" 
                             x:Name="TrashTriggerSlider"
                             Interval="500" Maximum="200" Minimum="0" 
                             SmallChange="1" TickFrequency="5" IsSnapToTickEnabled="True"
@@ -90,14 +92,14 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <TextBlock Text="Minimum Trash Mob Pack Size:" FontWeight="Bold" TextAlignment="Center"/>
-                        <Slider Grid.Row="1" Template="{DynamicResource Slider}" 
+                        <Slider Grid.Row="1" Template="{DynamicResource SliderEditable}" 
                             Interval="100" IsSnapToTickEnabled="True"
                             Maximum="15" Minimum="1" SmallChange="100" TickFrequency="1" TickPlacement="BottomRight" 
                             Value="{Binding Path=Misc.TrashPackSize}" 
                             HorizontalAlignment="Stretch" Margin="0,0,0,0"
                             MinWidth="175"/>
                         <TextBlock Grid.Column="1" Text="Trash Pack Cluster Radius:" FontWeight="Bold" TextAlignment="Center"/>
-                        <Slider  Grid.Row="1" Grid.Column="1" Template="{DynamicResource Slider}" 
+                        <Slider  Grid.Row="1" Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="100" IsSnapToTickEnabled="True"
                             Maximum="90" Minimum="0" SmallChange="100" TickFrequency="5" TickPlacement="BottomRight" 
                             Value="{Binding Path=Misc.TrashPackClusterRadius}" 
@@ -115,14 +117,14 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <TextBlock Text="Ignore Trash Below Health %:" FontWeight="Bold" TextAlignment="Center" Margin="2,0"/>
-                        <Slider Grid.Row="1" Template="{DynamicResource Slider}" ToolTip="Always Ignore Trash Mobs Below this Percent Health"
+                        <Slider Grid.Row="1" Template="{DynamicResource SliderEditable}" ToolTip="Always Ignore Trash Mobs Below this Percent Health"
                             Interval="100" IsSnapToTickEnabled="True"
                             Maximum="1" Minimum="0" SmallChange="100" TickFrequency=".05" TickPlacement="BottomRight" 
                             Value="{Binding Path=Misc.IgnoreTrashBelowHealth}" 
                             HorizontalAlignment="Stretch" Margin="0,0,0,0"
                             MinWidth="200"/>
                         <TextBlock Grid.Column="1" Text="Ignore Below Health % w/ DoT:" FontWeight="Bold" TextAlignment="Center" Margin="2,0"/>
-                        <Slider  Grid.Row="1" Grid.Column="1" Template="{DynamicResource Slider}" ToolTip="Ignore Trash Mobs Below this Percent Health who also have a DoT applied"
+                        <Slider  Grid.Row="1" Grid.Column="1" Template="{DynamicResource SliderEditable}" ToolTip="Ignore Trash Mobs Below this Percent Health who also have a DoT applied"
                             Interval="100" IsSnapToTickEnabled="True"
                             Maximum="1" Minimum="0" SmallChange="100" TickFrequency=".05" TickPlacement="BottomRight" 
                             Value="{Binding Path=Misc.IgnoreTrashBelowHealthDoT}" 
@@ -189,7 +191,7 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <TextBlock Text="Wait for loot drop - Delay after kill :" FontWeight="Bold" TextAlignment="Center"/>
-                            <Slider Grid.Row="1" Template="{DynamicResource Slider}" 
+                            <Slider Grid.Row="1" Template="{DynamicResource SliderEditable}" 
                                 Interval="100" IsSnapToTickEnabled="True"
                                 Maximum="1500" Minimum="0" SmallChange="100" TickFrequency="50" TickPlacement="BottomRight" 
                                 Value="{Binding Path=Misc.DelayAfterKill}" 

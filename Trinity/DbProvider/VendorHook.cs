@@ -40,9 +40,16 @@ namespace Trinity.DbProvider
                     await Coroutine.Sleep(500);
                 }
 
-                //// Learn some recipies.
-                //if (!await UseCraftingRecipes.Execute())
-                //    return true;
+                if (ZetaDia.Me.IsParticipatingInTieredLootRun)
+                    return false;
+
+                // Learn some recipies.
+                if (!await UseCraftingRecipes.Execute())
+                    return true;
+
+                // Destroy white/blue/yellow items to convert crafting materials.
+                if (!await CubeItemsToMaterials.Execute())
+                    return true;
 
                 // Gamble first for cube legendary rares, bag space permitting.
                 if (!await Gamble.Execute())
@@ -78,9 +85,16 @@ namespace Trinity.DbProvider
             Logger.LogVerbose("PostVendor Hook Started");
 
             try
-            {
+            {                
+                if (ZetaDia.Me.IsParticipatingInTieredLootRun)
+                    return false;
+
                 // Run again in case we missed first time due to full bags.
                 if (!await Gamble.Execute())
+                    return true;
+
+                // Destroy white/blue/yellow items to convert crafting materials.
+                if (!await CubeItemsToMaterials.Execute())
                     return true;
 
                 // Run again in case we just gambled

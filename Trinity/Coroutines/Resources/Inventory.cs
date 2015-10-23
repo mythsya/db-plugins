@@ -138,24 +138,30 @@ namespace TrinityCoroutines.Resources
         }
 
 
-        public static IEnumerable<ACDItem> GetMaterialStacksUpToQuantity(List<ACDItem> materialsStacks, int amount)
+        public static IEnumerable<ACDItem> GetStacksUpToQuantity(List<ACDItem> materialsStacks, int maxStackQuantity)
         {
-            if (materialsStacks.Count == 1)
+            if (materialsStacks == null || !materialsStacks.Any() || materialsStacks.Count == 1)
                 return materialsStacks;
 
             long dbQuantity = 0;
-            var overlimit = 0;
+            var overlimit = 0;            
+
+            // First of Non-Stackable Items
+            var first = materialsStacks.First();
+            if (first.ItemStackQuantity == 0 && maxStackQuantity == 1 && materialsStacks.All(i => !i.IsCraftingReagent))
+                return new List<ACDItem> { first };
 
             // Position in the cube matters; it looks like it will fail if
             // stacks are added after the required amount of ingredient is met, 
             // as the cube encounters them from top left to bottom right.
 
             var toBeAdded = materialsStacks.TakeWhile(db =>
-            {
-                var stackQuantity = db.ItemStackQuantity;
-                if (dbQuantity + stackQuantity < amount)
+            {            
+                var thisStackQuantity = db.ItemStackQuantity;
+
+                if (dbQuantity + thisStackQuantity < maxStackQuantity)
                 {
-                    dbQuantity += stackQuantity;
+                    dbQuantity += thisStackQuantity;
                     return true;
                 }
                 overlimit++;
@@ -221,17 +227,17 @@ namespace TrinityCoroutines.Resources
 
         public static string GetCountsString(Dictionary<InventoryItemType, MaterialRecord> materials)
         {
-            var backpack = string.Empty;
-            var stash = string.Empty;
-            var total = string.Empty;
+            var backpack = String.Empty;
+            var stash = String.Empty;
+            var total = String.Empty;
 
             foreach (var item in materials)
             {
-                backpack += string.Format("{0}={1} ", item.Key, item.Value.BackpackStackQuantity);
-                stash += string.Format("{0}={1} ", item.Key, item.Value.StashStackQuantity);
-                total += string.Format("{0}={1} ", item.Key, item.Value.TotalStackQuantity);
+                backpack += String.Format("{0}={1} ", item.Key, item.Value.BackpackStackQuantity);
+                stash += String.Format("{0}={1} ", item.Key, item.Value.StashStackQuantity);
+                total += String.Format("{0}={1} ", item.Key, item.Value.TotalStackQuantity);
             }
-            return string.Format("Backpack: [{0}] \r\nStash: [{1}]\r\n Total: [{2}]\r\n", backpack.Trim(), stash.Trim(), total.Trim());
+            return String.Format("Backpack: [{0}] \r\nStash: [{1}]\r\n Total: [{2}]\r\n", backpack.Trim(), stash.Trim(), total.Trim());
         }
 
         public static Dictionary<InventoryItemType, MaterialRecord> GetMaterials(IList<InventoryItemType> types)
@@ -241,9 +247,13 @@ namespace TrinityCoroutines.Resources
 
             foreach (var item in ZetaDia.Me.Inventory.Backpack)
             {
+                if (InvalidItemDynamicIds.Contains(item.DynamicId))
+                    continue;
+
                 if (!item.IsValid || item.IsDisposed || (item.IsCraftingReagent && item.ItemStackQuantity == 0))
                 {
                     Logger.LogVerbose(LogCategory.Behavior, "Invalid item skipped: {0}", item.InternalName);
+                    InvalidItemDynamicIds.Add(item.DynamicId);
                     continue;
                 }
                     
@@ -260,9 +270,13 @@ namespace TrinityCoroutines.Resources
 
             foreach (var item in ZetaDia.Me.Inventory.StashItems)
             {
+                if (InvalidItemDynamicIds.Contains(item.DynamicId))
+                    continue;
+
                 if (!item.IsValid || item.IsDisposed || (item.IsCraftingReagent && item.ItemStackQuantity == 0))
                 {
                     Logger.LogVerbose(LogCategory.Behavior, "Invalid item skipped: {0}", item.InternalName);
+                    InvalidItemDynamicIds.Add(item.DynamicId);
                     continue;
                 }
 
@@ -276,7 +290,24 @@ namespace TrinityCoroutines.Resources
                     materialRecord.ActorId = itemSNO;
                 }
             }
+
             return materials;
+        }
+
+        private static HashSet<int> _blacklistedDynamicIds;
+        public static HashSet<int> InvalidItemDynamicIds
+        {
+            get
+            {
+                if(_blacklistedDynamicIds == null)
+                    _blacklistedDynamicIds = new HashSet<int>();
+
+                if (_blacklistedDynamicIds.Count > 100)
+                    _blacklistedDynamicIds.Remove(_blacklistedDynamicIds.First());
+
+                return _blacklistedDynamicIds;
+            }
+            set { _blacklistedDynamicIds = value; }
         }
 
         public static HashSet<InventoryItemType> MaterialConversionTypes = new HashSet<InventoryItemType>
@@ -347,6 +378,8 @@ namespace TrinityCoroutines.Resources
             361988, //Type: Item, Name: Forgotten Soul
         };
 
+
+
         public static List<ACDItem> OfType(IEnumerable<InventoryItemType> types)
         {
             var typesHash = new HashSet<int>(types.Select(t => (int)t));
@@ -376,166 +409,179 @@ namespace TrinityCoroutines.Resources
 
         public static List<ACDItem> AllItems
         {
-            get { return ZetaDia.Actors.GetActorsOfType<ACDItem>(true).Where(i => i.IsValid && !i.IsDisposed && (i.InventorySlot == InventorySlot.BackpackItems || i.InventorySlot == InventorySlot.SharedStash)).ToList(); }           
+            get { return ZetaDia.Actors.GetActorsOfType<ACDItem>(true).Where(i => i.IsValid && !i.IsDisposed && 
+            (i.InventorySlot == InventorySlot.BackpackItems || i.InventorySlot == InventorySlot.SharedStash) &&
+            (!i.IsCraftingReagent && i.ItemStackQuantity == 0 || i.IsCraftingReagent && i.ItemStackQuantity > 0) &&
+            !InvalidItemDynamicIds.Contains(i.DynamicId)).ToList(); }           
         }
 
         public static class Backpack
         {
+            public static List<ACDItem> AllBackpackItems
+            {
+                get { return AllItems.Where(i => i.InventorySlot == InventorySlot.BackpackItems).ToList(); }
+            }
+
             public static List<ACDItem> OfType(IEnumerable<InventoryItemType> types)
             {
                 var typesHash = new HashSet<int>(types.Select(t => (int)t));
-                return ZetaDia.Me.Inventory.Backpack.Where(i => i.IsValid && !i.IsDisposed && typesHash.Contains(i.ActorSNO)).ToList();
+                return AllBackpackItems.Where(i => i.IsValid && !i.IsDisposed && typesHash.Contains(i.ActorSNO)).ToList();
             }
 
             public static List<ACDItem> OfType(params InventoryItemType[] types)
             {
                 var typesHash = new HashSet<int>(types.Select(t => (int)t));
-                return ZetaDia.Me.Inventory.Backpack.Where(i => i.IsValid && !i.IsDisposed && typesHash.Contains(i.ActorSNO)).ToList();
+                return AllBackpackItems.Where(i => typesHash.Contains(i.ActorSNO)).ToList();
             }
 
             public static List<ACDItem> OfType(InventoryItemType type)
             {
-                return ZetaDia.Me.Inventory.Backpack.Where(i => i.IsValid && !i.IsDisposed && i.ActorSNO == (int)type).ToList();
+                return AllBackpackItems.Where(i => i.ActorSNO == (int)type).ToList();
             }
 
             public static List<ACDItem> ByItemType(ItemType type)
             {
-                return ZetaDia.Me.Inventory.Backpack.Where(i => i.IsValid && !i.IsDisposed && i.ItemType == type).ToList();
+                return AllBackpackItems.Where(i => i.ItemType == type).ToList();
             }
 
             public static List<ACDItem> ByActorSNO(int ActorSNO)
             {
-                return ZetaDia.Me.Inventory.Backpack.Where(i => i.IsValid && !i.IsDisposed && i.ActorSNO == ActorSNO).ToList();
+                return AllBackpackItems.Where(i => i.ActorSNO == ActorSNO).ToList();
             }
 
             public static List<ACDItem> ArcaneDust
             {
-                get { return ZetaDia.Me.Inventory.Backpack.Where(i => i.ActorSNO == (int)InventoryItemType.ArcaneDust).ToList(); }
+                get { return AllBackpackItems.Where(i => i.ActorSNO == (int)InventoryItemType.ArcaneDust).ToList(); }
             }
 
             public static List<ACDItem> ReusableParts
             {
-                get { return ZetaDia.Me.Inventory.Backpack.Where(i => i.ActorSNO == (int)InventoryItemType.ReusableParts).ToList(); }
+                get { return AllBackpackItems.Where(i => i.ActorSNO == (int)InventoryItemType.ReusableParts).ToList(); }
             }
 
             public static List<ACDItem> VeiledCrystals
             {
-                get { return ZetaDia.Me.Inventory.Backpack.Where(i => i.ActorSNO == (int)InventoryItemType.VeiledCrystal).ToList(); }
+                get { return AllBackpackItems.Where(i => i.ActorSNO == (int)InventoryItemType.VeiledCrystal).ToList(); }
             }
 
             public static List<ACDItem> DeathsBreath
             {
-                get { return ZetaDia.Me.Inventory.Backpack.Where(i => i.ActorSNO == (int)InventoryItemType.DeathsBreath).ToList(); }
+                get { return AllBackpackItems.Where(i => i.ActorSNO == (int)InventoryItemType.DeathsBreath).ToList(); }
             }
 			
             public static List<ACDItem> ForgottenSoul
             {
-                get { return ZetaDia.Me.Inventory.Backpack.Where(i => i.ActorSNO == (int)InventoryItemType.ForgottenSoul).ToList(); }
+                get { return AllBackpackItems.Where(i => i.ActorSNO == (int)InventoryItemType.ForgottenSoul).ToList(); }
             }			
 			
             public static List<ACDItem> CaldeumNightshade
             {
-                get { return ZetaDia.Me.Inventory.Backpack.Where(i => i.ActorSNO == (int)InventoryItemType.CaldeumNightshade).ToList(); }
+                get { return AllBackpackItems.Where(i => i.ActorSNO == (int)InventoryItemType.CaldeumNightshade).ToList(); }
             }			
 
 			public static List<ACDItem> WestmarchHolyWater
             {
-                get { return ZetaDia.Me.Inventory.Backpack.Where(i => i.ActorSNO == (int)InventoryItemType.WestmarchHolyWater).ToList(); }
+                get { return AllBackpackItems.Where(i => i.ActorSNO == (int)InventoryItemType.WestmarchHolyWater).ToList(); }
             }		
 			
 			public static List<ACDItem> ArreatWarTapestry
             {
-                get { return ZetaDia.Me.Inventory.Backpack.Where(i => i.ActorSNO == (int)InventoryItemType.ArreatWarTapestry).ToList(); }
+                get { return AllBackpackItems.Where(i => i.ActorSNO == (int)InventoryItemType.ArreatWarTapestry).ToList(); }
             }			
 
 			public static List<ACDItem> CorruptedAngelFlesh
             {
-                get { return ZetaDia.Me.Inventory.Backpack.Where(i => i.ActorSNO == (int)InventoryItemType.CorruptedAngelFlesh).ToList(); }
+                get { return AllBackpackItems.Where(i => i.ActorSNO == (int)InventoryItemType.CorruptedAngelFlesh).ToList(); }
             }	
 			
 			public static List<ACDItem> KhanduranRune
             {
-                get { return ZetaDia.Me.Inventory.Backpack.Where(i => i.ActorSNO == (int)InventoryItemType.KhanduranRune).ToList(); }
+                get { return AllBackpackItems.Where(i => i.ActorSNO == (int)InventoryItemType.KhanduranRune).ToList(); }
             }
         }
 
         public static class Stash
         {
+            public static List<ACDItem> AllStashItems
+            {
+                get { return AllItems.Where(i => i.InventorySlot == InventorySlot.SharedStash).ToList(); }
+            }
+
             public static List<ACDItem> OfType(IEnumerable<InventoryItemType> types)
             {
                 var typesHash = new HashSet<int>(types.Select(t => (int)t));
-                return ZetaDia.Me.Inventory.StashItems.Where(i => i.IsValid && !i.IsDisposed && typesHash.Contains(i.ActorSNO)).ToList();
+                return AllStashItems.Where(i => typesHash.Contains(i.ActorSNO)).ToList();
             }
 
             public static List<ACDItem> OfType(params InventoryItemType[] types)
             {
                 var typesHash = new HashSet<int>(types.Select(t => (int)t));
-                return ZetaDia.Me.Inventory.StashItems.Where(i => i.IsValid && !i.IsDisposed && typesHash.Contains(i.ActorSNO)).ToList();
+                return AllStashItems.Where(i => typesHash.Contains(i.ActorSNO)).ToList();
             }
 
             public static List<ACDItem> OfType(InventoryItemType type)
             {
-                return ZetaDia.Me.Inventory.StashItems.Where(i => i.IsValid && !i.IsDisposed && i.ActorSNO == (int)type).ToList();
+                return AllStashItems.Where(i => i.ActorSNO == (int)type).ToList();
             }
 
             public static List<ACDItem> ByItemType(ItemType type)
             {
-                return ZetaDia.Me.Inventory.StashItems.Where(i => i.IsValid && !i.IsDisposed && i.ItemType == type).ToList();
+                return AllStashItems.Where(i => i.ItemType == type).ToList();
             }
 
             public static List<ACDItem> ByActorSNO(int ActorSNO)
             {
-                return ZetaDia.Me.Inventory.StashItems.Where(i => i.IsValid && !i.IsDisposed && i.ActorSNO == ActorSNO).ToList();
+                return AllStashItems.Where(i => i.ActorSNO == ActorSNO).ToList();
             }
 
             public static List<ACDItem> ArcaneDust
             {
-                get { return ZetaDia.Me.Inventory.StashItems.Where(i => i.ActorSNO == (int)InventoryItemType.ArcaneDust).ToList(); }
+                get { return AllStashItems.Where(i => i.ActorSNO == (int)InventoryItemType.ArcaneDust).ToList(); }
             }
 
             public static List<ACDItem> ReusableParts
             {
-                get { return ZetaDia.Me.Inventory.StashItems.Where(i => i.ActorSNO == (int)InventoryItemType.ReusableParts).ToList(); }
+                get { return AllStashItems.Where(i => i.ActorSNO == (int)InventoryItemType.ReusableParts).ToList(); }
             }
 
             public static List<ACDItem> VeiledCrystals
             {
-                get { return ZetaDia.Me.Inventory.StashItems.Where(i => i.ActorSNO == (int)InventoryItemType.VeiledCrystal).ToList(); }
+                get { return AllStashItems.Where(i => i.ActorSNO == (int)InventoryItemType.VeiledCrystal).ToList(); }
             }
 
             public static List<ACDItem> DeathsBreath
             {
-                get { return ZetaDia.Me.Inventory.StashItems.Where(i => i.ActorSNO == (int)InventoryItemType.DeathsBreath).ToList(); }
+                get { return AllStashItems.Where(i => i.ActorSNO == (int)InventoryItemType.DeathsBreath).ToList(); }
             }
 			
             public static List<ACDItem> ForgottenSoul
             {
-                get { return ZetaDia.Me.Inventory.StashItems.Where(i => i.ActorSNO == (int)InventoryItemType.ForgottenSoul).ToList(); }
+                get { return AllStashItems.Where(i => i.ActorSNO == (int)InventoryItemType.ForgottenSoul).ToList(); }
             }			
 			
             public static List<ACDItem> CaldeumNightshade
             {
-                get { return ZetaDia.Me.Inventory.StashItems.Where(i => i.ActorSNO == (int)InventoryItemType.CaldeumNightshade).ToList(); }
+                get { return AllStashItems.Where(i => i.ActorSNO == (int)InventoryItemType.CaldeumNightshade).ToList(); }
             }			
 
 			public static List<ACDItem> WestmarchHolyWater
             {
-                get { return ZetaDia.Me.Inventory.StashItems.Where(i => i.ActorSNO == (int)InventoryItemType.WestmarchHolyWater).ToList(); }
+                get { return AllStashItems.Where(i => i.ActorSNO == (int)InventoryItemType.WestmarchHolyWater).ToList(); }
             }		
 			
 			public static List<ACDItem> ArreatWarTapestry
             {
-                get { return ZetaDia.Me.Inventory.StashItems.Where(i => i.ActorSNO == (int)InventoryItemType.ArreatWarTapestry).ToList(); }
+                get { return AllStashItems.Where(i => i.ActorSNO == (int)InventoryItemType.ArreatWarTapestry).ToList(); }
             }			
 
 			public static List<ACDItem> CorruptedAngelFlesh
             {
-                get { return ZetaDia.Me.Inventory.StashItems.Where(i => i.ActorSNO == (int)InventoryItemType.CorruptedAngelFlesh).ToList(); }
+                get { return AllStashItems.Where(i => i.ActorSNO == (int)InventoryItemType.CorruptedAngelFlesh).ToList(); }
             }	
 			
 			public static List<ACDItem> KhanduranRune
             {
-                get { return ZetaDia.Me.Inventory.StashItems.Where(i => i.ActorSNO == (int)InventoryItemType.KhanduranRune).ToList(); }
+                get { return AllStashItems.Where(i => i.ActorSNO == (int)InventoryItemType.KhanduranRune).ToList(); }
             }	            			
         }
 
