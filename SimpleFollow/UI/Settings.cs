@@ -22,7 +22,6 @@ namespace SimpleFollow.UI
         private bool useProfilePosition;
         private bool stayInParty;
         private string bindAddress;
-        private bool useHotSpots;
         private bool waitForFollowers;
 
         private static string _battleTagName;
@@ -54,20 +53,6 @@ namespace SimpleFollow.UI
         public static Settings Instance
         {
             get { return _instance ?? (_instance = new Settings()); }
-        }
-
-
-        [XmlElement("UseHotSpots")]
-        [DefaultValue(false)]
-        [Setting]
-        public bool UseHotSpots
-        {
-            get { return useHotSpots; }
-            set
-            {
-                useHotSpots = value;
-                OnPropertyChanged("UseHotSpots");
-            }
         }
 
         [XmlElement("ServerPort")]

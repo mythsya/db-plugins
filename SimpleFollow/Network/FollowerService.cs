@@ -100,8 +100,6 @@ namespace SimpleFollow.Network
                         // Send our follower message to the leader
                         HttpProxy.SendUpdate(_lastMessage);
 
-                        if (Settings.Instance.UseHotSpots && Leader.HotSpot != null)
-                            Trinity.SetTrinityHotSpot(Leader.HotSpot);
 
                         if (LastLeaderUpdateMessage == null || LastLeaderUpdateMessage != Leader)
                         {

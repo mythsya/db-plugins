@@ -26,6 +26,11 @@ using Zeta.Game.Internals.Actors.Gizmos;
 using Zeta.TreeSharp;
 using Zeta.XmlEngine;
 using Action = Zeta.TreeSharp.Action;
+using Adventurer.Game.Actors;
+using Adventurer.Game.Combat;
+using Adventurer.Game.Rift;
+using Adventurer.Settings;
+using Adventurer.Util;
 
 namespace SimpleFollow.ProfileBehaviors
 {
@@ -318,7 +323,7 @@ namespace SimpleFollow.ProfileBehaviors
                                         new Sleep(500)
                                         )
                                     ),
-                                new Decorator(ret => ZetaDia.WorldType == Act.OpenWorld && Me.IsInTown && ZetaDia.CurrentLevelAreaId != 270011,
+                                /*new Decorator(ret => ZetaDia.WorldType == Act.OpenWorld && Me.IsInTown && ZetaDia.CurrentLevelAreaId != 270011,
                                     new Sequence(
                                         new Action(ret => Logr.Log("Using Waypoint to A5 Hub (Adventure Mode!)")),
                                         new Action(ret => ZetaDia.Me.UseWaypoint(49)),
@@ -329,9 +334,8 @@ namespace SimpleFollow.ProfileBehaviors
                                             new Sleep(3000)
                                             )
                                         )
-                                    ),
+                                    ),*/
                                 FollowerOpenRift.OpenRiftBehavior(),
-                                FollowerTakeWaypoint.TakeWaypointBehavior(),
                                 new Decorator(ret => Leader.IsInTown && Me.IsInTown,
                                     new Action(ret => Logr.Log("Leader is in town, waiting... "))
                                     ),
@@ -1072,6 +1076,17 @@ namespace SimpleFollow.ProfileBehaviors
 
         private bool GetIsParticipatingInTieredLootRun()
         {
+			if (Leader.Position.Distance2D(Me.Position) > 40 && CombatTargeting.Instance.AllowedToKillMonsters)
+			{
+				TargetingHelper.TurnCombatOff();
+				Logr.Log("CombatOff");
+			}
+			if (Leader.Position.Distance2D(Me.Position) <= 40 && !CombatTargeting.Instance.AllowedToKillMonsters)
+			{
+				TargetingHelper.TurnCombatOn();
+				Logr.Log("CombatOn");
+			}
+			
             bool isInLootRun = ZetaDia.Me.IsParticipatingInTieredLootRun;
             bool urshiQuestStep = ZetaDia.ActInfo.AllQuests.Any(q => q.QuestSNO == 337492 && (q.QuestStep == 34 || q.QuestStep == 10) && q.State == QuestState.InProgress);
             return isInLootRun && !urshiQuestStep;

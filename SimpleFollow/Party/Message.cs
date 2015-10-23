@@ -48,7 +48,6 @@ namespace SimpleFollow.Party
         public DateTime LastTimeInGame { get; set; }
         public DateTime LastTimeUpdated { get; set; }
         public int BattleTagHash { get; set; }
-        public string HotSpot { get; set; }
         public string ProfileTagName { get; set; }
         public int NumPartymembers { get; set; }
         public int CPlayerIndex { get; set; }
@@ -147,7 +146,6 @@ namespace SimpleFollow.Party
                         IsInCombat = GetIsInCombat(),
                         WorldId = ZetaDia.CurrentWorldId,
                         IsVendoring = BrainBehavior.IsVendoring,
-                        HotSpot = Trinity.GetTrinityHotSpot(),
                         IsInGreaterRift = Player.IsInGreaterRift,
                         CPlayerIndex = ZetaDia.CPlayer.Index,
                     };
@@ -155,7 +153,7 @@ namespace SimpleFollow.Party
                     if (m.IsInTown)
                     {
                         List<ACDItem> riftKeys = ZetaDia.Me.Inventory.StashItems.Where(i => i.IsValid && i.ItemType == ItemType.KeystoneFragment).ToList();
-                        riftKeys.AddRange(ZetaDia.Me.Inventory.Backpack.Where(i => i.IsValid && i.GoodFood == 0xFEEDFACE && i.ItemType == ItemType.KeystoneFragment).ToList());
+                        riftKeys.AddRange(ZetaDia.Me.Inventory.Backpack.Where(i => i.IsValid && i.GoodFood == 0xCEFAEDFE && i.ItemType == ItemType.KeystoneFragment).ToList());
                         m.HasRiftKeys = riftKeys.Any();
                         int maxLevel = -1;
                         try
@@ -453,7 +451,6 @@ namespace SimpleFollow.Party
                 hashCode = (hashCode * 397) ^ LastTimeInGame.GetHashCode();
                 hashCode = (hashCode * 397) ^ LastTimeUpdated.GetHashCode();
                 hashCode = (hashCode * 397) ^ BattleTagHash;
-                hashCode = (hashCode * 397) ^ (HotSpot != null ? HotSpot.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (ProfileTagName != null ? ProfileTagName.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ NumPartymembers;
                 hashCode = (hashCode * 397) ^ CPlayerIndex;
@@ -489,7 +486,7 @@ namespace SimpleFollow.Party
                 return false;
             if (ReferenceEquals(this, other))
                 return true;
-            return WorldId == other.WorldId && LevelAreaId == other.LevelAreaId && Position.Equals(other.Position) && ProfilePosition.Equals(other.ProfilePosition) && ProfileActorSNO == other.ProfileActorSNO && ProfilePathPrecision.Equals(other.ProfilePathPrecision) && IsInCombat.Equals(other.IsInCombat) && IsInTown.Equals(other.IsInTown) && IsInGame.Equals(other.IsInGame) && IsLoadingWorld.Equals(other.IsLoadingWorld) && IsInParty.Equals(other.IsInParty) && ActorSNO == other.ActorSNO && ActorClass == other.ActorClass && HitpointsMaxTotal.Equals(other.HitpointsMaxTotal) && HitpointsCurrent.Equals(other.HitpointsCurrent) && GameId.Equals(other.GameId) && LastTimeInGame.Equals(other.LastTimeInGame) && LastTimeUpdated.Equals(other.LastTimeUpdated) && BattleTagHash == other.BattleTagHash && string.Equals(HotSpot, other.HotSpot) && string.Equals(ProfileTagName, other.ProfileTagName) && NumPartymembers == other.NumPartymembers && CPlayerIndex == other.CPlayerIndex && HasRiftKeys.Equals(other.HasRiftKeys) && HighestLevelTieredRiftKey == other.HighestLevelTieredRiftKey && IsInGreaterRift.Equals(other.IsInGreaterRift) && HighestTeamRiftKey == other.HighestTeamRiftKey && RequestOpenRift.Equals(other.RequestOpenRift) && Equals(RiftKeyPriority, other.RiftKeyPriority) && UseHighestKeystone.Equals(other.UseHighestKeystone) && IsVendoring.Equals(other.IsVendoring);
+            return WorldId == other.WorldId && LevelAreaId == other.LevelAreaId && Position.Equals(other.Position) && ProfilePosition.Equals(other.ProfilePosition) && ProfileActorSNO == other.ProfileActorSNO && ProfilePathPrecision.Equals(other.ProfilePathPrecision) && IsInCombat.Equals(other.IsInCombat) && IsInTown.Equals(other.IsInTown) && IsInGame.Equals(other.IsInGame) && IsLoadingWorld.Equals(other.IsLoadingWorld) && IsInParty.Equals(other.IsInParty) && ActorSNO == other.ActorSNO && ActorClass == other.ActorClass && HitpointsMaxTotal.Equals(other.HitpointsMaxTotal) && HitpointsCurrent.Equals(other.HitpointsCurrent) && GameId.Equals(other.GameId) && LastTimeInGame.Equals(other.LastTimeInGame) && LastTimeUpdated.Equals(other.LastTimeUpdated) && BattleTagHash == other.BattleTagHash && string.Equals(ProfileTagName, other.ProfileTagName) && NumPartymembers == other.NumPartymembers && CPlayerIndex == other.CPlayerIndex && HasRiftKeys.Equals(other.HasRiftKeys) && HighestLevelTieredRiftKey == other.HighestLevelTieredRiftKey && IsInGreaterRift.Equals(other.IsInGreaterRift) && HighestTeamRiftKey == other.HighestTeamRiftKey && RequestOpenRift.Equals(other.RequestOpenRift) && Equals(RiftKeyPriority, other.RiftKeyPriority) && UseHighestKeystone.Equals(other.UseHighestKeystone) && IsVendoring.Equals(other.IsVendoring);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace SimpleFollow
 {
     public class SimpleFollow
     {
-        public static Version PluginVersion = new Version(3, 0, 0);
+        public static Version PluginVersion = new Version(3, 0, 1);
 
         /// <summary>
         /// The leader message

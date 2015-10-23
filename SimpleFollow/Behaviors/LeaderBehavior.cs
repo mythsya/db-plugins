@@ -100,13 +100,13 @@ namespace SimpleFollow.Behaviors
                 await Coroutine.Yield();
             }
 
-            // Wait for followers to open greater rift
+            /* Wait for followers to open greater rift
             while (ValidCheck() && ShouldFollowerOpenRift())
             {
                 SimpleFollow.Pulse();
                 Logr.Log("Waiting for follower to open rift...");
                 await Coroutine.Yield();
-            }
+            }*/
             return false;
         }
 

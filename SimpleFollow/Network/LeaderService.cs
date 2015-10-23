@@ -169,9 +169,6 @@ namespace SimpleFollow.Network
                     if (Settings.Instance.DebugLogging)
                         Logr.Debug("Received follower message: {0}", message);
 
-                    if (Settings.Instance.UseHotSpots && message.HotSpot != null)
-                        Trinity.SetTrinityHotSpot(message.HotSpot);
-
                     if (!message.IsInParty && !message.IsInGame && Leader.IsInGame)
                     {
                         Logr.Debug("Inviting {0} ({1}) to the party - Not in game. IsInGame={2} IsInParty={3} NumPartyMembers={4}",
