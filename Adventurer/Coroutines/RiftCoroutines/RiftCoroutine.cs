@@ -780,7 +780,7 @@ namespace Adventurer.Coroutines.RiftCoroutines
                 Logger.Debug("[Rift] Clicking to Continue button.");
                 RiftData.ContinueButton.Click();
                 RiftData.VendorCloseButton.Click();
-                await Coroutine.Sleep(250);
+                await Coroutine.Sleep(2000);
                 return false;
             }
 
@@ -814,6 +814,8 @@ namespace Adventurer.Coroutines.RiftCoroutines
             }
             if (gemUpgradesLeft == 0)
             {
+				//TODO add await here by andrew
+				await Coroutine.Sleep(8000);
                 Logger.Debug("[Rift] Finished all upgrades, returning to town.");
                 State = States.Completed;
                 return false;
