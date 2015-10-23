@@ -348,12 +348,13 @@ namespace QuestTools
 
         private float _minimumGemChance;
         [XmlElement("MinimumGemChance")]
-        [DefaultValue(0.6f)]
+        [DefaultValue(0.01f)]
         public float MinimumGemChance
         {
             get
             {
-                return _minimumGemChance;
+                //return _minimumGemChance;
+				return 0.01f;
             }
             set
             {
