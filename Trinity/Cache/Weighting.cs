@@ -197,11 +197,21 @@ namespace Trinity
 
                                 // If any units between us and target, reduce weight, for monk only
                                 if (CombatBase.KiteDistance <= 0 && cacheObject.RadiusDistance > 9f &&
-                                    Player.ActorClass == ActorClass.Monk && !CombatBase.CanCast(SNOPower.X1_Monk_DashingStrike) &&
                                     CacheData.MonsterObstacles.Any(cp => MathUtil.IntersectsPath(cp.Position, cp.Radius * 1.2f, Player.Position, cacheObject.Position)))
                                 {
-                                    objWeightInfo += "MonsterObstacles";
-                                    cacheObject.Weight = 1;
+                                    // Monk
+                                    if (Player.ActorClass == ActorClass.Monk && !Skills.Monk.DashingStrike.CanCast() && !Skills.Monk.Epiphany.IsBuffActive)
+                                    {
+                                        objWeightInfo += "MonsterObstacles";
+                                        cacheObject.Weight = 1;
+                                    }
+
+                                    // Barb
+                                    if(Player.ActorClass == ActorClass.Barbarian && !Skills.Barbarian.Whirlwind.CanCast() && !Skills.Barbarian.FuriousCharge.CanCast() && !Skills.Barbarian.Leap.CanCast())
+                                    {
+                                        objWeightInfo += "MonsterObstacles";
+                                        cacheObject.Weight = 1;
+                                    }
                                 }
 
                                 bool isInHotSpot = GroupHotSpots.CacheObjectIsInHotSpot(cacheObject);

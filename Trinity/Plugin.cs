@@ -39,7 +39,7 @@ namespace Trinity
 
         public Version Version
         {
-            get { return new Version(2, 13, 60); }
+            get { return new Version(2, 13, 61); }
         }
 
         public string Author

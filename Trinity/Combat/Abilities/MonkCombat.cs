@@ -255,6 +255,10 @@ namespace Trinity.Combat.Abilities
                     RefreshSweepingWind(true);
                     if (CurrentTarget.IsBossOrEliteRareUnique)
                         return new TrinityPower(SNOPower.X1_Monk_DashingStrike, MaxDashingStrikeRange, CurrentTarget.Position);
+
+                    if (!Sets.ThousandStorms.IsFullyEquipped)
+                        return new TrinityPower(SNOPower.X1_Monk_DashingStrike, MaxDashingStrikeRange, TargetUtil.GetBestClusterPoint());
+
                     return new TrinityPower(SNOPower.X1_Monk_DashingStrike, MaxDashingStrikeRange, TargetUtil.GetBestPierceTarget(50f, true).Position);
                 }
 

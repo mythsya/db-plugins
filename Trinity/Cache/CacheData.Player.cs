@@ -37,6 +37,8 @@ namespace Trinity
                 set { _instance = value; }
             }
 
+
+
 			public int ACDGuid { get; private set; }
             public int RActorGuid { get; private set; }
             public DateTime LastUpdated { get; private set; }
@@ -71,11 +73,10 @@ namespace Trinity
 			public long Coinage { get; private set; }
 			public float GoldPickupRadius { get; private set; }
 			public bool IsHidden { get; private set; }
-			public int CurrentExperience { get; private set; }
-			public int ExperienceNextLevel { get; private set; }
-			public int ParagonLevel { get; private set; }
-			public int ParagonCurrentExperience { get; private set; }
-			public long ParagonExperienceNextLevel { get; private set; }
+            public long CurrentExperience { get; private set; }
+            public long ExperienceNextLevel { get; private set; }
+            public long ParagonCurrentExperience { get; private set; }
+            public long ParagonExperienceNextLevel { get; private set; }
 			public float Rotation { get; private set; }
 			public Vector2 DirectionVector { get; private set; }
 			public float MovementSpeed { get; private set; }
@@ -227,7 +228,7 @@ namespace Trinity
                 //Zeta.Game.ZetaDia.Me.CommonData.GetAttribute<int>(Zeta.Game.Internals.Actors.ActorAttributeType.TieredLootRunRewardChoiceState) > 0;
 
                 Coinage = ZetaDia.CPlayer.Coinage;
-                CurrentExperience = ZetaDia.Me.CurrentExperience;
+                CurrentExperience = (long)ZetaDia.Me.CurrentExperience;
 
                 IsInPandemoniumFortress = DataDictionary.PandemoniumFortressWorlds.Contains(WorldID) ||
                         DataDictionary.PandemoniumFortressLevelAreaIds.Contains(LevelAreaId);
@@ -264,10 +265,10 @@ namespace Trinity
                 CooldownReductionPct = ZetaDia.Me.CommonData.GetAttribute<float>(ActorAttributeType.PowerCooldownReductionPercentAll);
                 ResourceCostReductionPct = ZetaDia.Me.CommonData.GetAttribute<float>(ActorAttributeType.ResourceCostReductionPercentAll);
                 GoldPickupRadius = _me.GoldPickupRadius;
-                ExperienceNextLevel = ZetaDia.Me.ExperienceNextLevel;
-                ParagonLevel = ZetaDia.Me.ParagonLevel;
-                ParagonCurrentExperience = ZetaDia.Me.ParagonCurrentExperience;
-                ParagonExperienceNextLevel = ZetaDia.Me.ParagonExperienceNextLevel;
+                ExperienceNextLevel = (long)ZetaDia.Me.ExperienceNextLevel;
+                //ParagonLevel = ZetaDia.Me.ParagonLevel;
+                ParagonCurrentExperience = (long)ZetaDia.Me.ParagonCurrentExperience;
+                ParagonExperienceNextLevel = (long)ZetaDia.Me.ParagonExperienceNextLevel;
                 GameDifficulty = ZetaDia.Service.Hero.CurrentDifficulty;
                 SecondaryResourceMax = GetMaxSecondaryResource(_me);
                 PrimaryResourceMax = GetMaxPrimaryResource(_me);                

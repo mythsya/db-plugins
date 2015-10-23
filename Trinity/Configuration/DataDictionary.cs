@@ -1006,6 +1006,7 @@ namespace Trinity
         public static HashSet<int> InteractWhiteListIds { get { return interactWhiteListIds; } }
         private static readonly HashSet<int> interactWhiteListIds = new HashSet<int>
         {
+            209133, // TentacleLord (209133)  QuestSNO: 434753 QuestStep: 1, Description: Slay the Infernal Bovine herd!
             363725, // Special Event Chest
 
             56686, // a3dun_Keep_Bridge_Switch 

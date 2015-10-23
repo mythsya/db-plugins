@@ -66,7 +66,7 @@
 
       <LogMessage questId="1" output="Exploring Cow Level!" />
 
-      <!-- // TentacleLord (209133) Distance: 12.13235 -->
+      <!-- // TentacleLord (209133) -->
       <ExploreDungeon
         routeMode="WeightedNearestMinimapUnvisited"
         questId="1"
@@ -91,22 +91,21 @@
 
       <WaitTimer questId="1" stepId="1" waitTime="3000" />
 
-      <While condition="CurrentWorldId == 434649 and IsActiveQuestAndStep(434753, 1)">
-        
+      <While condition="CurrentWorldId == 434649 and IsActiveQuestAndStep(434753, 1)">        
         <ClearArea questId="434753" stepId="1" radius="100" points="15" timeout="60" />
         <WaitTimer questId="1" stepId="1" waitTime="1000" />
-        <WaitTimer questId="1" stepId="1" waitTime="1000" />
-        
+        <WaitTimer questId="1" stepId="1" waitTime="1000" />        
       </While>
 
-      <ExploreDungeon
+      <!-- UNCOMMENT THIS TAG BELOW TO RE-EXPLORE THE WHOLE LEVEL -->
+      <!--<ExploreDungeon
         routeMode="WeightedNearestMinimapUnvisited"
         questId="1"
         until="FullyExplored"
         pathPrecision="30"
         boxSize="11"
         boxTolerance="0.01"
-        markerDistance="45" />
+        markerDistance="45" />-->
       
     </If>   
 

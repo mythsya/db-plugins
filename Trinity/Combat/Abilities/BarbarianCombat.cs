@@ -436,7 +436,7 @@ namespace Trinity.Combat.Abilities
 
                 if (Sets.BastionsOfWill.IsFullyEquipped && !Sets.TheLegacyOfRaekor.IsFullyEquipped)
                     return CanCast(SNOPower.Barbarian_FuriousCharge, CanCastFlags.NoTimer) && !IsCurrentlyAvoiding &&
-                        Skills.Barbarian.FuriousCharge.Charges > 0 && (TimeSincePowerUse(SNOPower.Barbarian_FuriousCharge) > 4000 || !CurrentTarget.IsInLineOfSight() || shouldRegenFury);
+                        Skills.Barbarian.FuriousCharge.Charges > 0 && (TimeSincePowerUse(SNOPower.Barbarian_FuriousCharge) > 4000 || shouldRegenFury);
 
                 return CanCast(SNOPower.Barbarian_FuriousCharge, CanCastFlags.NoTimer) && !IsCurrentlyAvoiding && Skills.Barbarian.FuriousCharge.Charges > 0 &&
                     (currentEliteTargetInRange || unitsInFrontOfBestTarget >= 3 || Sets.TheLegacyOfRaekor.IsFullyEquipped);
