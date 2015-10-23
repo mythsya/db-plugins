@@ -1,0 +1,277 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ut="clr-namespace:Trinity.UIComponents"
+             mc:Ignorable="d" Foreground="{DynamicResource TextBrush}" Background="#333333"
+             d:DesignHeight="1002" d:DesignWidth="390">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\Template.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <ut:EnumBooleanConverter x:Key="enumBooleanConverter" />
+            <ut:FlagsEnumValueConverter x:Key="flagsEnumValueBooleanConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <ScrollViewer>
+        <DockPanel LastChildFill="True">
+            <StackPanel DockPanel.Dock="Top" Background="Transparent">
+                <!--<GroupBox Background="Transparent" Header="Convert Crafting Materials">
+                    <StackPanel Margin="3,0,3,0">
+                        <TextBlock Margin="3,8,3,10" TextWrapping="Wrap">During a town run Trinity can convert non-legendary items into crafting materials. When you have less than the amount selected below, the bot will start creating more of it, consuming your highest crafting material in the process.</TextBlock>
+
+                        <Label FontWeight="Bold">Materials to Create:</Label>
+                        <UniformGrid Columns="3">
+                            <CheckBox ToolTip="Will destroy Common/White and Inferior/Grey items in backpack to create Resuable Parts" IsChecked="{Binding Path=KanaisCube.CreateReusableParts}">Reusable Parts</CheckBox>
+                            <CheckBox ToolTip="Will destroy Magic/Blue items in backpack to create Arcane Dust" IsChecked="{Binding Path=KanaisCube.CreateArcaneDust}">Arcane Dust</CheckBox>
+                            <CheckBox ToolTip="Will destroy Rare/Yellow items in backpack to create Veiled Crystals" IsChecked="{Binding Path=KanaisCube.CreateVeiledCrystals}">Veiled Crystals</CheckBox>
+                        </UniformGrid>
+
+                        <Grid Margin="0,10,0,10" Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="1" Grid.Column="0"  Background="Transparent">When count is below:</Label>
+                            <Slider Grid.Row="1" Grid.Column="1" Template="{DynamicResource SliderEditable}" 
+                                Interval="25" 
+                                Maximum="50000" 
+                                Minimum="0" 
+                                SmallChange="1000" 
+                                TickFrequency="5000" 
+                                IsSnapToTickEnabled="True"                                
+                                TickPlacement="BottomRight"                                
+                                Value="{Binding KanaisCube.ConversionQuantityThreshold}" 
+                                HorizontalAlignment="Stretch" Margin="10,0,25,0" />
+                        </Grid>
+                    </StackPanel>
+                </GroupBox>-->
+                <GroupBox Header="Upgrade Rares to Legendary">
+                    <!--<GroupBox.HeaderTemplate>
+                        <DataTemplate>
+                            <Label FontWeight="Bold" Foreground="#333333" Background="Transparent">Upgrade Rares to Legendary</Label>
+                        </DataTemplate>
+                    </GroupBox.HeaderTemplate>-->
+                    <StackPanel>
+                        <TextBlock Margin="3,8,3,10" TextWrapping="Wrap">During a town run Trinity can upgrade rare items into legendary items. Select the types to upgrade below. You will also need the appropriate crafting materials available in your stash or backpack.</TextBlock>
+                        <Label FontWeight="Bold">Armor</Label>
+                        <UniformGrid Columns="3">
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=Belt}">
+                                Belt
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=Boots}">
+                                Boots
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=Bracer}">
+                                Bracer
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=Chest}">
+                                Chest
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=Cloak}">
+                                Cloak
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=Gloves}">
+                                Gloves
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=Helm}">
+                                Helm
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=Legs}">
+                                Legs
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=MightyBelt}">
+                                MightyBelt
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=Shoulder}">
+                                Shoulder
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=SpiritStone}">
+                                SpiritStone
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=VoodooMask}">
+                                VoodooMask
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=WizardHat}">
+                                WizardHat
+                            </CheckBox>
+                        </UniformGrid>
+
+                        <Label FontWeight="Bold">Jewellery</Label>
+                        <UniformGrid Columns="3">
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=Amulet}">
+                                Amulet
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=Ring}">
+                                Ring
+                            </CheckBox>
+                        </UniformGrid>
+
+                        <Label FontWeight="Bold">Offhands</Label>
+                        <UniformGrid Columns="3">
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=CrusaderShield}">
+                                CrusaderShield
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=Mojo}">
+                                Mojo
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=Orb}">
+                                Orb
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=Quiver}">
+                                Quiver
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=Shield}">
+                                Shield
+                            </CheckBox>
+                        </UniformGrid>
+
+                        <Label FontWeight="Bold">1-Hand Weapons</Label>
+                        <UniformGrid Columns="3">
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=Axe}">
+                                Axe
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=CeremonialKnife}">
+                                CeremonialKnife
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=Dagger}">
+                                Dagger
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=FistWeapon}">
+                                FistWeapon
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=Flail}">
+                                Flail
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=HandCrossbow}">
+                                HandCrossbow
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=Mace}">
+                                Mace
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=MightyWeapon}">
+                                MightyWeapon
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=Spear}">
+                                Spear
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=Sword}">
+                                Sword
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=Wand}">
+                                Wand
+                            </CheckBox>
+                        </UniformGrid>
+
+                        <Label FontWeight="Bold">2-Hand Weapons</Label>
+                        <UniformGrid Columns="2">
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=TwoHandAxe}">
+                                TwoHandAxe
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=TwoHandBow}">
+                                TwoHandBow
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=TwoHandCrossbow}">
+                                TwoHandCrossbow
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=TwoHandDaibo}">
+                                TwoHandDaibo
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=TwoHandFlail}">
+                                TwoHandFlail
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=TwoHandMace}">
+                                TwoHandMace
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=TwoHandMighty}">
+                                TwoHandMighty
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=TwoHandPolearm}">
+                                TwoHandPolearm
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=TwoHandStaff}">
+                                TwoHandStaff
+                            </CheckBox>
+                            <CheckBox
+                                IsChecked="{Binding Path=KanaisCube.RareUpgradeTypes, Converter={StaticResource flagsEnumValueBooleanConverter}, ConverterParameter=TwoHandSword}">
+                                TwoHandSword
+                            </CheckBox>
+                        </UniformGrid>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Limits" Margin="0,0,0,0" Padding="0,0,0,5">
+                    <UniformGrid Margin="5,5,5,5" Columns="1" >
+                        <StackPanel Margin="5,0,0,0">
+                            <TextBlock Margin="3,8,3,10" TextWrapping="Wrap">These limits allow you to keep a reserve of crafting materials. The bot will stop upgrading rare items when the amount of resources drops below the levels specified.</TextBlock>
+
+                            <WrapPanel Margin="0,0,0,0" Orientation="Horizontal" x:Name="LimitContainer">
+                                
+                                <TextBlock Text="Deaths Breath"
+                                           Width="90" TextAlignment="Left"
+                                           ToolTip="Bot will not upgrade rares when resource drops below this amount" />
+                                
+                                <Slider Width="{Binding ActualWidth, ElementName=LimitContainer}" Template="{DynamicResource SliderEditable}" 
+                                    Interval="250" 
+                                    Maximum="25000" 
+                                    Minimum="0" 
+                                    SmallChange="250" 
+                                    TickFrequency="250" 
+                                    IsSnapToTickEnabled="True"                                
+                                    TickPlacement="BottomRight"                                
+                                    Value="{Binding KanaisCube.DeathsBreathMinimum}" 
+                                    HorizontalAlignment="Stretch" Margin="0,0,0,0" />
+
+                            </WrapPanel>
+                        </StackPanel>
+                    </UniformGrid>
+                </GroupBox>
+
+            </StackPanel>
+        </DockPanel>
+    </ScrollViewer>
+</UserControl>
