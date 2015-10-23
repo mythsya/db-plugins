@@ -635,17 +635,15 @@ namespace QuestTools.ProfileTags
             var invalidTarget = navTarget == Vector3.Zero;
             var alreadyCheckedTarget = _lastPathCheckTarget == navTarget;
 
-            if (Navigator.SearchGridProvider.Width == 0)
-            {
-                Logger.Log("Waiting for Navigation Server...");
-            }
-
             if (!invalidTarget && !alreadyCheckedTarget)
             {
                 _lastPathCheckTarget = navTarget;
                 Logger.Debug("Checking Path to navTarget {0}", navTarget);
                 _lastPathCheckResult = await NavigationProvider.CanPathWithinDistance(navTarget, PathPrecision);
-
+                if (Navigator.SearchGridProvider.Width == 0)
+                {
+                    Logger.Log("Waiting for Navigation Server...");
+                }
                 if (!_lastPathCheckResult)
                     Logger.Debug("Unable to fully path to {0} with precision {1}, distance {2:0}", navTarget, PathPrecision, navTarget.Distance2D(ZetaDia.Me.Position));
             }

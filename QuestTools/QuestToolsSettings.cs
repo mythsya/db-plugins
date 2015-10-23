@@ -354,7 +354,7 @@ namespace QuestTools
             get
             {
                 //return _minimumGemChance;
-				return 0.01f;
+                return 0.01f;
             }
             set
             {

@@ -106,7 +106,39 @@ namespace QuestTools
             var items = ZetaDia.Me.Inventory.StashItems.Where(item => actorId == item.ActorSNO)
                 .Concat(ZetaDia.Me.Inventory.Backpack.Where(item => actorId == item.ActorSNO)).ToList();
 
-            return items.Select(i => i.ItemStackQuantity).Aggregate((a, b) => a + b);
+            if (!items.Any())
+                return 0;
+
+            if (items.First().ItemStackQuantity > 0)
+                return items.Select(i => i.ItemStackQuantity).Aggregate((a, b) => a + b);
+            
+            return items.Count;
+        }
+
+        public static long BackpackCount(int actorId)
+        {
+            var items = ZetaDia.Me.Inventory.Backpack.Where(item => actorId == item.ActorSNO).ToList();
+
+            if (!items.Any())
+                return 0;
+
+            if (items.First().ItemStackQuantity > 0)
+                return items.Select(i => i.ItemStackQuantity).Aggregate((a, b) => a + b);
+
+            return items.Count;
+        }
+
+        public static long StashCount(int actorId)
+        {
+            var items = ZetaDia.Me.Inventory.StashItems.Where(item => actorId == item.ActorSNO).ToList();
+
+            if (!items.Any())
+                return 0;
+
+            if (items.First().ItemStackQuantity > 0)
+                return items.Select(i => i.ItemStackQuantity).Aggregate((a, b) => a + b);
+
+            return items.Count;
         }
 
         public static bool ItemCountGreaterThan(int actorId, int amount)

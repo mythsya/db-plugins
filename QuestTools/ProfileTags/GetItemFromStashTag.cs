@@ -37,6 +37,9 @@ namespace QuestTools.ProfileTags
         [XmlAttribute("greaterRiftKey")]
         public bool GreaterRiftKey { get; set; }
 
+        [XmlAttribute("maxItems")]
+        public int MaxItems { get; set; }
+
         private bool _isDone;
         public override bool IsDone
         {
@@ -173,7 +176,9 @@ namespace QuestTools.ProfileTags
                     return true;
                 }
 
-                while (StackCount == 0 || StackCount > backPackCount)
+                var itemCount = 0;
+
+                while ((StackCount == 0 || StackCount > backPackCount) && (MaxItems <= 0 || itemCount < MaxItems))
                 {
                     bool highestFirst = QuestToolsSettings.Instance.UseHighestKeystone;
 
@@ -200,8 +205,16 @@ namespace QuestTools.ProfileTags
                         break;
                     Logger.Debug("Withdrawing item {0} from stash {0}", item.Name);
                     ZetaDia.Me.Inventory.QuickWithdraw(item);
+                    itemCount++;
                     await Coroutine.Yield();
                     backPackCount = ZetaDia.Me.Inventory.Backpack.Where(ItemMatcherFunc).Sum(i => i.ItemStackQuantity);
+                }
+
+                if (MaxItems > 0 && itemCount >= MaxItems)
+                {
+                    _isDone = true;
+                    Logger.Log("Have max items of {0} in backpack", itemCount);
+                    return true;
                 }
 
                 if (backPackCount >= StackCount)
