@@ -29,7 +29,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Potion %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="生命药水 %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
             <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="99" Minimum="0" 
                     SmallChange="1" LargeChange="5"
@@ -45,21 +45,21 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
           </Grid.ColumnDefinitions>
-          <TextBlock Text="Globe Health %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+          <TextBlock Text="血球回血 %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
           <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}"
                   Interval="500" Maximum="100" Minimum="0"
                   SmallChange="1" LargeChange="5"
                   TickPlacement="None"
                   Value="{Binding Path=WD.HealthGlobeLevel, Converter={StaticResource percentConverter}}"
                   HorizontalAlignment="Stretch" Margin="2"/>
-          <TextBlock Grid.Column="2" Text="Globe Resource %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+          <TextBlock Grid.Column="2" Text="血球回能 %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
           <Slider Grid.Column="3" Template="{DynamicResource SliderEditable}"
                   Interval="500" Maximum="100" Minimum="0"
                   SmallChange="1" LargeChange="5"
                   TickPlacement="None"
                   Value="{Binding Path=WD.HealthGlobeLevelResource, Converter={StaticResource percentConverter}}"
                   HorizontalAlignment="Stretch" Margin="2"
-                  ToolTip="Only applies when Reaper's Wraps are equipped"/>
+                  ToolTip="仅穿戴“夺魂者护腕”时生效"/>
         </Grid>
         <!--Kite-->
         <Grid Grid.Row="2" Margin="2">
@@ -68,7 +68,7 @@
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Min-Distance before Kite" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="与怪物保持的最小距离" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
             <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="80" Minimum="0" 
                     SmallChange="1" LargeChange="5" 
@@ -80,10 +80,10 @@
         <!--CheckBox-->
         <Grid Grid.Row="3" Margin="2">
             <UniformGrid Columns="2">
-                <CheckBox Margin="2" IsChecked="{Binding Path=WD.ZeroDogs}" ToolTip="Spam Sacrifice">Zero Dogs/Spam Sacrifice</CheckBox>
-                <CheckBox Margin="2" IsChecked="{Binding Path=WD.UseFetishArmyOffCooldown}" ToolTip="Spam Sacrifice">Use Fetish Army Off Cooldown</CheckBox>
-                <CheckBox Margin="2" IsChecked="{Binding Path=WD.SpamHorrify}" ToolTip="Spam Horrify if it's ready">Spam Horrify</CheckBox>
-				        <CheckBox Margin="2" IsChecked="{Binding Path=WD.UseBigBadVoodooOffCooldown}" ToolTip="Spam Big Bad Voodo">Use Big Bad Voodoo Off Cooldown</CheckBox>
+                <CheckBox Margin="2" IsChecked="{Binding Path=WD.ZeroDogs}" ToolTip="Spam Sacrifice">一直使用“牺牲”（爆狗流）</CheckBox>
+                <CheckBox Margin="2" IsChecked="{Binding Path=WD.UseFetishArmyOffCooldown}" ToolTip="Spam Sacrifice">“鬼娃大軍”好了就用</CheckBox>
+                <CheckBox Margin="2" IsChecked="{Binding Path=WD.SpamHorrify}" ToolTip="Spam Horrify if it's ready">一直使用“装神弄鬼”（老玉魂套路）</CheckBox>
+				        <CheckBox Margin="2" IsChecked="{Binding Path=WD.UseBigBadVoodooOffCooldown}" ToolTip="Spam Big Bad Voodo">“巫毒狂舞”好了就用</CheckBox>
             </UniformGrid>
         </Grid>
 
@@ -92,7 +92,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Firebats range" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="火蝙蝠距离" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="40" Minimum="5" 
                     SmallChange="1" LargeChange="35" 
@@ -105,6 +105,6 @@
             <ScrollViewer Tag="Combat\Avoidance.xaml" DataContext="{Binding Path=WD}"/>
         </Grid>
         <!--Reset Button-->
-        <Button Grid.Row="6" Margin="5" HorizontalAlignment="Center" Command="{Binding ResetWitchDoctorCommand}">Reset</Button>
+        <Button Grid.Row="6" Margin="5" HorizontalAlignment="Center" Command="{Binding ResetWitchDoctorCommand}">重置为默认值</Button>
     </Grid>
 </UserControl>

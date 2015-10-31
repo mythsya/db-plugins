@@ -29,7 +29,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Potion %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="生命药水 %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="99" Minimum="0" 
                     SmallChange="1" LargeChange="5"
@@ -45,21 +45,21 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
               </Grid.ColumnDefinitions>
-              <TextBlock Text="Globe Health %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+              <TextBlock Text="血球回血 %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
               <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}"
                       Interval="500" Maximum="100" Minimum="0"
                       SmallChange="1" LargeChange="5"
                       TickPlacement="None"
                       Value="{Binding Path=DH.HealthGlobeLevel, Converter={StaticResource percentConverter}}"
                       HorizontalAlignment="Stretch" Margin="2"/>
-              <TextBlock Grid.Column="2" Text="Globe Resource %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+              <TextBlock Grid.Column="2" Text="血球回能 %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
               <Slider Grid.Column="3" Template="{DynamicResource SliderEditable}"
                       Interval="500" Maximum="100" Minimum="0"
                       SmallChange="1" LargeChange="5"
                       TickPlacement="None"
                       Value="{Binding Path=DH.HealthGlobeLevelResource, Converter={StaticResource percentConverter}}"
                       HorizontalAlignment="Stretch" Margin="2"
-                      ToolTip="Only applies when Reaper's Wraps are equipped"/>
+                      ToolTip="仅穿戴“夺魂者护腕”时生效"/>
             </Grid>
             <!--Kite-->
             <Grid>
@@ -68,7 +68,7 @@
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Kite Trigger Range" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="触发风筝模式的距离" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="80" Minimum="0"
                     SmallChange="1" LargeChange="5" 
@@ -82,7 +82,7 @@
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Stop Kiting At Distance" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="停止风筝模式的距离" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="100" Minimum="20"
                     SmallChange="1" LargeChange="5"
@@ -94,12 +94,12 @@
 
             <!--KiteMode-->
             <GroupBox>
-                <GroupBox.Header>Kite Mode</GroupBox.Header>
+                <GroupBox.Header>风筝模式</GroupBox.Header>
                 <UniformGrid Columns="2">
-                    <TextBlock Text="When to Kite/Flee" />
-                    <RadioButton GroupName="KiteMode" Content="Always in Combat" IsChecked="{Binding Path=DH.KiteMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Always}"  />
-                    <RadioButton GroupName="KiteMode" Content="Bosses Only" IsChecked="{Binding Path=DH.KiteMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Bosses}" />
-                    <RadioButton GroupName="KiteMode" Content="Elites Only" IsChecked="{Binding Path=DH.KiteMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Elites}" />
+                    <TextBlock Text="何时风筝/躲避" />
+                    <RadioButton GroupName="KiteMode" Content="战斗中总是" IsChecked="{Binding Path=DH.KiteMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Always}"  />
+                    <RadioButton GroupName="KiteMode" Content="仅在BOSS战" IsChecked="{Binding Path=DH.KiteMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Bosses}" />
+                    <RadioButton GroupName="KiteMode" Content="仅在精英战" IsChecked="{Binding Path=DH.KiteMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Elites}" />
                 </UniformGrid>
             </GroupBox>
             <!--Strafe-->
@@ -109,7 +109,7 @@
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Minimum Strafe Hatred" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="“扫射” 最小憎恨值" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="150" Minimum="12" 
                     SmallChange="1" LargeChange="5" IsSnapToTickEnabled="True"
@@ -124,7 +124,7 @@
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Minimum RapidFire Hatred" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="“急速射击” 最小憎恨值" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="150" Minimum="30" 
                     SmallChange="1" LargeChange="5" IsSnapToTickEnabled="True"
@@ -139,7 +139,7 @@
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Vault movement delay" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="“影轮翻”使用延迟" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="4000" Minimum="400" 
                     SmallChange="10" LargeChange="5" 
@@ -153,8 +153,8 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Preparation %" ToolTip="Percentage resource to use preparation skill" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
-                <Slider ToolTip="Percentage resource to use preparation skill" Grid.Column="1" Template="{DynamicResource SliderEditable}" 
+                <TextBlock Text="蓄势待发 %" ToolTip="使用蓄势待发的资源百分比" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                <Slider ToolTip="使用蓄势待发的资源百分比" Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="99" Minimum="0" 
                     SmallChange="1" LargeChange="5"
                     TickPlacement="None" 
@@ -164,19 +164,19 @@
             <Grid>
                 <StackPanel>
                     <UniformGrid Columns="2">
-                        <CheckBox Margin="2" IsChecked="{Binding Path=DH.SpamSmokeScreen}" ToolTip="For use with Displacement rune">Spam Smoke Screen</CheckBox>
-                        <CheckBox Margin="2" IsChecked="{Binding Path=DH.SpamShadowPower}" ToolTip="For use with Shadow Glide rune for Out of Combat Sprint">Spam Shadow Power</CheckBox>
-                        <CheckBox Margin="2" IsChecked="{Binding Path=DH.VengeanceElitesOnly}">Vengeance Elites Only</CheckBox>
-                        <CheckBox Margin="2" IsChecked="{Binding Path=DH.CompanionOffCooldown}">Companion Off CD</CheckBox>
-                        <CheckBox Margin="2" IsChecked="{Binding Path=DH.RainOfVengeanceOffCD}">Rain of Vengeance Off CD</CheckBox>
+                        <CheckBox Margin="2" IsChecked="{Binding Path=DH.SpamSmokeScreen}" ToolTip="配合蔽影疾行符文使用">一直使用“烟雾弹”</CheckBox>
+                        <CheckBox Margin="2" IsChecked="{Binding Path=DH.SpamShadowPower}" ToolTip="配合暗影翔步符文战斗外快速移动">一直使用“暗影之力”</CheckBox>
+                        <CheckBox Margin="2" IsChecked="{Binding Path=DH.VengeanceElitesOnly}">仅在精英战使用“复仇”</CheckBox>
+                        <CheckBox Margin="2" IsChecked="{Binding Path=DH.CompanionOffCooldown}">“战宠”好了就用</CheckBox>
+                        <CheckBox Margin="2" IsChecked="{Binding Path=DH.RainOfVengeanceOffCD}">“复仇之雨”好了就用</CheckBox>
                     </UniformGrid>
                     <GroupBox>
-                        <GroupBox.Header>Vault</GroupBox.Header>
+                        <GroupBox.Header>影轮翻</GroupBox.Header>
                         <UniformGrid Columns="2">
-                            <TextBlock Text="When to use Vault" />
-                            <RadioButton GroupName="VaultMode" Content="Anytime" IsChecked="{Binding Path=DH.VaultMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Always}"  />
-                            <RadioButton GroupName="VaultMode" Content="In Combat only" IsChecked="{Binding Path=DH.VaultMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=CombatOnly}" />
-                            <RadioButton GroupName="VaultMode" Content="Out of Combat Only" IsChecked="{Binding Path=DH.VaultMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=MovementOnly}" />
+                            <TextBlock Text="何时使用“影轮翻”" />
+                            <RadioButton GroupName="VaultMode" Content="任何时候" IsChecked="{Binding Path=DH.VaultMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Always}"  />
+                            <RadioButton GroupName="VaultMode" Content="战斗中使用" IsChecked="{Binding Path=DH.VaultMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=CombatOnly}" />
+                            <RadioButton GroupName="VaultMode" Content="非战斗中使用" IsChecked="{Binding Path=DH.VaultMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=MovementOnly}" />
                         </UniformGrid>
                     </GroupBox>
                 </StackPanel>
@@ -186,6 +186,6 @@
             <ScrollViewer Tag="Combat\Avoidance.xaml" DataContext="{Binding Path=DH}"/>
         </Grid>
         <!--Reset Button-->
-        <Button Grid.Row="6" Margin="5" HorizontalAlignment="Center" Command="{Binding ResetDemonHunterCommand}">Reset</Button>
+        <Button Grid.Row="6" Margin="5" HorizontalAlignment="Center" Command="{Binding ResetDemonHunterCommand}">重置为默认值</Button>
     </Grid>
 </UserControl>

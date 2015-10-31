@@ -33,93 +33,93 @@
     </UserControl.Resources>
     <ScrollViewer>
         <StackPanel>
-            <GroupBox Header="Items to Buy" Height="257">
+            <GroupBox Header="购买物品" Height="257">
                 <UniformGrid Margin="15,5,15,4">
                     <StackPanel HorizontalAlignment="Left" Width="153" VerticalAlignment="Top" Margin="0,10,0,-37" Height="140">
-                        <TextBlock FontWeight="UltraBold" HorizontalAlignment="Left" TextWrapping="Wrap" Margin="13,0,0,0" Text="Weapons" />
+                        <TextBlock FontWeight="UltraBold" HorizontalAlignment="Left" TextWrapping="Wrap" Margin="13,0,0,0" Text="武器" />
                         <StackPanel HorizontalAlignment="Left" Margin="14,5,15,0">
                             <WrapPanel HorizontalAlignment="Left">
                                 <CheckBox x:Name="OneHandItem" IsChecked="{Binding Gambling.OneHandItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=OneHandItem}" Content="One-Handed" Margin="0,0,0,0" />
+                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=OneHandItem}" Content="单手" Margin="0,0,0,0" />
                             </WrapPanel>
                             <WrapPanel HorizontalAlignment="Left">
                                 <CheckBox x:Name="TwoHandItem" IsChecked="{Binding Gambling.TwoHandItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=TwoHandItem}" Content="Two-Handed" Margin="0,0,0,0" />
+                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=TwoHandItem}" Content="双手" Margin="0,0,0,0" />
                             </WrapPanel>
                             <WrapPanel HorizontalAlignment="Left">
                                 <CheckBox x:Name="Mojo" IsChecked="{Binding Gambling.Mojo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Mojo}" Content="Mojo" Margin="0,0,0,0" />
+                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Mojo}" Content="咒符" Margin="0,0,0,0" />
                             </WrapPanel>
                             <WrapPanel HorizontalAlignment="Left">
                                 <CheckBox x:Name="Quiver" IsChecked="{Binding Gambling.Quiver, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Quiver}" Content="Quiver" Margin="0,0,0,0" />
+                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Quiver}" Content="箭袋" Margin="0,0,0,0" />
                             </WrapPanel>
                             <WrapPanel HorizontalAlignment="Left">
                                 <CheckBox x:Name="Orb" IsChecked="{Binding Gambling.Orb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Orb}" Content="Orb" Margin="0,0,0,0" />
+                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Orb}" Content="法球" Margin="0,0,0,0" />
                             </WrapPanel>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Left" Width="138" VerticalAlignment="Top" Margin="14,10,-8,-202" Height="217">
-                        <TextBlock FontWeight="UltraBold" HorizontalAlignment="Left" Margin="13,0,0,0" TextWrapping="Wrap" Text="Armor"/>
+                        <TextBlock FontWeight="UltraBold" HorizontalAlignment="Left" Margin="13,0,0,0" TextWrapping="Wrap" Text="护甲"/>
                         <StackPanel HorizontalAlignment="Left" Margin="14,5,0,0" Width="114">
                             <WrapPanel HorizontalAlignment="Left">
                                 <CheckBox x:Name="Belt" IsChecked="{Binding Gambling.Belt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Belt}" Content="Belt" Margin="0,0,0,0" />
+                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Belt}" Content="腰带" Margin="0,0,0,0" />
                             </WrapPanel>                            
                             <WrapPanel HorizontalAlignment="Left">
                                 <CheckBox x:Name="Boots" IsChecked="{Binding Gambling.Boots, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Boots}" Content="Boots" Margin="0,0,0,0" />
+                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Boots}" Content="靴子" Margin="0,0,0,0" />
                             </WrapPanel>
                             <WrapPanel HorizontalAlignment="Left">
                                 <CheckBox x:Name="Bracers" IsChecked="{Binding Gambling.Bracers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Bracers}" Content="Bracers" Margin="0,0,0,0" />
+                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Bracers}" Content="护腕" Margin="0,0,0,0" />
                             </WrapPanel>                                                      
                             <WrapPanel HorizontalAlignment="Left">
                                 <CheckBox x:Name="Chest" IsChecked="{Binding Gambling.Chest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Chest}" Content="Chest" Margin="0,0,0,0" />
+                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Chest}" Content="胸甲" Margin="0,0,0,0" />
                             </WrapPanel>
                             <WrapPanel HorizontalAlignment="Left">
                                 <CheckBox x:Name="Gloves" IsChecked="{Binding Gambling.Gloves, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Gloves}" Content="Gloves" Margin="0,0,0,0" />
+                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Gloves}" Content="手套" Margin="0,0,0,0" />
                             </WrapPanel>
                             <WrapPanel HorizontalAlignment="Left">
                                 <CheckBox x:Name="Helm" IsChecked="{Binding Gambling.Helm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Helm}" Content="Helm" Margin="0,0,0,0" />
+                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Helm}" Content="头盔" Margin="0,0,0,0" />
                             </WrapPanel>                            
                             <WrapPanel HorizontalAlignment="Left">
                                 <CheckBox x:Name="Pants" IsChecked="{Binding Gambling.Pants, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Pants}" Content="Pants" Margin="0,0,0,0" />
+                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Pants}" Content="裤子" Margin="0,0,0,0" />
                             </WrapPanel>
                             <WrapPanel HorizontalAlignment="Left">
                                 <CheckBox x:Name="Shield" IsChecked="{Binding Gambling.Shield, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Shield}" Content="Shield" Margin="0,0,0,0" />
+                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Shield}" Content="盾牌" Margin="0,0,0,0" />
                             </WrapPanel>
                             <WrapPanel HorizontalAlignment="Left">
                                 <CheckBox x:Name="Shoulders" IsChecked="{Binding Gambling.Shoulders, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Shoulders}" Content="Shoulders" Margin="0,0,0,0" />
+                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Shoulders}" Content="肩膀" Margin="0,0,0,0" />
                             </WrapPanel>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Left" Width="158" VerticalAlignment="Stretch" Margin="0,33,-4,0">
-                        <TextBlock FontWeight="UltraBold" HorizontalAlignment="Left" TextWrapping="Wrap" Margin="13,0,0,0" Text="Trinkets" />
+                        <TextBlock FontWeight="UltraBold" HorizontalAlignment="Left" TextWrapping="Wrap" Margin="13,0,0,0" Text="首饰" />
                         <StackPanel HorizontalAlignment="Left" Margin="14,5,15,0">
                             <WrapPanel HorizontalAlignment="Left">
-                                <CheckBox x:Name="Amulet" IsChecked="{Binding Gambling.Amulet, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center">Amulet</CheckBox>
+                                <CheckBox x:Name="Amulet" IsChecked="{Binding Gambling.Amulet, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center">项链</CheckBox>
 
                             </WrapPanel>
                             <WrapPanel HorizontalAlignment="Left">
                                 <CheckBox x:Name="Ring" IsChecked="{Binding Gambling.Ring, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Ring}" Content="Ring" Margin="0,0,0,0" />
+                                <CheckBox Style="{StaticResource TextBlockCheckBox}" IsChecked="{Binding IsChecked, ElementName=Ring}" Content="戒指" Margin="0,0,0,0" />
                             </WrapPanel>
                         </StackPanel>
                     </StackPanel>
                 </UniformGrid>
             </GroupBox>
-            <GroupBox Header="Advanced" Margin="0,0,0,0" Padding="0,0,0,10" Height="194">
+            <GroupBox Header="高级" Margin="0,0,0,0" Padding="0,0,0,10" Height="194">
                 <StackPanel  Margin="15,15,10,9">
                     <StackPanel Margin="10,0,0,0">
-                        <TextBlock Text="Never Spend Shards Below:" FontWeight="Bold" TextAlignment="Center" ToolTip="Bot will not buy items if shard count is below this value"/>
+                        <TextBlock Text="血岩碎片的最低数量：" FontWeight="Bold" TextAlignment="Center" ToolTip="当血岩碎片低于设置的数量时，DB会停止赌博"/>
                         <WrapPanel Margin="5,5,0,0" Orientation="Horizontal">
                             <Slider x:Name="MinimumBloodShardsSlider"
         					Interval="25" Maximum="1000" Minimum="25" SmallChange="25" TickFrequency="25" IsSnapToTickEnabled="True" TickPlacement="BottomRight" 
@@ -131,7 +131,7 @@
                     <StackPanel Margin="10,10,0,0">
                         <WrapPanel Margin="0,5,0,0" Orientation="Horizontal">
                             <CheckBox x:Name="SaveShardsCheckbox" IsChecked="{Binding Gambling.ShouldSaveShards, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center" ToolTip="Bot will save shards until you have this many, then spend down to minimum"/>
-                            <CheckBox Style="{StaticResource TextBlockCheckBox}" FontWeight="Bold" IsChecked="{Binding IsChecked, ElementName=SaveShardsCheckbox}" Content="Save Shards Until:" Margin="0,0,0,0" ToolTip="Bot will save shards until you have this many, then spend down to minimum" />
+                            <CheckBox Style="{StaticResource TextBlockCheckBox}" FontWeight="Bold" IsChecked="{Binding IsChecked, ElementName=SaveShardsCheckbox}" Content="保留血岩碎片的数量：" Margin="0,0,0,0" ToolTip="当血岩碎片积累到设置的数量后DB再开始赌博，直到血岩碎片低于上面设置的最低数量" />
                         </WrapPanel>
                         <WrapPanel Margin="5,5,0,0" Orientation="Horizontal">
                             <Slider x:Name="SaveShardsSlider"
@@ -142,7 +142,7 @@
                         </WrapPanel>
                         <WrapPanel Margin="5,5,0,0" Orientation="Horizontal">
                             <CheckBox x:Name="TownRunCheckbox" IsChecked="{Binding Gambling.ShouldTownRun, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center" ToolTip=""/>
-                            <CheckBox Style="{StaticResource TextBlockCheckBox}" FontWeight="Bold" IsChecked="{Binding IsChecked, ElementName=TownRunCheckbox}" Content="Go to town when limit reached" Margin="0,0,0,0" ToolTip="" />
+                            <CheckBox Style="{StaticResource TextBlockCheckBox}" FontWeight="Bold" IsChecked="{Binding IsChecked, ElementName=TownRunCheckbox}" Content="数量到达上限时回城赌博" Margin="0,0,0,0" ToolTip="" />
                         </WrapPanel>
                     </StackPanel>
                     <Canvas x:Name="Overlay">

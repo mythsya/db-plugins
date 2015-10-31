@@ -28,17 +28,17 @@
     </UserControl.Resources>
     <ScrollViewer>
         <StackPanel>
-            <GroupBox Header="Bounties">
+            <GroupBox Header="悬赏">
                 <UniformGrid>
-                    <CheckBox IsChecked="{Binding Path=WorldObject.EnableBountyEvents}" ToolTip="Allow Bounty Events">Enable Wait for Bounty Events</CheckBox>
+                    <CheckBox IsChecked="{Binding Path=WorldObject.EnableBountyEvents}" ToolTip="Allow Bounty Events">允许等待悬赏事件</CheckBox>
                 </UniformGrid>
             </GroupBox>
-            <GroupBox Header="Misc">
+            <GroupBox Header="杂项">
                 <UniformGrid>
-                    <CheckBox IsChecked="{Binding Path=WorldObject.AllowPlayerResurection}" ToolTip="Clicks Gravestones to resurect dead players">Resurect Dead Players</CheckBox>
+                    <CheckBox IsChecked="{Binding Path=WorldObject.AllowPlayerResurection}" ToolTip="Clicks Gravestones to resurect dead players">复活死亡玩家</CheckBox>
                 </UniformGrid>
             </GroupBox>
-            <GroupBox Header="Containers">
+            <GroupBox Header="箱子">
                 <StackPanel>
                     <!--Container Settings-->
                     <Grid Margin="5">
@@ -46,7 +46,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Text="Container Open Range:" FontWeight="Bold" TextAlignment="Center"/>
+                        <TextBlock Text="开箱子距离:" FontWeight="Bold" TextAlignment="Center"/>
                         <Slider Grid.Row="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="60" Minimum="6" 
                     SmallChange="1" LargeChange="5" TickFrequency="5" 
@@ -54,15 +54,15 @@
                     HorizontalAlignment="Stretch" Margin="25,0,25,0"/>
                     </Grid>
                     <UniformGrid Grid.Row="1" Margin="5" Columns="1" HorizontalAlignment="Center">
-                        <CheckBox HorizontalAlignment="Center" Margin="2" IsChecked="{Binding Path=WorldObject.HiPriorityContainers}" ToolTip="Will ignore enemies to get to container">Give Higher Priority to Containers</CheckBox>
+                        <CheckBox HorizontalAlignment="Center" Margin="2" IsChecked="{Binding Path=WorldObject.HiPriorityContainers}" ToolTip="Will ignore enemies to get to container">给予开箱子更高的优先级</CheckBox>
                     </UniformGrid>
                     <UniformGrid Grid.Row="1" Margin="5" Columns="3" HorizontalAlignment="Center">
-                        <CheckBox HorizontalAlignment="Left" Margin="2" IsChecked="{Binding Path=WorldObject.OpenAnyContainer}" ToolTip="Any Container">Open Any Container</CheckBox>
-                        <CheckBox HorizontalAlignment="Left" Margin="2" IsChecked="{Binding Path=WorldObject.InspectCorpses}" ToolTip="Dead Bodies">Inspect Corpses</CheckBox>
-                        <CheckBox HorizontalAlignment="Left" Margin="2" IsChecked="{Binding Path=WorldObject.InspectGroundClicky}" ToolTip="Ground Clicky's, loose stones etc.">Ground Containers</CheckBox>
-                        <CheckBox HorizontalAlignment="Left" Margin="2" IsChecked="{Binding Path=WorldObject.InspectWeaponRacks}" ToolTip="Inspect Weapon Racks">Weapon Racks</CheckBox>
-                        <CheckBox HorizontalAlignment="Left" Margin="2" IsChecked="{Binding Path=WorldObject.OpenContainers}" ToolTip="Normal Chests">Open Chests</CheckBox>
-                        <CheckBox HorizontalAlignment="Left" Margin="2" IsChecked="{Binding Path=WorldObject.OpenRareChests}" ToolTip="Open Rare Chests">Open Rare Chests</CheckBox>
+                        <CheckBox HorizontalAlignment="Left" Margin="2" IsChecked="{Binding Path=WorldObject.OpenAnyContainer}" ToolTip="Any Container">打开任何容器</CheckBox>
+                        <CheckBox HorizontalAlignment="Left" Margin="2" IsChecked="{Binding Path=WorldObject.InspectCorpses}" ToolTip="Dead Bodies">检查尸体</CheckBox>
+                        <CheckBox HorizontalAlignment="Left" Margin="2" IsChecked="{Binding Path=WorldObject.InspectGroundClicky}" ToolTip="Ground Clicky's, loose stones etc.">石头堆</CheckBox>
+                        <CheckBox HorizontalAlignment="Left" Margin="2" IsChecked="{Binding Path=WorldObject.InspectWeaponRacks}" ToolTip="Inspect Weapon Racks">武器架</CheckBox>
+                        <CheckBox HorizontalAlignment="Left" Margin="2" IsChecked="{Binding Path=WorldObject.OpenContainers}" ToolTip="Normal Chests">打开宝箱</CheckBox>
+                        <CheckBox HorizontalAlignment="Left" Margin="2" IsChecked="{Binding Path=WorldObject.OpenRareChests}" ToolTip="Open Rare Chests">打开华丽的箱子</CheckBox>
                     </UniformGrid>
                     <!--Delay after kill Settings-->
                     <Grid Grid.Row="2" Margin="5">
@@ -70,7 +70,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Text="Wait delay after opening containers:" FontWeight="Bold" TextAlignment="Center"/>
+                        <TextBlock Text="开箱子后等待时间:" FontWeight="Bold" TextAlignment="Center"/>
                         <Slider Grid.Row="1" Template="{DynamicResource SliderEditable}" 
                                 Interval="100" IsSnapToTickEnabled="True"
                                 Maximum="1500" Minimum="0" SmallChange="100" TickFrequency="50" TickPlacement="BottomRight" 
@@ -85,7 +85,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="Health Well Minimum Health %:" FontWeight="Bold" TextAlignment="Center"/>
+                <TextBlock Text="使用治愈之井的最低血量 %:" FontWeight="Bold" TextAlignment="Center"/>
                 <Slider Grid.Row="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="100" Minimum="0" 
                     SmallChange="1" LargeChange="5" TickFrequency="5" 
@@ -94,38 +94,38 @@
                     ToolTip="Minimum Health Percentage to use Health Shrines"/>
             </Grid>
             <!--Shrine Settings-->
-            <GroupBox Header="Shrines and Pylons">
+            <GroupBox Header="圣坛和秘坛">
                 <StackPanel>
                     <UniformGrid Margin="50,0,50,0" Columns="2" HorizontalAlignment="Center">
-                        <RadioButton GroupName="WorldObjectShrine" Content="Ignore shrines" IsChecked="{Binding Path=WorldObject.UseShrine, Converter={StaticResource boolInverterConverter}}" Margin="5"/>
-                        <RadioButton GroupName="WorldObjectShrine" Content="Use shrines" IsChecked="{Binding Path=WorldObject.UseShrine}" Margin="5"/>
+                        <RadioButton GroupName="WorldObjectShrine" Content="忽略圣坛" IsChecked="{Binding Path=WorldObject.UseShrine, Converter={StaticResource boolInverterConverter}}" Margin="5"/>
+                        <RadioButton GroupName="WorldObjectShrine" Content="使用圣坛" IsChecked="{Binding Path=WorldObject.UseShrine}" Margin="5"/>
                     </UniformGrid>
                     <UniformGrid Margin="50,0,50,0" Columns="1" HorizontalAlignment="Center">
-                        <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.HiPriorityShrines}">Give higher priority to shrines</CheckBox>
+                        <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.HiPriorityShrines}">给予圣坛更高的优先级</CheckBox>
                     </UniformGrid>
                     <UniformGrid Margin="50,0,50,0" Columns="3" HorizontalAlignment="Center">
-                        <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.UseEnlightenedShrine}" ToolTip="Enable collection of Enlightened Shrines">Use Enlightened</CheckBox>
-                        <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.UseFrenzyShrine}" ToolTip="Enable collection of Frenzy Shrines">Use Frenzy</CheckBox>
-                        <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.UseFortuneShrine}" ToolTip="Enable collection of Fortune Shrines">Use Fortune</CheckBox>
+                        <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.UseEnlightenedShrine}" ToolTip="Enable collection of Enlightened Shrines">启迪圣坛</CheckBox>
+                        <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.UseFrenzyShrine}" ToolTip="Enable collection of Frenzy Shrines">狂怒圣坛</CheckBox>
+                        <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.UseFortuneShrine}" ToolTip="Enable collection of Fortune Shrines">幸运圣坛</CheckBox>
                     </UniformGrid>
                     <UniformGrid Margin="50,0,50,0" Columns="3" HorizontalAlignment="Center">
-                        <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.UseProtectionShrine}" ToolTip="Enable collection of Protection Shrines">Use Protection</CheckBox>
-                        <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.UseEmpoweredShrine}" ToolTip="Enable collection of Empowered Shrines">Use Empowered</CheckBox>
-                        <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.UseFleetingShrine}" ToolTip="Enable collection of Fleeting Shrines">Use Fleeting</CheckBox>
+                        <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.UseProtectionShrine}" ToolTip="Enable collection of Protection Shrines">庇佑圣坛</CheckBox>
+                        <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.UseEmpoweredShrine}" ToolTip="Enable collection of Empowered Shrines">强能圣坛</CheckBox>
+                        <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.UseFleetingShrine}" ToolTip="Enable collection of Fleeting Shrines">疾行圣坛</CheckBox>
                     </UniformGrid>
                     <UniformGrid Margin="50,0,50,0" Columns="3" HorizontalAlignment="Center">
-                      <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.UseChannelingPylon}" ToolTip="Enable collection of Channeling Pylons">Use Channeling</CheckBox>
-                      <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.UseConduitPylon}" ToolTip="Enable collection of Conduit Pylons">Use Conduit</CheckBox>
-                      <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.UseShieldPylon}" ToolTip="Enable collection of Shield Pylons">Use Shield</CheckBox>
+                      <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.UseChannelingPylon}" ToolTip="Enable collection of Channeling Pylons">引能秘坛</CheckBox>
+                      <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.UseConduitPylon}" ToolTip="Enable collection of Conduit Pylons">唤雷秘坛</CheckBox>
+                      <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.UseShieldPylon}" ToolTip="Enable collection of Shield Pylons">防护秘坛</CheckBox>
                     </UniformGrid>
                     <UniformGrid Margin="50,0,50,0" Columns="2" HorizontalAlignment="Center">
-                      <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.UseSpeedPylon}" ToolTip="Enable collection of Speed Pylons">Use Speed</CheckBox>
-                      <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.UsePowerPylon}" ToolTip="Enable collection of Power Pylons">Use Power</CheckBox>
+                      <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.UseSpeedPylon}" ToolTip="Enable collection of Speed Pylons">速度秘坛</CheckBox>
+                      <CheckBox Margin="2" IsChecked="{Binding Path=WorldObject.UsePowerPylon}" ToolTip="Enable collection of Power Pylons">力量秘坛</CheckBox>
                     </UniformGrid>
                 </StackPanel>
             </GroupBox>
             <!--Corpses Settings-->
-            <GroupBox Header="Non-blocking Destructibles">
+            <GroupBox Header="非障碍物类可摧毁物品">
                 <StackPanel>
                     <!--Desctructible Settings-->
                     <Grid Margin="5">
@@ -133,7 +133,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Text="Destructible attack range:" FontWeight="Bold" TextAlignment="Center"/>
+                        <TextBlock Text="摧毁物品距离:" FontWeight="Bold" TextAlignment="Center"/>
                         <Slider Grid.Row="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="30" Minimum="1" 
                     SmallChange="1" LargeChange="5" TickFrequency="1" 
@@ -141,14 +141,14 @@
                     HorizontalAlignment="Stretch" Margin="25,0,25,0"/>
                     </Grid>
                     <UniformGrid Grid.Row="1" Margin="0,0,0,0" Columns="1" HorizontalAlignment="Center">
-                        <RadioButton GroupName="WorldObjectDestructibles" Content="Force Ignore Destructibles" IsChecked="{Binding Path=WorldObject.DestructibleOption, Converter={StaticResource enumBooleanConverter}, ConverterParameter=ForceIgnore}" Margin="5"/>
-                        <RadioButton GroupName="WorldObjectDestructibles" Content="Skip Destructibles unless Stuck" IsChecked="{Binding Path=WorldObject.DestructibleOption, Converter={StaticResource enumBooleanConverter}, ConverterParameter=OnlyIfStuck}" Margin="5"/>
-                        <RadioButton GroupName="WorldObjectDestructibles" Content="Destroy Destructibles" IsChecked="{Binding Path=WorldObject.DestructibleOption, Converter={StaticResource enumBooleanConverter}, ConverterParameter=DestroyAll}" Margin="5"/>
+                        <RadioButton GroupName="WorldObjectDestructibles" Content="强制忽略可摧毁物品" IsChecked="{Binding Path=WorldObject.DestructibleOption, Converter={StaticResource enumBooleanConverter}, ConverterParameter=ForceIgnore}" Margin="5"/>
+                        <RadioButton GroupName="WorldObjectDestructibles" Content="非卡位时忽略可摧毁物品" IsChecked="{Binding Path=WorldObject.DestructibleOption, Converter={StaticResource enumBooleanConverter}, ConverterParameter=OnlyIfStuck}" Margin="5"/>
+                        <RadioButton GroupName="WorldObjectDestructibles" Content="摧毁所有可摧毁物品" IsChecked="{Binding Path=WorldObject.DestructibleOption, Converter={StaticResource enumBooleanConverter}, ConverterParameter=DestroyAll}" Margin="5"/>
                     </UniformGrid>
                 </StackPanel>
             </GroupBox>
             <!--Reset Button-->
-            <Button Margin="5" HorizontalAlignment="Center" Command="{Binding ResetWorldObjectCommand}">Reset</Button>
+            <Button Margin="5" HorizontalAlignment="Center" Command="{Binding ResetWorldObjectCommand}">重置为默认值</Button>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

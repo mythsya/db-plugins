@@ -26,10 +26,10 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Prowl IPhone Notifications :" FontWeight="Bold" TextAlignment="Center" Margin="5"/>
+            <TextBlock Text="Prowl IPhone通知 :" FontWeight="Bold" TextAlignment="Center" Margin="5"/>
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Stretch">
-                <CheckBox Margin="25,5" IsChecked="{Binding Path=Notification.IPhoneEnabled}">Enabled</CheckBox>
-                <TextBlock Text="API Key :" TextAlignment="Center" Margin="5"/>
+                <CheckBox Margin="25,5" IsChecked="{Binding Path=Notification.IPhoneEnabled}">开启</CheckBox>
+                <TextBlock Text="API接口Key :" TextAlignment="Center" Margin="5"/>
                 <TextBox Margin="2" Text="{Binding Path=Notification.IPhoneKey}" IsEnabled="{Binding Path=Notification.IPhoneEnabled}" HorizontalAlignment="Stretch" Width="215"/>
             </StackPanel>
         </Grid>
@@ -39,10 +39,10 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Text="NotifyMyAndroid Notifications :" FontWeight="Bold" TextAlignment="Center" Margin="5"/>
+            <TextBlock Text="安卓通知 :" FontWeight="Bold" TextAlignment="Center" Margin="5"/>
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Stretch">
-                <CheckBox Margin="25,5" IsChecked="{Binding Path=Notification.AndroidEnabled}">Enabled</CheckBox>
-                <TextBlock Text="API Key :" TextAlignment="Center" Margin="5"/>
+                <CheckBox Margin="25,5" IsChecked="{Binding Path=Notification.AndroidEnabled}">开启</CheckBox>
+                <TextBlock Text="API接口Key :" TextAlignment="Center" Margin="5"/>
                 <TextBox Margin="2" Text="{Binding Path=Notification.AndroidKey}" IsEnabled="{Binding Path=Notification.AndroidEnabled}" HorizontalAlignment="Stretch" Width="215"/>
             </StackPanel>
         </Grid>
@@ -53,10 +53,10 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Pushover Notifications :" FontWeight="Bold" TextAlignment="Center" Margin="5"/>
+            <TextBlock Text="Pushover 通知 :" FontWeight="Bold" TextAlignment="Center" Margin="5"/>
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Stretch">
-                <CheckBox Margin="25,5" IsChecked="{Binding Path=Notification.PushoverEnabled}">Enabled</CheckBox>
-                <TextBlock Text="API Key :" TextAlignment="Center" Margin="5"/>
+                <CheckBox Margin="25,5" IsChecked="{Binding Path=Notification.PushoverEnabled}">开启</CheckBox>
+                <TextBlock Text="API接口Key :" TextAlignment="Center" Margin="5"/>
                 <TextBox Margin="2" Text="{Binding Path=Notification.PushoverKey}" IsEnabled="{Binding Path=Notification.PushoverEnabled}" HorizontalAlignment="Stretch" Width="215"/>
             </StackPanel>
         </Grid>
@@ -67,10 +67,10 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Pushbullet Notifications :" FontWeight="Bold" TextAlignment="Center" Margin="5"/>
+            <TextBlock Text="Pushbullet 通知 :" FontWeight="Bold" TextAlignment="Center" Margin="5"/>
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Stretch">
-                <CheckBox Margin="25,5" IsChecked="{Binding Path=Notification.PushbulletEnabled}">Enabled</CheckBox>
-                <TextBlock Text="API Key :" TextAlignment="Center" Margin="5"/>
+                <CheckBox Margin="25,5" IsChecked="{Binding Path=Notification.PushbulletEnabled}">开启</CheckBox>
+                <TextBlock Text="API接口Key :" TextAlignment="Center" Margin="5"/>
                 <TextBox Margin="2" Text="{Binding Path=Notification.PushbulletKey}" IsEnabled="{Binding Path=Notification.PushbulletEnabled}" HorizontalAlignment="Stretch" Width="215"/>
             </StackPanel>
         </Grid>
@@ -87,12 +87,12 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <CheckBox Grid.ColumnSpan="1" IsChecked="{Binding Path=Notification.MailEnabled}" Margin="2">Enable Email Address</CheckBox>
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Address" Margin="2"/>
+            <CheckBox Grid.ColumnSpan="1" IsChecked="{Binding Path=Notification.MailEnabled}" Margin="2">启用Email地址</CheckBox>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Email地址" Margin="2"/>
             <TextBox Grid.Row="2" Grid.Column="0" Text="{Binding Path=Notification.EmailAddress}" IsEnabled="{Binding Path=Notification.MailEnabled}" Margin="2"/>
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="Password" Margin="2"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="密码" Margin="2"/>
             <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Notification.EmailPassword}" IsEnabled="{Binding Path=Notification.MailEnabled}" Margin="2"/>
-            <TextBlock Grid.Row="1" Grid.Column="2" Text="BotName" Margin="2"/>
+            <TextBlock Grid.Row="1" Grid.Column="2" Text="软件名称" Margin="2"/>
             <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding Path=Notification.BotName}" IsEnabled="{Binding Path=Notification.MailEnabled}" Margin="2"/>
         </Grid>
 
@@ -106,21 +106,21 @@
                 <ColumnDefinition Width="65*"/>
                 <ColumnDefinition Width="35*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Non-Legendary Score Notifications :" FontWeight="Bold" TextAlignment="Center"/>
+            <TextBlock Text="非传说评分通知 :" FontWeight="Bold" TextAlignment="Center"/>
             <StackPanel Grid.Row="1" Margin="2"  HorizontalAlignment="Stretch" Orientation="Vertical">
-                <TextBlock Text="Weapon Score : (100 000+ recommended)" Margin="5"/>
+                <TextBlock Text="武器评分 : (推荐100 000+)" Margin="5"/>
                 <Slider Grid.Row="1" Template="{DynamicResource SliderLTB}" 
                     Interval="500" IsSnapToTickEnabled="True"
                     Maximum="150000" Minimum="1" SmallChange="500" LargeChange="1000" TickFrequency="2000" TickPlacement="BottomRight" 
                     Value="{Binding Path=Notification.WeaponScore}" 
                     HorizontalAlignment="Stretch" Margin="2"/>
-                <TextBlock Text="Armor Score : (16 000+ recommended)" Margin="5"/>
+                <TextBlock Text="护甲评分 : (推荐16 000+)" Margin="5"/>
                 <Slider Grid.Row="1" Template="{DynamicResource SliderLTB}" 
                     Interval="500"  IsSnapToTickEnabled="True"
                     Maximum="50000" Minimum="1" SmallChange="500" LargeChange="1000" TickFrequency="1000" TickPlacement="BottomRight" 
                     Value="{Binding Path=Notification.ArmorScore}" 
                     HorizontalAlignment="Stretch" Margin="2"/>
-                <TextBlock Text="Jewelry Score : (15 000+ recommended)" Margin="5"/>
+                <TextBlock Text="饰品评分 : (推荐15 000+)" Margin="5"/>
                 <Slider Grid.Row="1" Template="{DynamicResource SliderLTB}" 
                     Interval="500"  IsSnapToTickEnabled="True"
                     Maximum="50000" Minimum="1" SmallChange="500" LargeChange="1000" TickFrequency="1000" TickPlacement="BottomRight" 
@@ -128,11 +128,11 @@
                     HorizontalAlignment="Stretch" Margin="2"/>
             </StackPanel>
             <CheckBox Margin="2" Grid.Column="1" Grid.RowSpan="1" IsChecked="{Binding Path=Notification.LegendaryScoring}">
-                <TextBlock Text="Make Legendaries follow Notification scoring" TextWrapping="Wrap" />
+                <TextBlock Text="传说物品按照评分通知" TextWrapping="Wrap" />
             </CheckBox>
         </Grid>
         <!--Reset Button-->
-        <Button Grid.Row="5" Margin="5" HorizontalAlignment="Center" Command="{Binding ResetNotificationCommand}">Reset</Button>
+        <Button Grid.Row="5" Margin="5" HorizontalAlignment="Center" Command="{Binding ResetNotificationCommand}">重置为默认值</Button>
 
 
     </Grid>

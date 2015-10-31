@@ -18,15 +18,15 @@
     </UserControl.Resources>
     <ScrollViewer>
         <StackPanel>
-            <GroupBox Header="Item Rules Mode">
+            <GroupBox Header="物品规则模式">
                 <StackPanel>
                     <Border BorderBrush="White" BorderThickness="1" Margin="5">
                         <ComboBox FontSize="14" HorizontalAlignment="Stretch" SelectedValuePath="Tag" SelectedValue="{Binding Path=Loot.ItemFilterMode}">
-                            <ComboBoxItem Content="Trinity Scoring Only" Tag="TrinityOnly" IsSelected="True" ToolTip="Uses Trinity Scoring Only (see Trinity Town-Runs Tab)" />
-                            <ComboBoxItem Content="File Based Script Rules" Tag="TrinityWithItemRules" ToolTip="Utilizes Item Rulesets (see ItemRules directory)" />
-                            <ComboBoxItem Content="Demonbuddy Loot Rules" Tag="DemonBuddy" ToolTip="Use the Built-in Demonbuddy loot rule logic (see Demonbuddy Settings tab)" />
-                            <!--<ComboBoxItem Content="Item Ranking" Tag="ItemRanks" ToolTip="Use Top 1000 Greater Rift popular items" />-->
-                            <ComboBoxItem Content="Item List" Tag="ItemList" ToolTip="Use custom list of items" />
+                            <ComboBoxItem Content="只使用Trinity评分" Tag="TrinityOnly" IsSelected="True" ToolTip="Uses Trinity Scoring Only (see Trinity Town-Runs Tab)" />
+                            <ComboBoxItem Content="基于规则脚本文件评分" Tag="TrinityWithItemRules" ToolTip="Utilizes Item Rulesets (see ItemRules directory)" />
+                            <ComboBoxItem Content="DB拾取规则" Tag="DemonBuddy" ToolTip="Use the Built-in Demonbuddy loot rule logic (see Demonbuddy Settings tab)" />
+                            <ComboBoxItem Content="物品排行" Tag="ItemRanks" ToolTip="Use Top 1000 Greater Rift popular items" />
+                            <ComboBoxItem Content="物品列表" Tag="ItemList" ToolTip="Use custom list of items" />
                         </ComboBox>
                     </Border>
                     <Button HorizontalAlignment="Center"
@@ -34,27 +34,27 @@
                         Command="{Binding Path=HelpLinkCommand}" 
                         CommandParameter="http://www.thebuddyforum.com/demonbuddy-forum/plugins/trinity/91602-plugin-item-rules-2-file-based-scripting-language.html"
                         Visibility="{Binding Path=Loot.ItemFilterMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter=TrinityWithItemRules}">
-                        Item Rules Documentation / Manual - Read Before using!
+                        物品规则文档/手册 - 使用前请阅读!
                     </Button>
                     <TextBlock
-                        Text="WARNING : This mode can sell or salvage your legendary items" 
+                        Text="警告:这个模式可以出售或拆除传奇物品" 
                            HorizontalAlignment="Center" 
                            FontSize="12" 
                            Foreground="#FFCC0000" 
                            Visibility="{Binding Path=Loot.ItemFilterMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter=TrinityWithItemRules}"/>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="Equipment Pickup Options">
+            <GroupBox Header="装备拾取设置">
                 <StackPanel HorizontalAlignment="Center">
                     <CheckBox IsChecked="{Binding Path=Pickup.PickupLegendaries}" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <TextBlock FontSize="14" Text="Pickup Legendaries" ToolTip="Applies to ALL ITEMS - including Crafting Plans" FontWeight="Bold" Foreground="#FFA73B1E" />
+                        <TextBlock FontSize="14" Text="拾取传奇物品" ToolTip="Applies to ALL ITEMS - including Crafting Plans" FontWeight="Bold" Foreground="#FFA73B1E" />
                     </CheckBox>
-                    <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center" Content="Legendary Follower Items" IsChecked="{Binding Path=Pickup.PickupLegendaryFollowerItems}" />
+                    <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center" Content="追随者传奇道具" IsChecked="{Binding Path=Pickup.PickupLegendaryFollowerItems}" />
                     <UniformGrid HorizontalAlignment="Center">
-                        <CheckBox Content="Magic Follower Items" IsChecked="{Binding Path=Pickup.PickupBlueFollowerItems}" VerticalAlignment="Center" />
-                        <CheckBox Content="Rare Follower Items" IsChecked="{Binding Path=Pickup.PickupYellowFollowerItems}" VerticalAlignment="Center" />
-                        <CheckBox Content="Pickup Gray Items" ToolTip="Gray Items" IsChecked="{Binding Path=Pickup.PickupGrayItems}" />
-                        <CheckBox Content="Pickup White Items" ToolTip="White Items" IsChecked="{Binding Path=Pickup.PickupWhiteItems}" />
+                        <CheckBox Content="追随者魔法道具" IsChecked="{Binding Path=Pickup.PickupBlueFollowerItems}" VerticalAlignment="Center" />
+                        <CheckBox Content="追随者稀有道具" IsChecked="{Binding Path=Pickup.PickupYellowFollowerItems}" VerticalAlignment="Center" />
+                        <CheckBox Content="拾取灰色物品" ToolTip="Gray Items" IsChecked="{Binding Path=Pickup.PickupGrayItems}" />
+                        <CheckBox Content="拾取白色物品" ToolTip="White Items" IsChecked="{Binding Path=Pickup.PickupWhiteItems}" />
                     </UniformGrid>
                     <Grid HorizontalAlignment="Center">
                         <Grid MinWidth="375">
@@ -73,35 +73,35 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Row="1" Grid.Column="1" FontWeight="Bold" Margin="5" Text="Magic Items:"/>
-                            <TextBlock Grid.Row="1" Grid.Column="2" FontWeight="Bold" Margin="5" Text="Rare Items:"/>
-                            <TextBlock Grid.Row="2" Grid.Column="0" FontWeight="Bold" Text="Weapons:"/>
-                            <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding Path=Pickup.PickupBlueWeapons}" VerticalAlignment="Center">Pickup Blue Weapons</CheckBox>
-                            <CheckBox Grid.Row="2" Grid.Column="2" IsChecked="{Binding Path=Pickup.PickupYellowWeapons}" VerticalAlignment="Center">Pickup Yellow Weapons</CheckBox>
+                            <TextBlock Grid.Row="1" Grid.Column="1" FontWeight="Bold" Margin="5" Text="魔法装备:"/>
+                            <TextBlock Grid.Row="1" Grid.Column="2" FontWeight="Bold" Margin="5" Text="稀有装备:"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" FontWeight="Bold" Text="武器:"/>
+                            <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding Path=Pickup.PickupBlueWeapons}" VerticalAlignment="Center">拾取蓝色武器</CheckBox>
+                            <CheckBox Grid.Row="2" Grid.Column="2" IsChecked="{Binding Path=Pickup.PickupYellowWeapons}" VerticalAlignment="Center">拾取黄色武器</CheckBox>
 
-                            <TextBlock Grid.Row="3" Grid.Column="0" FontWeight="Bold" Text="Armor:"/>
-                            <CheckBox Grid.Row="3" Grid.Column="1" IsChecked="{Binding Path=Pickup.PickupBlueArmor}" VerticalAlignment="Center">Pickup Blue Armor</CheckBox>
-                            <CheckBox Grid.Row="3" Grid.Column="2" IsChecked="{Binding Path=Pickup.PickupYellowArmor}" VerticalAlignment="Center">Pickup Yellow Armor</CheckBox>
-                            <TextBlock Grid.Row="4" Grid.Column="0" FontWeight="Bold" Text="Jewelry:"/>
-                            <CheckBox Grid.Row="4" Grid.Column="1" IsChecked="{Binding Path=Pickup.PickupBlueJewlery}" VerticalAlignment="Center">Pickup Blue Jewlery</CheckBox>
-                            <CheckBox Grid.Row="4" Grid.Column="2" IsChecked="{Binding Path=Pickup.PickupYellowJewlery}" VerticalAlignment="Center">Pickup Yellow Jewlery</CheckBox>
+                            <TextBlock Grid.Row="3" Grid.Column="0" FontWeight="Bold" Text="护甲:"/>
+                            <CheckBox Grid.Row="3" Grid.Column="1" IsChecked="{Binding Path=Pickup.PickupBlueArmor}" VerticalAlignment="Center">拾取蓝色装备</CheckBox>
+                            <CheckBox Grid.Row="3" Grid.Column="2" IsChecked="{Binding Path=Pickup.PickupYellowArmor}" VerticalAlignment="Center">拾取黄色装备</CheckBox>
+                            <TextBlock Grid.Row="4" Grid.Column="0" FontWeight="Bold" Text="饰品:"/>
+                            <CheckBox Grid.Row="4" Grid.Column="1" IsChecked="{Binding Path=Pickup.PickupBlueJewlery}" VerticalAlignment="Center">拾取蓝色首饰</CheckBox>
+                            <CheckBox Grid.Row="4" Grid.Column="2" IsChecked="{Binding Path=Pickup.PickupYellowJewlery}" VerticalAlignment="Center">拾取黄色首饰</CheckBox>
                         </Grid>
                     </Grid>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="Misc Pickup Options">
+            <GroupBox Header="杂物拾取设置">
                 <UniformGrid Columns="2">
-                    <CheckBox Content="Designs" IsChecked="{Binding Path=Pickup.Designs}" Margin="5"/>
-                    <CheckBox Content="Plans" IsChecked="{Binding Path=Pickup.Plans}" Margin="5"/>
-                    <CheckBox Content="Legendary Plans" IsChecked="{Binding Path=Pickup.LegendaryPlans}" Margin="5"/>
-                    <CheckBox Content="Craft Materials" IsChecked="{Binding Path=Pickup.CraftMaterials}" Margin="5"/>
+                    <CheckBox Content="设计图" IsChecked="{Binding Path=Pickup.Designs}" Margin="5"/>
+                    <CheckBox Content="计划书" IsChecked="{Binding Path=Pickup.Plans}" Margin="5"/>
+                    <CheckBox Content="传说计划书" IsChecked="{Binding Path=Pickup.LegendaryPlans}" Margin="5"/>
+                    <CheckBox Content="制作材料" IsChecked="{Binding Path=Pickup.CraftMaterials}" Margin="5"/>
                     
-                    <CheckBox Content="Low Level Items" IsChecked="{Binding Path=Pickup.PickupLowLevel}" Margin="5" ToolTip="Pickup Grey and White Items to level 6/11 (for questing)"/>
-                    <CheckBox Content="Blood Shards" IsChecked="{Binding Path=Pickup.BloodShards}" Margin="5" ToolTip="Pickup Blood Shards"/>
-                    <CheckBox Content="Rift Keys" IsChecked="{Binding Path=Pickup.LootRunKey}" Margin="5" ToolTip="Pickup Rift Key Fragments"/>
-                    <CheckBox Content="Keywarden Machines" IsChecked="{Binding Path=Pickup.InfernalKeys}" Margin="5"/>
-                    <CheckBox Content="Ramaladni's" IsChecked="{Binding Path=Pickup.RamadalinisGift}" Margin="5" ToolTip="Pickup Rift Key Fragments"/>
-                    <CheckBox Content="Legendary Potions" IsChecked="{Binding Path=Pickup.LegendaryPotions}" Margin="5" ToolTip="Pickup Rift Key Fragments"/>
+                    <CheckBox Content="低级物品" IsChecked="{Binding Path=Pickup.PickupLowLevel}" Margin="5" ToolTip="Pickup Grey and White Items to level 6/11 (for questing)"/>
+                    <CheckBox Content="血岩碎片" IsChecked="{Binding Path=Pickup.BloodShards}" Margin="5" ToolTip="Pickup Blood Shards"/>
+                    <CheckBox Content="秘境钥匙" IsChecked="{Binding Path=Pickup.LootRunKey}" Margin="5" ToolTip="Pickup Rift Key Fragments"/>
+                    <CheckBox Content="炼狱装置" IsChecked="{Binding Path=Pickup.InfernalKeys}" Margin="5"/>
+                    <CheckBox Content="拉玛兰迪的礼物(打孔器)" IsChecked="{Binding Path=Pickup.RamadalinisGift}" Margin="5" ToolTip="Pickup Rift Key Fragments"/>
+                    <CheckBox Content="传奇药水" IsChecked="{Binding Path=Pickup.LegendaryPotions}" Margin="5" ToolTip="Pickup Rift Key Fragments"/>
                 </UniformGrid>
             </GroupBox>
             <GroupBox Header="Gems">
@@ -117,30 +117,30 @@
                     </Grid.ColumnDefinitions>
                     <Border Grid.Column="1" BorderBrush="White" BorderThickness="1">
                         <ComboBox SelectedValuePath="Tag" SelectedValue="{Binding Path=Pickup.GemLevel, Converter={StaticResource intToStringConverter}}" Padding="5" >
-                            <ComboBoxItem Content="Chipped+" Tag="0" />
-                            <ComboBoxItem Content="Flawless Square+" IsSelected="True" Tag="14" />
-                            <ComboBoxItem Content="Marquise+" IsSelected="True" Tag="15" />
-                            <ComboBoxItem Content="Imperial+" IsSelected="True" Tag="16" />
+                            <ComboBoxItem Content="碎裂+" Tag="0" />
+                            <ComboBoxItem Content="无瑕方正+" IsSelected="True" Tag="14" />
+                            <ComboBoxItem Content="尊爵+" IsSelected="True" Tag="15" />
+                            <ComboBoxItem Content="帝国+" IsSelected="True" Tag="16" />
                         </ComboBox>
                     </Border>
-                    <CheckBox Grid.Row="0" Grid.Column="2" Content="Emerald" 
+                    <CheckBox Grid.Row="0" Grid.Column="2" Content="绿宝石" 
                               IsChecked="{Binding Path=Pickup.GemType,Converter={StaticResource flagsEnumValueConverter}, ConverterParameter='Emerald'}" 
                               Margin="0" VerticalAlignment="Center"/>
-                    <CheckBox Grid.Row="0" Grid.Column="3" Content="Topaz" 
+                    <CheckBox Grid.Row="0" Grid.Column="3" Content="黄宝石" 
                               IsChecked="{Binding Path=Pickup.GemType,Converter={StaticResource flagsEnumValueConverter}, ConverterParameter='Topaz'}" 
                               Margin="0" VerticalAlignment="Center"/>
-                    <CheckBox Grid.Row="0" Grid.Column="4" Content="Amethyst" 
+                    <CheckBox Grid.Row="0" Grid.Column="4" Content="紫宝石" 
                               IsChecked="{Binding Path=Pickup.GemType,Converter={StaticResource flagsEnumValueConverter}, ConverterParameter='Amethyst'}" 
                               Margin="0" VerticalAlignment="Center"/>
-                    <CheckBox Grid.Row="0" Grid.Column="5" Content="Ruby" 
+                    <CheckBox Grid.Row="0" Grid.Column="5" Content="红宝石" 
                               IsChecked="{Binding Path=Pickup.GemType,Converter={StaticResource flagsEnumValueConverter}, ConverterParameter='Ruby'}" 
                               Margin="0" VerticalAlignment="Center"/>
-                    <CheckBox Grid.Row="0" Grid.Column="6" Content="Diamond" 
+                    <CheckBox Grid.Row="0" Grid.Column="6" Content="钻石" 
                               IsChecked="{Binding Path=Pickup.GemType,Converter={StaticResource flagsEnumValueConverter}, ConverterParameter='Diamond'}" 
                               Margin="0" VerticalAlignment="Center"/>
                 </Grid>
             </GroupBox>
-            <GroupBox Header="Crafting Materials: Grey / White / Blue / Yellow ">
+            <GroupBox Header="锻造材料: 灰色 / 白色 / 蓝色 / 黄色 ">
                 <Grid Margin="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -148,60 +148,60 @@
                         <!--<ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />-->
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" DockPanel.Dock="Left" Text="Crafting Mats Min Quality:" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <TextBlock Grid.Column="0" DockPanel.Dock="Left" Text="锻造材料拾取等级:" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     <Border Grid.Column="1" BorderBrush="White" BorderThickness="1">
                         <ComboBox SelectedValuePath="Tag" SelectedValue="{Binding Path=Pickup.MiscItemQuality}" Padding="5">
-                            <ComboBoxItem Content="None" Tag="None" />
-                            <ComboBoxItem Content="Common+" Tag="Common" />
-                            <ComboBoxItem Content="Magic+" Tag="Magic" />
-                            <ComboBoxItem Content="Rare+" Tag="Rare" />
-                            <ComboBoxItem Content="Legendary" Tag="Legendary" />
+                            <ComboBoxItem Content="不拾取" Tag="None" />
+                            <ComboBoxItem Content="普通+" Tag="Common" />
+                            <ComboBoxItem Content="魔法+" Tag="Magic" />
+                            <ComboBoxItem Content="稀有+" Tag="Rare" />
+                            <ComboBoxItem Content="传奇" Tag="Legendary" />
                         </ComboBox>
                     </Border>
                     <!--
-                    <TextBlock Grid.Column="2" DockPanel.Dock="Left" FontWeight="Bold"  Text="Potion Cap:" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="2" DockPanel.Dock="Left" FontWeight="Bold"  Text="生命药水保有量:" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                     <ComboBox Grid.Column="3" SelectedValuePath="Tag" SelectedValue="{Binding Path=Pickup.PotionCount}" VerticalAlignment="Center">
                         <ComboBoxItem Content="0" Tag="0" />
                         <ComboBoxItem Content="25" Tag="25" />
                         <ComboBoxItem Content="50" Tag="50" />
                         <ComboBoxItem Content="98" IsSelected="True" Tag="98" />
                         <ComboBoxItem Content="198" Tag="198" />
-                        <ComboBoxItem Content="Pickup All" Tag="6000" />
+                        <ComboBoxItem Content="拾取所有" Tag="6000" />
                     </ComboBox>
                     -->
                 </Grid>
             </GroupBox>
-            <GroupBox Header="Gold Pickup Settings">
+            <GroupBox Header="金币拾取设定（勾选后会在小秘时尝试拾取金币影响效率，不建议勾选）">
                 <DockPanel LastChildFill="True">
-                    <CheckBox DockPanel.Dock="Left" IsChecked="{Binding Path=Pickup.PickupGold}" Content="Pickup Gold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"  />
+                    <CheckBox DockPanel.Dock="Left" IsChecked="{Binding Path=Pickup.PickupGold}" Content="拾取金币" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"  />
                     <Slider Template="{DynamicResource SliderEditable}" IsEnabled="{Binding Path=Pickup.PickupGold}"
                         Interval="500" Maximum="30000" Minimum="0" SmallChange="10" LargeChange="100"
                         TickFrequency="100" TickPlacement="BottomRight" IsSnapToTickEnabled="True"
                         Value="{Binding Path=Pickup.MinimumGoldStack}" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
                 </DockPanel>
             </GroupBox>
-            <GroupBox Header="Ignore Item Situations">
+            <GroupBox Header="忽略物品">
                 <UniformGrid Columns="2" >
-                    <CheckBox Content="Ignore Two Handed Weapons" IsChecked="{Binding Path=Pickup.IgnoreTwoHandedWeapons}" />
+                    <CheckBox Content="忽略双手武器" IsChecked="{Binding Path=Pickup.IgnoreTwoHandedWeapons}" />
                     <TextBlock Text="" />
 
-                    <CheckBox Content="Ignore Legendary in AoE" ToolTip="Ignore Legendary Items in AoE" IsChecked="{Binding Path=Pickup.IgnoreLegendaryInAoE}" />
-                    <CheckBox Content="Ignore Non-Legendary in AoE" ToolTip="Includes all non-legendaries" IsChecked="{Binding Path=Pickup.IgnoreNonLegendaryInAoE}" />
+                    <CheckBox Content=" AOE时 忽略传奇物品" ToolTip="Ignore Legendary Items in AoE" IsChecked="{Binding Path=Pickup.IgnoreLegendaryInAoE}" />
+                    <CheckBox Content=" AOE时 忽略非传奇物品" ToolTip="Includes all non-legendaries" IsChecked="{Binding Path=Pickup.IgnoreNonLegendaryInAoE}" />
 
-                    <CheckBox Content="Ignore Legendary near Elites" ToolTip="Ignore Legendary Items Near Elites" IsChecked="{Binding Path=Pickup.IgnoreLegendaryNearElites}" />
-                    <CheckBox Content="Ignore Non-Legendary near Elites" ToolTip="Includes all non-legendaries" IsChecked="{Binding Path=Pickup.IgnoreNonLegendaryNearElites}" />
+                    <CheckBox Content="附近有精英时 忽略传奇物品" ToolTip="Ignore Legendary Items Near Elites" IsChecked="{Binding Path=Pickup.IgnoreLegendaryNearElites}" />
+                    <CheckBox Content="附近有精英时 忽略非传奇物品" ToolTip="Includes all non-legendaries" IsChecked="{Binding Path=Pickup.IgnoreNonLegendaryNearElites}" />
 
-                    <CheckBox Content="Ignore Gold in AoE" ToolTip="Ignore Legendary Items in AoE" IsChecked="{Binding Path=Pickup.IgnoreGoldInAoE}" />
-                    <CheckBox Content="Ignore Gold near Elites" ToolTip="Includes all non-legendaries" IsChecked="{Binding Path=Pickup.IgnoreGoldNearElites}" />
+                    <CheckBox Content=" AOE时 忽略金币拾取" ToolTip="Ignore Legendary Items in AoE" IsChecked="{Binding Path=Pickup.IgnoreGoldInAoE}" />
+                    <CheckBox Content="附近有精英时 忽略金币拾取" ToolTip="Includes all non-legendaries" IsChecked="{Binding Path=Pickup.IgnoreGoldNearElites}" />
                 </UniformGrid>
             </GroupBox>
-            <GroupBox Header="Reset">
+            <GroupBox Header="重置">
                 <StackPanel>
                     <UniformGrid  Rows="1">
-                        <Button HorizontalAlignment="Stretch" Command="{Binding ConfigureLootToQuesting}">Set Questing</Button>
-                        <Button HorizontalAlignment="Stretch" Command="{Binding ConfigureLootToHunting}">Set Champion Hunting</Button>
+                        <Button HorizontalAlignment="Stretch" Command="{Binding ConfigureLootToQuesting}">任务模式预设置（已过期不要点）</Button>
+                        <Button HorizontalAlignment="Stretch" Command="{Binding ConfigureLootToHunting}">狩猎模式预设置（已过期不要点）</Button>
                     </UniformGrid>
-                    <Button HorizontalAlignment="Center" Command="{Binding ResetItemCommand}">Reset All Item Settings to Defaults</Button>
+                    <Button HorizontalAlignment="Center" Command="{Binding ResetItemCommand}">重置所有的物品设置为默认</Button>
                 </StackPanel>
             </GroupBox>
         </StackPanel>

@@ -215,7 +215,7 @@
                                                                 Width="Auto"
                                                                 Height="23" IsSynchronizedWithCurrentItem="False"
                                                                 Template="{DynamicResource ActionsComboBoxControlTemplate}"
-                                                                Tag="Add" />
+                                                                Tag="添加" />
                                                         </Grid>
                                                         <WrapPanel x:Name="rulesContentContainer"
                                                                    Background="Transparent" Width="Auto">
@@ -230,7 +230,7 @@
                                                     <StackPanel Margin="0,5,0,0">
                                                         <Grid Background="Transparent">
                                                             <WrapPanel>
-                                                                <TextBlock TextWrapping="Wrap" Text="And at least "
+                                                                <TextBlock TextWrapping="Wrap" Text="和至少 "
                                                                            Margin="0,2,0,0" Foreground="White"
                                                                            FontWeight="Regular"
                                                                            HorizontalAlignment="Left" />
@@ -244,10 +244,10 @@
                                                                     Width="Auto" Height="23"
                                                                     ItemsSource="{Binding OpCountNumbers}"
                                                                     SelectedValue="{Binding Path=Ops, Mode=TwoWay}"
-                                                                    Tag="Add"
+                                                                    Tag="添加"
 
-                                                                    ToolTip="The number of optional rules that must be true" />
-                                                                <TextBlock TextWrapping="Wrap" Text=" of:"
+                                                                    ToolTip="可选的数字必须是游戏里存在的" />
+                                                                <TextBlock TextWrapping="Wrap" Text=" 选："
                                                                            Margin="0,2,0,0" Foreground="White"
                                                                            FontWeight="Regular"
                                                                            HorizontalAlignment="Left">
@@ -271,7 +271,7 @@
                                                                 Width="Auto" Height="23"
                                                                 IsSynchronizedWithCurrentItem="False"
                                                                 Template="{DynamicResource ActionsComboBoxControlTemplate}"
-                                                                Tag="Add" />
+                                                                Tag="添加" />
                                                         </Grid>
                                                         <WrapPanel x:Name="optionalRulesContentContainer"
                                                                    Background="Transparent" Width="Auto">
@@ -613,31 +613,31 @@
             <StackPanel DockPanel.Dock="Top" Margin="0,0,0,0" Orientation="Horizontal" Background="#FF6A6A6A"
                         Height="38" VerticalAlignment="Center">
                 <Label Style="{StaticResource StatusLabelStyle}" VerticalContentAlignment="Center" Margin="5,0,0,0"
-                       Content="Search:" />
+                       Content="搜索：" />
                 <TextBox Width="140" Height="22"
                          Text="{Binding ItemList.FilterText, UpdateSourceTrigger=PropertyChanged}" Margin="0,8"
-                         ToolTip="Search by Item Name or Id" />
+                         ToolTip="按“物品名称”或“物品ID”搜索" />
                 <Button Content=" X " Height="21" Width="25" Margin="-27,-1,0,0" Background="Transparent"
                         Command="{Binding ItemList.ResetFilterCommand}" BorderBrush="Transparent" FontWeight="Heavy"
                         BorderThickness="1"
                         Visibility="{Binding ItemList.IsFiltered, Converter={StaticResource BoolToVisibilityConverter}}" />
                 <Label Style="{StaticResource StatusLabelStyle}" VerticalContentAlignment="Center" Margin="5,0,0,0"
-                       Content="Group By:" />
+                       Content="分组：" />
                 <ComboBox Tag="" SelectedValuePath="Tag" SelectedValue="{Binding ItemList.Grouping}"
                           x:Name="GroupingDropdown" MaxHeight="25" Padding="0,0,15,0">
-                    <ComboBoxItem Content="None" Tag="None" Foreground="White" Background="Black" />
-                    <ComboBoxItem Content="ItemType" Tag="ItemType" Foreground="White" Background="Black" />
-                    <ComboBoxItem Content="IsCrafted" Tag="IsCrafted" Foreground="White" Background="Black" />
-                    <ComboBoxItem Content="Sets" Tag="SetName" Foreground="White" Background="Black" />
-                    <ComboBoxItem Content="IsValid" Tag="IsValid" Foreground="White" Background="Black" />
+                    <ComboBoxItem Content="不分组" Tag="None" Foreground="White" Background="Black" />
+                    <ComboBoxItem Content="物品类型" Tag="ItemType" Foreground="White" Background="Black" />
+                    <ComboBoxItem Content="锻造" Tag="IsCrafted" Foreground="White" Background="Black" />
+                    <ComboBoxItem Content="套装" Tag="SetName" Foreground="White" Background="Black" />
+                    <ComboBoxItem Content="是否有效" Tag="IsValid" Foreground="White" Background="Black" />
                 </ComboBox>
                 <Button Command="{Binding Source={x:Static ut:ModalContentCommands.ShowModalContent}}"
                         CommandParameter="Export" Width="Auto" Padding="7,0" Margin="10,7,5,7">
-                    Export
+                    导出
                 </Button>
                 <Button Command="{Binding Source={x:Static ut:ModalContentCommands.ShowModalContent}}"
                         CommandParameter="Import" Width="Auto" Padding="7,0" Margin="0,7,5,7">
-                    Import
+                    导入
                 </Button>
 
             </StackPanel>
@@ -647,13 +647,13 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <Expander IsExpanded="True" Header="Override Options">
+                    <Expander IsExpanded="True" Header="覆盖选项">
                         <Border BorderThickness="2">
                             <StackPanel>
-                                <CheckBox ToolTip="This will OVERRIDE specific item selections below and cause ALL ancients to be stashed." Content="Always Keep Ancient Items" IsChecked="{Binding Path=ItemList.AlwaysStashAncients}" />
-                                <CheckBox ToolTip="This will OVERRIDE specific item selections below and cause ALL non-ancients to be trashed." Content="Always Sell/Salvage Non-Ancients" IsChecked="{Binding Path=ItemList.AlwaysTrashNonAncients}" />
+                                <CheckBox Content="总是储存远古物品" IsChecked="{Binding Path=ItemList.AlwaysStashAncients}" />
+                                <CheckBox Content="总是出售/拆解非传奇" IsChecked="{Binding Path=ItemList.AlwaysTrashNonAncients}" />
                                 <!--<Grid Background="Transparent">
-                                    <TextBlock TextWrapping="Wrap" Text="Must have properties:" Foreground="White"
+                                    <TextBlock TextWrapping="Wrap" Text="必须有的属性：" Foreground="White"
                                                FontWeight="Regular" HorizontalAlignment="Left">
                                         <Run Text="  (" FontWeight="Normal" Foreground="Gray" />
                                         <Run Text="{Binding Mode=OneWay, Path=RequiredRules.Count }"
@@ -670,7 +670,7 @@
                                         Width="Auto"
                                         Height="23" IsSynchronizedWithCurrentItem="False"
                                         Template="{DynamicResource ActionsComboBoxControlTemplate}"
-                                        Tag="Add" />
+                                        Tag="添加" />
                                 </Grid>
                                 <WrapPanel Background="Transparent" Width="Auto">
                                     <ItemsControl
@@ -800,10 +800,10 @@
 
                 <UniformGrid Grid.Row="1"
                              Visibility="{Binding Path=ItemList.SelectedModalPage, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Import}">
-                    <Button Content="Import" Margin="0,0,0,-22.5" VerticalContentAlignment="Center"
+                    <Button Content="导入" Margin="0,0,0,-22.5" VerticalContentAlignment="Center"
                             HorizontalContentAlignment="Center" Width="Auto" Height="Auto"
                             Command="{Binding ItemList.ImportCommand}" />
-                    <Button Content="Close" Margin="0,0,0,-22.5" VerticalContentAlignment="Center"
+                    <Button Content="关闭" Margin="0,0,0,-22.5" VerticalContentAlignment="Center"
                             HorizontalContentAlignment="Center" Width="Auto" Height="Auto"
                             Command="{Binding Source={x:Static ut:ModalContentCommands.HideModalContent}}" />
                 </UniformGrid>
@@ -817,7 +817,7 @@
 
                 <StackPanel Grid.Row="1"
                             Visibility="{Binding Path=ItemList.SelectedModalPage, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Export}">
-                    <Button Content="Close" Margin="0" Padding="10" Height="45"
+                    <Button Content="关闭" Margin="0" Padding="10" Height="45"
                             Command="{Binding Source={x:Static ut:ModalContentCommands.HideModalContent}}" />
                 </StackPanel>
 

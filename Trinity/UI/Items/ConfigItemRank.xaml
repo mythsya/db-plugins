@@ -16,19 +16,19 @@
     <ScrollViewer>
         <DockPanel LastChildFill="True">
             <StackPanel DockPanel.Dock="Top">
-                <GroupBox Header="Keep Ranked Items for">
+                <GroupBox Header="保留排行中的物品">
                     <UniformGrid Columns="3">
-                        <RadioButton GroupName="ClassOption" IsChecked="{Binding Path=ItemRank.ItemRankMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=AnyClass}">Any Class</RadioButton>
-                        <RadioButton GroupName="ClassOption" IsChecked="{Binding Path=ItemRank.ItemRankMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=HeroOnly}">Only for Hero Class</RadioButton>
+                        <RadioButton GroupName="ClassOption" IsChecked="{Binding Path=ItemRank.ItemRankMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=AnyClass}">任何职业</RadioButton>
+                        <RadioButton GroupName="ClassOption" IsChecked="{Binding Path=ItemRank.ItemRankMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=HeroOnly}">仅当前角色的职业</RadioButton>
                     </UniformGrid>
                 </GroupBox>
-                <GroupBox Header="Settings">
+                <GroupBox Header="设置">
                     <UniformGrid>
-                        <CheckBox IsChecked="{Binding Path=ItemRank.AncientItemsOnly}">Keep Ancient Items Only</CheckBox>
-                        <CheckBox IsChecked="{Binding Path=ItemRank.RequireSocketsOnJewelry}">Require Sockets on Jewelry</CheckBox>
+                        <CheckBox IsChecked="{Binding Path=ItemRank.AncientItemsOnly}">仅保留远古装备</CheckBox>
+                        <CheckBox IsChecked="{Binding Path=ItemRank.RequireSocketsOnJewelry}">仅保留有插槽的首饰</CheckBox>
                     </UniformGrid>
                 </GroupBox>
-                <GroupBox Header="Thresholds">
+                <GroupBox Header="保留选项">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -39,21 +39,21 @@
                             <ColumnDefinition Width="1*" />
                             <ColumnDefinition Width="3*" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Row="0" Grid.Column="0">Minimum Percent</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="0">最低百分比</TextBlock>
                         <Slider Grid.Row="0" Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="100" Minimum="0" 
                             SmallChange="1" TickFrequency="5" IsSnapToTickEnabled="True"
                             TickPlacement="BottomRight" Value="{Binding Path=ItemRank.MinimumPercent}" 
                             HorizontalAlignment="Stretch" Margin="25,0,25,0" />
 
-                        <TextBlock Grid.Row="1" Grid.Column="0">Minimum Sample Size</TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="0">最低样本量</TextBlock>
                         <Slider Grid.Row="1" Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="1000" Minimum="0" 
                             SmallChange="1" TickFrequency="25" IsSnapToTickEnabled="True"
                             TickPlacement="BottomRight" Value="{Binding Path=ItemRank.MinimumSampleSize}" 
                             HorizontalAlignment="Stretch" Margin="25,0,25,0" />
 
-                        <TextBlock Grid.Row="2" Grid.Column="0">Minimum Rank</TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="0">最低排行</TextBlock>
                         <Slider Grid.Row="2" Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="5" Minimum="1" 
                             SmallChange="1" TickFrequency="1" IsSnapToTickEnabled="True"
@@ -64,7 +64,7 @@
                 </GroupBox>
 
             </StackPanel>
-            <GroupBox Header="Items Matched">
+            <GroupBox Header="匹配的物品">
                 <TextBox Text="{Binding Path=ItemRank.CurrentItemsList}" IsReadOnly="True" />
             </GroupBox>
         </DockPanel>

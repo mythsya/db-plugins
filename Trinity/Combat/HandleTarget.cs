@@ -347,93 +347,11 @@ namespace Trinity
                                 break;
                         }
 
-                        var criticalAvoidances = new HashSet<AvoidanceType>
+                        if (Settings.Combat.Misc.AvoidAOE)
                         {
-                            AvoidanceType.MoltenCore,
-                        };
-
-                        // Make the bot continue moving towards safespots 
-                        if (AvoidanceManager.IsLockedMovingToSafeSpot)
-                        {
-                            if (AvoidanceManager.CurrentSafeSpot != CurrentTarget && Player.IsTakingDamage)
-                            {
-                                Logger.Log(LogCategory.Avoidance, "Forcing Target back to locked SafeSpot");
-                                CurrentTarget = AvoidanceManager.CurrentSafeSpot;
-                            }
-
-                            var isCloseEnoughToSafeSpot = AvoidanceManager.CurrentSafeSpot.Distance <= 2f;
-                            var isFarEnoughFromAvoidance = _currentAvoidance.Distance >= _currentAvoidance.AvoidanceRadius;
-
-                            if (isCloseEnoughToSafeSpot || isFarEnoughFromAvoidance || PlayerMover.IsBlocked || Navigator.StuckHandler.IsStuck)
-                            {
-
-                                Logger.Log(LogCategory.Avoidance, "Breaking from Safespot Movement Lock DistanceToSafeSpot={0} DistanceToAvoidance={0}",
-                                    AvoidanceManager.CurrentSafeSpot.Distance, _currentAvoidance.Distance);
-
-                                AvoidanceManager.IsLockedMovingToSafeSpot = false;
-                                return GetRunStatus(RunStatus.Success, "BreakFromSafeSpotLock");
-                            }
-                        }
-
-                        var isTooCloseToMonster = CurrentTarget.IsBoss && CurrentTarget.Distance <= CombatBase.KiteDistance;
-                        var isTooCloseToAvoidance = ObjectCache.Any(o => criticalAvoidances.Contains(o.AvoidanceType) && o.Distance < GetAvoidanceRadius(o.ActorSNO, 30f) && Player.CurrentHealthPct < GetAvoidanceHealth(o.ActorSNO));
-
-                        // If we're standing in an avoidance. We're not messing around anymore, hijack this train and move now.
-                        if (_standingInAvoidance || Player.IsRanged && isTooCloseToMonster || isTooCloseToAvoidance)
-                        {
-                            if (isTooCloseToMonster && Player.IsRanged)
-                            {
-                                Logger.LogVerbose(LogCategory.Behavior, "Too close to boss, Kiting! DistanceToTarget={0} KiteTriggerRange={1} KiteMode={2}",
-                                    CurrentTarget.Distance,  CombatBase.KiteDistance, CombatBase.KiteMode);
-                            }                      
-
-                            var safespot = CurrentTarget.IsSafeSpot && CurrentTarget.Distance > 3f ? CurrentTarget : ObjectCache.Where(o => o.IsSafeSpot).OrderByDescending(o => o.Distance).FirstOrDefault();
-                            if (safespot == null || safespot.Position == Vector3.Zero || safespot.Distance > 200f)
-                            {
-                                var monstersToAvoid = isTooCloseToMonster ? new List<TrinityCacheObject>() { CurrentTarget } : new List<TrinityCacheObject>();
-                                var minDistance = Math.Max(CombatBase.KiteDistance, _currentAvoidance.AvoidanceRadius);
-                                var newSafeSpotPosition = NavHelper.MainFindSafeZone(Player.Position, false, false, monstersToAvoid, false, minDistance);
-                                var distance = newSafeSpotPosition.Distance(Player.Position);                                
-                                if (newSafeSpotPosition != null && newSafeSpotPosition != Vector3.Zero && distance < 200f)
-                                {
-                                    Logger.Log(LogCategory.Avoidance, "Creating new safe spot Distance={0}", distance);
-                                    safespot = new TrinityCacheObject()
-                                    {
-                                        Position = newSafeSpotPosition,
-                                        Type = TrinityObjectType.Avoidance,
-                                        Weight = 90000,
-                                        Distance = distance,
-                                        Radius = 2f,
-                                        InternalName = "SafePoint",
-                                        IsSafeSpot = true
-                                    };
-                                    _currentAvoidance = CurrentTarget;
-                                    _currentAvoidanceName = CurrentTarget.InternalName;
-                                    //AvoidanceManager.CurrentSafeSpot = safespot;
-                                    //AvoidanceManager.IsLockedMovingToSafeSpot = true;
-                                }      
-                                else
-                                {
-                                    Logger.Log(LogCategory.Avoidance, "Unable to find a place to move to :(");
-                                }
-                            }
-   
-                            if (safespot != null && safespot.Distance > 1f)
-                            {
-                                Logger.LogVerbose(LogCategory.Behavior, "Emergency Avoidance DistanceToTarget={0}, DistanceToAvoidance={1} Avoidance={2} ({3})",
-                                    CurrentTarget.Distance, _currentAvoidance != null ? _currentAvoidance.Distance : -1, _currentAvoidance != null ? _currentAvoidance.InternalName : "Null", _currentAvoidance != null ? _currentAvoidance.ActorSNO : -1);
-
-                                AvoidanceManager.IsLockedMovingToSafeSpot = true;
-                                AvoidanceManager.CurrentSafeSpot = safespot;
-
-                                RunStatus specialMovementResult;
-                                if (TrySpecialMovement(out specialMovementResult))
-                                    return specialMovementResult;
-
-                                Logger.LogVerbose(LogCategory.Avoidance, "Safespot found, Emergency moving! Distance={0}", safespot.Distance);
-                                PlayerMover.NavigateTo(safespot.Position, "EmergencySafeSpot");
-                                return RunStatus.Running;
-                            }
+                            RunStatus handleTarget;
+                            if (AvoidanceLock(out handleTarget))
+                                return handleTarget;
                         }
 
                         // Do nothing if there is no immediate danager and we're not standing in avoidance.
@@ -512,6 +430,109 @@ namespace Trinity
             }
         }
 
+        private static bool AvoidanceLock(out RunStatus handleTarget)
+        {
+            var criticalAvoidances = new HashSet<AvoidanceType>
+            {
+                AvoidanceType.MoltenCore,
+            };
+
+            // Make the bot continue moving towards safespots 
+            if (AvoidanceManager.IsLockedMovingToSafeSpot)
+            {
+                if (AvoidanceManager.CurrentSafeSpot != CurrentTarget && Player.IsTakingDamage)
+                {
+                    Logger.Log(LogCategory.Avoidance, "Forcing Target back to locked SafeSpot");
+                    CurrentTarget = AvoidanceManager.CurrentSafeSpot;
+                }
+
+                var isCloseEnoughToSafeSpot = AvoidanceManager.CurrentSafeSpot.Distance <= 2f;
+                var isFarEnoughFromAvoidance = _currentAvoidance.Distance >= _currentAvoidance.AvoidanceRadius;
+
+                if (isCloseEnoughToSafeSpot || isFarEnoughFromAvoidance || PlayerMover.IsBlocked || Navigator.StuckHandler.IsStuck)
+                {
+                    Logger.Log(LogCategory.Avoidance, "Breaking from Safespot Movement Lock DistanceToSafeSpot={0} DistanceToAvoidance={0}",
+                        AvoidanceManager.CurrentSafeSpot.Distance, _currentAvoidance.Distance);
+
+                    AvoidanceManager.IsLockedMovingToSafeSpot = false;
+                    {
+                        handleTarget = GetRunStatus(RunStatus.Success, "BreakFromSafeSpotLock");
+                        return true;
+                    }
+                }
+            }
+
+            var isTooCloseToMonster = CurrentTarget.IsBoss && CurrentTarget.Distance <= CombatBase.KiteDistance;
+            var isTooCloseToAvoidance = ObjectCache.Any(o => criticalAvoidances.Contains(o.AvoidanceType) && o.Distance < GetAvoidanceRadius(o.ActorSNO, 30f) && Player.CurrentHealthPct < GetAvoidanceHealth(o.ActorSNO));
+
+            // If we're standing in an avoidance. We're not messing around anymore, hijack this train and move now.
+            if (_standingInAvoidance || Player.IsRanged && isTooCloseToMonster || isTooCloseToAvoidance)
+            {
+                if (isTooCloseToMonster && Player.IsRanged)
+                {
+                    Logger.LogVerbose(LogCategory.Behavior, "Too close to boss, Kiting! DistanceToTarget={0} KiteTriggerRange={1} KiteMode={2}",
+                        CurrentTarget.Distance, CombatBase.KiteDistance, CombatBase.KiteMode);
+                }
+
+                var safespot = CurrentTarget.IsSafeSpot && CurrentTarget.Distance > 3f ? CurrentTarget : ObjectCache.Where(o => o.IsSafeSpot).OrderByDescending(o => o.Distance).FirstOrDefault();
+                if (safespot == null || safespot.Position == Vector3.Zero || safespot.Distance > 200f)
+                {
+                    var monstersToAvoid = isTooCloseToMonster ? new List<TrinityCacheObject>() {CurrentTarget} : new List<TrinityCacheObject>();
+                    var minDistance = Math.Max(CombatBase.KiteDistance, _currentAvoidance.AvoidanceRadius);
+                    var newSafeSpotPosition = NavHelper.MainFindSafeZone(Player.Position, false, false, monstersToAvoid, false, minDistance);
+                    var distance = newSafeSpotPosition.Distance(Player.Position);
+                    if (newSafeSpotPosition != null && newSafeSpotPosition != Vector3.Zero && distance < 200f)
+                    {
+                        Logger.Log(LogCategory.Avoidance, "Creating new safe spot Distance={0}", distance);
+                        safespot = new TrinityCacheObject()
+                        {
+                            Position = newSafeSpotPosition,
+                            Type = TrinityObjectType.Avoidance,
+                            Weight = 90000,
+                            Distance = distance,
+                            Radius = 2f,
+                            InternalName = "SafePoint",
+                            IsSafeSpot = true
+                        };
+                        _currentAvoidance = CurrentTarget;
+                        _currentAvoidanceName = CurrentTarget.InternalName;
+                        //AvoidanceManager.CurrentSafeSpot = safespot;
+                        //AvoidanceManager.IsLockedMovingToSafeSpot = true;
+                    }
+                    else
+                    {
+                        Logger.Log(LogCategory.Avoidance, "Unable to find a place to move to :(");
+                    }
+                }
+
+                if (safespot != null && safespot.Distance > 1f)
+                {
+                    Logger.LogVerbose(LogCategory.Behavior, "Emergency Avoidance DistanceToTarget={0}, DistanceToAvoidance={1} Avoidance={2} ({3})",
+                        CurrentTarget.Distance, _currentAvoidance != null ? _currentAvoidance.Distance : -1, _currentAvoidance != null ? _currentAvoidance.InternalName : "Null", _currentAvoidance != null ? _currentAvoidance.ActorSNO : -1);
+
+                    AvoidanceManager.IsLockedMovingToSafeSpot = true;
+                    AvoidanceManager.CurrentSafeSpot = safespot;
+
+                    RunStatus specialMovementResult;
+                    if (TrySpecialMovement(out specialMovementResult))
+                    {
+                        handleTarget = specialMovementResult;
+                        return true;
+                    }
+
+                    Logger.LogVerbose(LogCategory.Avoidance, "Safespot found, Emergency moving! Distance={0}", safespot.Distance);
+                    PlayerMover.NavigateTo(safespot.Position, "EmergencySafeSpot");
+                    {
+                        handleTarget = RunStatus.Running;
+                        return true;
+                    }
+                }
+            }
+
+            handleTarget = RunStatus.Failure;
+            return false;
+        }
+
         /// <summary>
         /// Try to use a special movement skill like Monk Dashing Strike or Wizard Teleport
         /// </summary>
@@ -568,9 +589,8 @@ namespace Trinity
 
             //Monk DashingStrike                      
             if (Player.ActorClass == ActorClass.Monk && CombatBase.CanCast(SNOPower.X1_Monk_DashingStrike) &&
-                (!CombatBase.WasUsedWithinMilliseconds(SNOPower.X1_Monk_DashingStrike, Settings.Combat.Monk.DashingStrikeDelay) ||
-                CurrentTarget != null && NavHelper.CanRayCast(Player.Position, CurrentTarget.Position)) &&
-                ((Skills.Monk.DashingStrike.Charges > 1 && !ShouldWaitForLootDrop &&
+                !CombatBase.WasUsedWithinMilliseconds(SNOPower.X1_Monk_DashingStrike, Settings.Combat.Monk.DashingStrikeDelay) &&
+                !ShouldWaitForLootDrop && ((Skills.Monk.DashingStrike.Charges > 1 &&
                 (!Sets.ThousandStorms.IsSecondBonusActive || ZetaDia.Me.CurrentPrimaryResource > 75)) || CacheData.Buffs.HasCastingShrine))
             {
                 Logger.Log("Dash towards: {0}, charges={1}", GetTargetName(), Skills.Monk.DashingStrike.Charges);
@@ -586,9 +606,9 @@ namespace Trinity
             if (Player.ActorClass == ActorClass.Barbarian)
             {
                 // Whirlwind against everything within range
-                if (Player.PrimaryResource >= 10 && CombatBase.CanCast(SNOPower.Barbarian_Whirlwind) && 
+                if (Player.PrimaryResource >= 10 && CombatBase.CanCast(SNOPower.Barbarian_Whirlwind) && NavHelper.CanRayCast(CurrentTarget.Position) &&
                     (TargetUtil.AnyMobsInRange(20, false) || Sets.BulKathossOath.IsFullyEquipped) && !IsWaitingForSpecial &&
-                    !(CurrentTarget != null && (CurrentTarget.Type == TrinityObjectType.Item || CurrentTarget.IsNPC || CurrentTarget.Type == TrinityObjectType.Shrine) && CurrentTarget.Distance < 12f))
+                    (CurrentTarget.Type != TrinityObjectType.Item || (CurrentTarget.Type == TrinityObjectType.Item && CurrentTarget.Distance > 10f)))
                 {
                     Skills.Barbarian.Whirlwind.Cast(CurrentDestination);
                     LastMoveToTarget = CurrentDestination;

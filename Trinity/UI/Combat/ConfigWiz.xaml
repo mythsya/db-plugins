@@ -36,7 +36,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Potion %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="生命药水 %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
             <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="99" Minimum="0" 
                     SmallChange="1" LargeChange="5"
@@ -52,21 +52,21 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
           </Grid.ColumnDefinitions>
-            <TextBlock Text="Globe Health %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="血球回血 %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
             <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="100" Minimum="0" 
                     SmallChange="1" LargeChange="5"
                     TickPlacement="None" 
                     Value="{Binding Path=Wiz.HealthGlobeLevel, Converter={StaticResource percentConverter}}" 
                     HorizontalAlignment="Stretch" Margin="2"/>
-            <TextBlock Grid.Column="2" Text="Globe Resource %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="2" Text="血球回能 %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
             <Slider Grid.Column="3" Template="{DynamicResource SliderEditable}"
                     Interval="500" Maximum="100" Minimum="0"
                     SmallChange="1" LargeChange="5"
                     TickPlacement="None"
                     Value="{Binding Path=Wiz.HealthGlobeLevelResource, Converter={StaticResource percentConverter}}"
                     HorizontalAlignment="Stretch" Margin="2"
-                    ToolTip="Only applies when Reaper's Wraps are equipped"/>
+                    ToolTip="仅穿戴“夺魂者护腕”时生效"/>
         </Grid>
 
         <!--Kite-->
@@ -76,7 +76,7 @@
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Min-Distance before Kite" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="与怪物保持的最小距离" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
             <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                     Interval="500" Maximum="80" Minimum="0" 
                     SmallChange="1" LargeChange="5" 
@@ -90,7 +90,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="Black Hole AoE Count" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="0" Text="“黑洞” 最小怪物数量" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
             <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                                 Interval="1" Maximum="10" Minimum="1"
                                 SmallChange="1" LargeChange="10"
@@ -109,11 +109,11 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Grid.Row="0" Text="Kite:" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Normal" />
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="风筝怪物:" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Normal" />
                 <ComboBox Grid.Column="1" Grid.Row="0"  Width="150" SelectedValuePath="Tag" SelectedValue="{Binding Path=Wiz.KiteOption}" Margin="15,0,0,0">
-                    <ComboBoxItem Content="Anytime" Tag="Anytime" ToolTip="Always Kite" />
-                    <ComboBoxItem Content="Archon Form Only" Tag="ArchonOnly" IsSelected="True" ToolTip="Kite in Archon Form Only" />
-                    <ComboBoxItem Content="Normal Form Only" Tag="NormalOnly" ToolTip="Kite in Normal Form Only" />
+                    <ComboBoxItem Content="任何时候" Tag="Anytime" ToolTip="Always Kite" />
+                    <ComboBoxItem Content="仅在御法者形态下" Tag="ArchonOnly" IsSelected="True" ToolTip="Kite in Archon Form Only" />
+                    <ComboBoxItem Content="仅在正常形态下" Tag="NormalOnly" ToolTip="Kite in Normal Form Only" />
                 </ComboBox>
                 <!--<TextBlock Grid.Column="0" Grid.Row="1"  Text="Cancel and Rebuff Archon:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Normal" />
                 <ComboBox Grid.Column="1" Grid.Row="1"   Width="215" SelectedValuePath="Tag" SelectedValue="{Binding Path=Wiz.ArchonCancelOption}" Margin="15,5,0,5">
@@ -161,7 +161,7 @@
             </Grid.RowDefinitions>
             <!-- Mob Count-->
 
-            <TextBlock Grid.Row="0" Text="Archon Mob Count" FontWeight="Normal" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="0" Text="“御法者” 最少怪物数量" FontWeight="Normal" TextAlignment="Center" VerticalAlignment="Center"/>
             <Slider Grid.Row="0" Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                 Interval="500" Maximum="10" Minimum="1" 
                 SmallChange="1" LargeChange="5" IsSnapToTickEnabled="True"
@@ -169,7 +169,7 @@
                 Value="{Binding Path=Wiz.ArchonMobCount}" 
                 HorizontalAlignment="Stretch"  Margin="5,0,0,0"/>
             <!-- Range -->
-            <TextBlock Grid.Row="1" Grid.Column="0"  Text="Min Range" FontWeight="Normal" TextAlignment="Center" VerticalAlignment="Center"  Margin="5,0,0,0"/>
+            <TextBlock Grid.Row="1" Grid.Column="0"  Text="最小距离" FontWeight="Normal" TextAlignment="Center" VerticalAlignment="Center"  Margin="5,0,0,0"/>
             <Slider Grid.Row="1" Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                 Interval="500" Maximum="50" Minimum="2" 
                 SmallChange="1" LargeChange="5"  IsSnapToTickEnabled="True"
@@ -178,7 +178,7 @@
                 HorizontalAlignment="Stretch"  Margin="5,0,0,0"/>
 
             <!-- Archon Elite Range-->
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Archon Elite Trigger Range" FontWeight="Normal" TextAlignment="Center" VerticalAlignment="Center"  Margin="5,0,0,0"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="触发“御法者” 精英怪距离" FontWeight="Normal" TextAlignment="Center" VerticalAlignment="Center"  Margin="5,0,0,0"/>
             <Slider Grid.Row="2" Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                 Interval="500" Maximum="50" Minimum="5" 
                 SmallChange="1" LargeChange="5"  IsSnapToTickEnabled="True"
@@ -186,7 +186,7 @@
                 Value="{Binding Path=Wiz.ArchonEliteDistance}" 
                 HorizontalAlignment="Stretch"  Margin="5,0,0,0"/>
 
-            <!--<TextBlock Grid.Row="3" Grid.Column="0" ToolTip="Time to wait (in Milliseconds) between teleports" Text="Cyclone Strike Delay (ms)" TextAlignment="Center" VerticalAlignment="Center"/>
+            <!--<TextBlock Grid.Row="3" Grid.Column="0" ToolTip="两次施放“传送”的时间间隔（毫秒）" Text="Cyclone Strike Delay (ms)" TextAlignment="Center" VerticalAlignment="Center"/>
             <Slider HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="1" ToolTip="Time to wait (in Milliseconds) between casting teleport" Template="{DynamicResource SliderEditable}" 
                 Interval="100" Maximum="8000" Minimum="0"
                 SmallChange="100" LargeChange="500"
@@ -200,16 +200,16 @@
         <!--CheckBox-->
         <Grid Grid.Row="8" Margin="2">
             <UniformGrid Columns="2">
-                <CheckBox Margin="2" IsChecked="{Binding Path=Wiz.ArchonElitesOnly}">Use Archon on Elites Only</CheckBox>
-                <CheckBox Margin="2" IsChecked="{Binding Path=Wiz.DisableDisintegrationWave}">Disable Archon Desintegration Wave</CheckBox>
-				<CheckBox Margin="2" IsChecked="{Binding Path=Wiz.NoArcaneStrike}">Disable Archon Arcane Strike</CheckBox>
-                <CheckBox Margin="2" IsChecked="{Binding Path=Wiz.NoArcaneBlast}">Disable Archon Arcane Blast</CheckBox>
+                <CheckBox Margin="2" IsChecked="{Binding Path=Wiz.ArchonElitesOnly}">仅在精英怪时使用御法者</CheckBox>
+                <CheckBox Margin="2" IsChecked="{Binding Path=Wiz.DisableDisintegrationWave}">禁用御法者裂光波</CheckBox>
+				 <CheckBox Margin="2" IsChecked="{Binding Path=Wiz.NoArcaneStrike}">禁用御法者奥术侵袭</CheckBox>
+                <CheckBox Margin="2" IsChecked="{Binding Path=Wiz.NoArcaneBlast}">禁用御法者奥术爆破</CheckBox>
             </UniformGrid>
         </Grid>
         <Grid Grid.Row="9" Margin="2">
             <ScrollViewer Tag="Combat\Avoidance.xaml" DataContext="{Binding Path=Wiz}"/>
         </Grid>
         <!--Reset Button-->
-        <Button Grid.Row="10" Margin="5" HorizontalAlignment="Center" Command="{Binding ResetWizardCommand}">Reset</Button>
+        <Button Grid.Row="10" Margin="5" HorizontalAlignment="Center" Command="{Binding ResetWizardCommand}">重置为默认值</Button>
     </Grid>
 </UserControl>

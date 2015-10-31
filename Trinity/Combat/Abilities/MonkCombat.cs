@@ -57,6 +57,12 @@ namespace Trinity.Combat.Abilities
 
             if (UseOOCBuff)
             {
+                // Epiphany: spirit regen
+                if (CanCastEpiphany())
+                {
+                    return new TrinityPower(SNOPower.X1_Monk_Epiphany);
+                }
+
                 // Mystic ally
                 if (CanCastMysticAlly())
                 {
@@ -133,7 +139,9 @@ namespace Trinity.Combat.Abilities
             }
 
             // Defensive Salvation.
-            if (!Player.IsIncapacitated && Player.CurrentHealthPct <= 0.65 && CanCastMantra(SNOPower.X1_Monk_MantraOfEvasion_v2) &&
+            if (!Player.IsIncapacitated && (Player.CurrentHealthPct <= 0.65 ||
+                Trinity.ObjectCache.Any(o => o.AvoidanceType == AvoidanceType.IceBall) || Trinity.ObjectCache.Any(o => o.AvoidanceType == AvoidanceType.MoltenCore)) 
+                && CanCastMantra(SNOPower.X1_Monk_MantraOfEvasion_v2) &&
                 !CacheData.Buffs.HasBuff(SNOPower.X1_Monk_MantraOfEvasion_v2_Passive, 1) && Settings.Combat.Monk.DisableMantraSpam)
                 return new TrinityPower(SNOPower.X1_Monk_MantraOfEvasion_v2, 3);            
 
@@ -714,7 +722,8 @@ namespace Trinity.Combat.Abilities
                 return true;
 
             // Let's check for Goblins, Current Health, CDR Pylon, movement impaired
-            if (CurrentTarget.IsTreasureGoblin && Settings.Combat.Monk.UseEpiphanyGoblin || Player.CurrentHealthPct <= V.F("Monk.Epiphany.EmergencyHealth") &&
+            if (CurrentTarget != null && CurrentTarget.IsTreasureGoblin && Settings.Combat.Monk.UseEpiphanyGoblin ||
+                Player.CurrentHealthPct <= V.F("Monk.Epiphany.EmergencyHealth") &&
                 Settings.Combat.Monk.EpiphanyEmergencyHealth || GetHasBuff(SNOPower.Pages_Buff_Infinite_Casting) ||
                 ZetaDia.Me.IsFrozen || ZetaDia.Me.IsRooted || ZetaDia.Me.IsFeared || ZetaDia.Me.IsStunned)
                 return true;

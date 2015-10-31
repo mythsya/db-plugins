@@ -18,37 +18,37 @@
     <ScrollViewer>
         <StackPanel>
 
-            <GroupBox Grid.Row="0" Header="Misc Town Run Options">
+            <GroupBox Grid.Row="0" Header="“回城规则”杂项设置">
                 <StackPanel HorizontalAlignment="Center">
                     <UniformGrid Columns="2" HorizontalAlignment="Center">
-                        <CheckBox Content="Open Horadric Cache's" IsChecked="{Binding Path=TownRun.OpenHoradricCaches}" />
-                        <CheckBox ToolTip="TIP: Use Protected Bag Slots" IsChecked="{Binding Path=TownRun.StashLegendaryPotions}" HorizontalAlignment="Left" Content="Stash Legendary Potions" />
-                        <CheckBox ToolTip="TIP: Use Protected Bag Slots" IsChecked="{Binding Path=TownRun.StashVanityItems}" HorizontalAlignment="Left" Content="Stash Vanity Items " />
-                        <CheckBox ToolTip="Stash White Items" IsChecked="{Binding Path=TownRun.StashWhites}"  HorizontalAlignment="Left" Content="Stash Whites" />
-                        <CheckBox ToolTip="Stash Blue Items" IsChecked="{Binding Path=TownRun.StashBlues}" HorizontalAlignment="Left" Content="Stash Blues" />
-                        <CheckBox ToolTip="Trash all Rares" IsChecked="{Binding Path=TownRun.ForceSalvageRares}" HorizontalAlignment="Left" Content="Sell/Salvage All Rares" />
+                        <CheckBox Content="开启赫拉迪姆宝箱" IsChecked="{Binding Path=TownRun.OpenHoradricCaches}" />
+                        <CheckBox ToolTip="TIP: Use Protected Bag Slots" IsChecked="{Binding Path=TownRun.StashLegendaryPotions}" HorizontalAlignment="Left" Content="储存传奇药水" />
+                        <CheckBox ToolTip="TIP: Use Protected Bag Slots" IsChecked="{Binding Path=TownRun.StashVanityItems}" HorizontalAlignment="Left" Content="储存损坏物品 " />
+                        <CheckBox ToolTip="Stash White Items" IsChecked="{Binding Path=TownRun.StashWhites}"  HorizontalAlignment="Left" Content="储存白装" />
+                        <CheckBox ToolTip="Stash Blue Items" IsChecked="{Binding Path=TownRun.StashBlues}" HorizontalAlignment="Left" Content="储存蓝装" />
+                        <CheckBox ToolTip="Trash all Rares" IsChecked="{Binding Path=TownRun.ForceSalvageRares}" HorizontalAlignment="Left" Content="出售/拆除所有黄装" />
                     </UniformGrid>
-                    <CheckBox IsChecked="{Binding TownRun.ApplyPickupValidationToStashing}" ToolTip="Warning: This option is dangerous" HorizontalAlignment="Left" Content="Apply Pickup Validation to Stashing (experts only)" />
-                    <CheckBox ToolTip="Item list needs items to be identified to check their properties." IsChecked="{Binding Path=TownRun.KeepLegendaryUnid}" HorizontalAlignment="Left" Content="Keep Legendaries Unidentified (this will prevent itemlist from working)" />
+                    <CheckBox IsChecked="{Binding TownRun.ApplyPickupValidationToStashing}" ToolTip="警告：该选项很危险" HorizontalAlignment="Left" Content="拾取并储存验证后的物品(不懂不要打勾)" />
+                    <CheckBox ToolTip="“物品列表”需要确定这些装备的属性。" IsChecked="{Binding Path=TownRun.KeepLegendaryUnid}" HorizontalAlignment="Left" Content="不鉴定传奇物品 (勾选该选项会导致“物品列表”无法正常运作)" />
                     <WrapPanel HorizontalAlignment="Center" Margin="0,10,0,0">
-                        <TextBlock Margin="2" Text="Drop Legendaries in Town: " VerticalAlignment="Center"/>
+                        <TextBlock Margin="2" Text="把传奇装备丢弃在城镇: " VerticalAlignment="Center"/>
 
-                        <RadioButton GroupName="DropInTown" Content="None" ToolTip="Drop nothing in town"
+                        <RadioButton GroupName="DropInTown" Content="不丢弃" ToolTip="什么都不丢"
                              IsChecked="{Binding Path=TownRun.DropInTownOption, Converter={StaticResource enumBooleanConverter}, ConverterParameter=None}" VerticalAlignment="Center" Margin="1,1,5,1"/>
 
-                        <RadioButton GroupName="DropInTown" Content="Stash" ToolTip="Drop items that would normally be kept/stashed"
+                        <RadioButton GroupName="DropInTown" Content="储存" ToolTip="丢规则设置里本该保存的"
                              IsChecked="{Binding Path=TownRun.DropInTownOption, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Keep}" VerticalAlignment="Center" Margin="1,1,5,1"/>
 
-                        <RadioButton GroupName="DropInTown" Content="Trash" ToolTip="Drop items that woudl normally be salvaged/sold"
+                        <RadioButton GroupName="DropInTown" Content="拆解" ToolTip="丢规则设置里本该拆解的"
                              IsChecked="{Binding Path=TownRun.DropInTownOption, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Vendor}" VerticalAlignment="Center" Margin="1,1,5,1"/>
 
-                        <RadioButton GroupName="DropInTown" Content="All" ToolTip="Drop it like its hot!"
+                        <RadioButton GroupName="DropInTown" Content="所有" ToolTip="是传奇就丢!"
                              IsChecked="{Binding Path=TownRun.DropInTownOption, Converter={StaticResource enumBooleanConverter}, ConverterParameter=All}" VerticalAlignment="Center" Margin="1,1,5,1"/>
                     </WrapPanel>
                 </StackPanel>
             </GroupBox>
 
-            <GroupBox Grid.Row="1" Header="Free Bag Slots for Town Run">
+            <GroupBox Grid.Row="1" Header="触发回城清理的背包剩余格数">
                 <!-- TownRun Settings -->
                 <Grid Margin="5">
                     <Grid.RowDefinitions>
@@ -59,12 +59,12 @@
                         <ColumnDefinition Width="2*" />
                         <ColumnDefinition Width="3*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="When not in Town:" />
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="不在城镇:" />
                     <Slider Grid.Row="0" Grid.Column="1" Template="{DynamicResource SliderEditable}"
                         Interval="500" Maximum="59" Minimum="0" SmallChange="1" LargeChange="10"
                         TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"
                         Value="{Binding Path=TownRun.FreeBagSlotsA}" />
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="When in Town:" />
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="在城镇中:" />
                     <Slider Grid.Row="1" Grid.Column="1" Template="{DynamicResource SliderEditable}"
                         Interval="500" Maximum="59" Minimum="0" SmallChange="1" LargeChange="10"
                         TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"
@@ -74,39 +74,39 @@
             </GroupBox>
 
 
-            <GroupBox Grid.Row="2" Header="Sell/Salvage Options when item is not stashed">
+            <GroupBox Grid.Row="2" Header="贩卖/拆解选项，当物品设置为不保存时">
                 <StackPanel>
                     <UniformGrid Columns="3">
-                        <TextBlock Margin="2" Text="White Items" VerticalAlignment="Center"/>
-                        <RadioButton GroupName="WhiteSalvage" Content="Sell" ToolTip="Sell all items"
+                        <TextBlock Margin="2" Text="普通装备" VerticalAlignment="Center"/>
+                        <RadioButton GroupName="WhiteSalvage" Content="贩卖" ToolTip="Sell all items"
                              IsChecked="{Binding Path=TownRun.SalvageWhiteItemOption, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Sell}" VerticalAlignment="Center"/>
-                        <RadioButton GroupName="WhiteSalvage" Content="Salvage" ToolTip="Salvage all items, will not sell"
+                        <RadioButton GroupName="WhiteSalvage" Content="拆解" ToolTip="Salvage all items, will not sell"
                              IsChecked="{Binding Path=TownRun.SalvageWhiteItemOption, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Salvage}" VerticalAlignment="Center"/>
 
-                        <TextBlock Margin="2" Text="Magic Items" VerticalAlignment="Center"/>
-                        <RadioButton GroupName="BlueSalvage" Content="Sell" ToolTip="Sell all items"
+                        <TextBlock Margin="2" Text="魔法装备" VerticalAlignment="Center"/>
+                        <RadioButton GroupName="BlueSalvage" Content="贩卖" ToolTip="Sell all items"
                              IsChecked="{Binding Path=TownRun.SalvageBlueItemOption, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Sell}" VerticalAlignment="Center"/>
-                        <RadioButton GroupName="BlueSalvage" Content="Salvage" ToolTip="Salvage all items, will not sell"
+                        <RadioButton GroupName="BlueSalvage" Content="拆解" ToolTip="Salvage all items, will not sell"
                              IsChecked="{Binding Path=TownRun.SalvageBlueItemOption, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Salvage}" VerticalAlignment="Center"/>
 
-                        <TextBlock Margin="2" Text="Rare Items" VerticalAlignment="Center"/>
-                        <RadioButton GroupName="YellowSalvage" Content="Sell" ToolTip="Sell all items"
+                        <TextBlock Margin="2" Text="稀有装备" VerticalAlignment="Center"/>
+                        <RadioButton GroupName="YellowSalvage" Content="贩卖" ToolTip="Sell all items"
                              IsChecked="{Binding Path=TownRun.SalvageYellowItemOption, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Sell}" VerticalAlignment="Center"/>
-                        <RadioButton GroupName="YellowSalvage" Content="Salvage" ToolTip="Salvage all items, will not sell"
+                        <RadioButton GroupName="YellowSalvage" Content="拆解" ToolTip="Salvage all items, will not sell"
                              IsChecked="{Binding Path=TownRun.SalvageYellowItemOption, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Salvage}" VerticalAlignment="Center"/>
 
-                        <TextBlock Margin="2" Text="Legendary Items **" VerticalAlignment="Center"/>
-                        <RadioButton GroupName="LegendarySalvage" Content="Sell" ToolTip="Sell all items"
+                        <TextBlock Margin="2" Text="传奇装备 **" VerticalAlignment="Center"/>
+                        <RadioButton GroupName="LegendarySalvage" Content="贩卖" ToolTip="Sell all items"
                              IsChecked="{Binding Path=TownRun.SalvageLegendaryItemOption, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Sell}" VerticalAlignment="Center"/>
-                        <RadioButton GroupName="LegendarySalvage" Content="Salvage" ToolTip="Salvage all items, will not sell"
+                        <RadioButton GroupName="LegendarySalvage" Content="拆解" ToolTip="Salvage all items, will not sell"
                              IsChecked="{Binding Path=TownRun.SalvageLegendaryItemOption, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Salvage}" VerticalAlignment="Center"/>
 
                     </UniformGrid>
-                    <TextBlock Text="** When using Custom Item Rules or otherwise not stashing Legendaries. Trinity Scoring will always keep Legendaries" TextWrapping="Wrap" />
+                    <TextBlock Text="** ** 当使用自定义物品规则或者不存仓传奇物品的物品规则时。 Trinity评分会总是保存传奇物品" TextWrapping="Wrap" />
                 </StackPanel>
             </GroupBox>
 
-            <GroupBox Grid.Row="3" Header="Max Item Stack Counts">
+            <GroupBox Grid.Row="3" Header="最大物品叠加数">
                 <!-- TownRun Settings -->
                 <Grid Margin="5">
                     <Grid.RowDefinitions>
@@ -121,38 +121,38 @@
                         <ColumnDefinition Width="2*" />
                         <ColumnDefinition Width="3*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Max ForgottenSouls:" />
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="遗忘之魂:" />
                     <Slider Grid.Row="0" Grid.Column="1" Template="{DynamicResource SliderEditable}"
                         Interval="500" Maximum="500000" Minimum="5000" SmallChange="5000" LargeChange="50000"
                         TickFrequency="5000" TickPlacement="BottomRight" IsSnapToTickEnabled="True"
                         Value="{Binding Path=TownRun.MaxStackForgottenSoul}" />
 
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Max DeathsBreaths:" />
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="死亡之息:" />
                     <Slider Grid.Row="1" Grid.Column="1" Template="{DynamicResource SliderEditable}"
                         Interval="500" Maximum="500000" Minimum="5000" SmallChange="5000" LargeChange="50000"
                         TickFrequency="5000" TickPlacement="BottomRight" IsSnapToTickEnabled="True"
                         Value="{Binding Path=TownRun.MaxStackDeathsBreath}" />
 
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Max ReusableParts:" />
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="万用材料:" />
                     <Slider Grid.Row="2" Grid.Column="1" Template="{DynamicResource SliderEditable}"
                         Interval="500" Maximum="500000" Minimum="5000" SmallChange="5000" LargeChange="50000"
                         TickFrequency="5000" TickPlacement="BottomRight" IsSnapToTickEnabled="True"
                         Value="{Binding Path=TownRun.MaxStackReusableParts}" />
 
-                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Max ArcaneDusts:" />
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="奥术之尘:" />
                     <Slider Grid.Row="3" Grid.Column="1" Template="{DynamicResource SliderEditable}"
                         Interval="500" Maximum="500000" Minimum="5000" SmallChange="5000" LargeChange="50000"
                         TickFrequency="5000" TickPlacement="BottomRight" IsSnapToTickEnabled="True"
                         Value="{Binding Path=TownRun.MaxStackArcaneDust}" />
 
-                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Max VeiledCrystals:" />
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="萦雾水晶:" />
                     <Slider Grid.Row="4" Grid.Column="1" Template="{DynamicResource SliderEditable}"
                         Interval="500" Maximum="500000" Minimum="5000" SmallChange="5000" LargeChange="50000"
                         TickFrequency="5000" TickPlacement="BottomRight" IsSnapToTickEnabled="True"
                         Value="{Binding Path=TownRun.MaxStackVeiledCrystal}" />
                 </Grid>
             </GroupBox>
-            <GroupBox Grid.Row="4" Header="Stash/Keep Scoring">
+            <GroupBox Grid.Row="4" Header="储存物品评分">
                 <!--Junk items Settings-->
                 <Grid Margin="5">
                     <Grid.RowDefinitions>
@@ -160,20 +160,20 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="1" Margin="0,0,0,0"  HorizontalAlignment="Center" Orientation="Vertical" MinWidth="400">
-                        <TextBlock Text="Weapon Score : (70 000+ recommended)" Margin="5"/>
+                        <TextBlock Text="武器评分 : (70 000+ 推荐)" Margin="5"/>
                         <Slider Template="{DynamicResource SliderLTB}" 
                     Interval="500" SmallChange="1000" LargeChange="10000" 
                     Maximum="110000" Minimum="0" TickPlacement="BottomRight" 
                     Value="{Binding Path=TownRun.WeaponScore}" 
                     IsSnapToTickEnabled="True" TickFrequency="1000"
                     HorizontalAlignment="Stretch" Margin="2"/>
-                        <TextBlock Text="Armor Score : (16 000+ recommended)" Margin="5"/>
+                        <TextBlock Text="护甲评分 : (推荐16 000+)" Margin="5"/>
                         <Slider Template="{DynamicResource SliderLTB}" 
                     Interval="500"  SmallChange="1000" LargeChange="5000" 
                     Maximum="60000" Minimum="0" TickFrequency="1000" TickPlacement="BottomRight" 
                     Value="{Binding Path=TownRun.ArmorScore}"  IsSnapToTickEnabled="True"
                     HorizontalAlignment="Stretch" Margin="2"/>
-                        <TextBlock Text="Jewelry Score : (15 000+ recommended)" Margin="5"/>
+                        <TextBlock Text="饰品评分 : (推荐15 000+)" Margin="5"/>
                         <Slider Template="{DynamicResource SliderLTB}" 
                     Interval="500"  SmallChange="1000" LargeChange="5000" 
                     Maximum="60000" Minimum="0" TickFrequency="1000" TickPlacement="BottomRight" 
@@ -202,7 +202,7 @@
             <Button Grid.Row="1" Margin="50,0,50,0" HorizontalAlignment="Center" Content="Order Stash" Command="{Binding Path=OrderStashCommand}"/>
         </Grid> -->
             <!--Reset Button-->
-            <Button Grid.Row="6" Margin="5" HorizontalAlignment="Center" Command="{Binding ResetTownRunCommand}">Reset</Button>
+            <Button Grid.Row="6" Margin="5" HorizontalAlignment="Center" Command="{Binding ResetTownRunCommand}">重置为默认值</Button>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

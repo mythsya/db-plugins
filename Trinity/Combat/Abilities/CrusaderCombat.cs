@@ -48,21 +48,24 @@ namespace Trinity.Combat.Abilities
                 //There are doubles?? not sure which is correct yet
                 // Laws of Hope
                 // Laws of Hope2
-                if (CanCast(SNOPower.X1_Crusader_LawsOfHope2) && (TargetUtil.EliteOrTrashInRange(16f) || TargetUtil.AnyMobsInRange(15f, 5)))
+                if (CanCast(SNOPower.X1_Crusader_LawsOfHope2) && (TargetUtil.EliteOrTrashInRange(16f) || TargetUtil.AnyMobsInRange(15f, 5))
+                    && !CacheData.Buffs.HasBuff(SNOPower.X1_Crusader_LawsOfHope_Passive2, 6))
                 {
                     return new TrinityPower(SNOPower.X1_Crusader_LawsOfHope2);
                 }
 
                 // LawsOfJustice
                 // LawsOfJustice2
-                if (CanCast(SNOPower.X1_Crusader_LawsOfJustice2) && (TargetUtil.EliteOrTrashInRange(16f) || Player.CurrentHealthPct <= CrusaderSettings.LawsOfJusticeHpPct || TargetUtil.AnyMobsInRange(15f, 5)))
+                if (CanCast(SNOPower.X1_Crusader_LawsOfJustice2) && !CacheData.Buffs.HasBuff(SNOPower.X1_Crusader_LawsOfJustice_Passive2, 6) &&
+                    (TargetUtil.EliteOrTrashInRange(16f) || Player.CurrentHealthPct <= CrusaderSettings.LawsOfJusticeHpPct || TargetUtil.AnyMobsInRange(15f, 5)))
                 {
                     return new TrinityPower(SNOPower.X1_Crusader_LawsOfJustice2);
                 }
 
                 // LawsOfValor
                 // LawsOfValor2
-                if (CanCast(SNOPower.X1_Crusader_LawsOfValor2) && (TargetUtil.EliteOrTrashInRange(16f) || TargetUtil.AnyMobsInRange(15f, 5) || Settings.Combat.Crusader.SpamLawsOfValor))
+                if (CanCast(SNOPower.X1_Crusader_LawsOfValor2) && !CacheData.Buffs.HasBuff(SNOPower.X1_Crusader_LawsOfValor_Passive2, 6) &&
+                    (TargetUtil.EliteOrTrashInRange(16f) || TargetUtil.AnyMobsInRange(15f, 5) || Settings.Combat.Crusader.SpamLawsOfValor))
                 {
                     return new TrinityPower(SNOPower.X1_Crusader_LawsOfValor2);
                 }
@@ -250,21 +253,23 @@ namespace Trinity.Combat.Abilities
 
                 //There are doubles?? not sure which is correct yet
                 // Laws of Hope2
-                if (CanCast(SNOPower.X1_Crusader_LawsOfHope2) && Player.CurrentHealthPct <= CrusaderSettings.LawsOfHopeHpPct)
+                if (CanCast(SNOPower.X1_Crusader_LawsOfHope2) && Player.CurrentHealthPct <= CrusaderSettings.LawsOfHopeHpPct
+                    && !CacheData.Buffs.HasBuff(SNOPower.X1_Crusader_LawsOfHope_Passive2, 6))
                 {
                     return new TrinityPower(SNOPower.X1_Crusader_LawsOfHope2);
                 }
 
                 // LawsOfJustice2
-                if (CanCast(SNOPower.X1_Crusader_LawsOfJustice2) && (TargetUtil.EliteOrTrashInRange(16f) || Player.CurrentHealthPct <= CrusaderSettings.LawsOfJusticeHpPct))
+                if (CanCast(SNOPower.X1_Crusader_LawsOfJustice2) && !CacheData.Buffs.HasBuff(SNOPower.X1_Crusader_LawsOfJustice2)
+                    && (TargetUtil.EliteOrTrashInRange(16f) || Player.CurrentHealthPct <= CrusaderSettings.LawsOfJusticeHpPct))
                 {
-                    return new TrinityPower(SNOPower.X1_Crusader_LawsOfJustice2);
+                    return new TrinityPower(SNOPower.X1_Crusader_LawsOfJustice_Passive2, 6);
                 }
 
                 // LawsOfValor2
-                if (CanCast(SNOPower.X1_Crusader_LawsOfValor2) && TargetUtil.EliteOrTrashInRange(16f))
+                if (CanCast(SNOPower.X1_Crusader_LawsOfValor2) && TargetUtil.EliteOrTrashInRange(16f) && !CacheData.Buffs.HasBuff(SNOPower.X1_Crusader_LawsOfValor2))
                 {
-                    return new TrinityPower(SNOPower.X1_Crusader_LawsOfValor2);
+                    return new TrinityPower(SNOPower.X1_Crusader_LawsOfValor_Passive2, 6);
                 }
             }
 

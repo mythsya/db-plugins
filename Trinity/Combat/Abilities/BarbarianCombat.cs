@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Trinity.Config.Combat;
 using Trinity.Reference;
 using Trinity.Technicals;
 using Zeta.Bot;
 using Zeta.Common;
-using Zeta.Common.Helpers;
 using Zeta.Game;
 using Zeta.Game.Internals.Actors;
 using Zeta.Game.Internals.SNO;
@@ -19,29 +17,24 @@ namespace Trinity.Combat.Abilities
         private static bool _allowSprintOoc = true;
         private const float MaxFuriousChargeDistance = 300f;
 
-        private static TrinityPower QueuedPower { get; set; }        
-
-        static BarbarianCombat()
-        {
-            SkillUtils.SetSkillMeta(SkillsDefaultMeta.Barbarian.ToList());
-        }
+        private static TrinityPower QueuedPower { get; set; }
 
         public static TrinityPower GetPower()
         {
-            TrinityPower power = null;
+            TrinityPower power;
 
             if (UseDestructiblePower)
-                power = DestroyObjectPower;
+                return DestroyObjectPower;
 
             if (UseOOCBuff)
             {
                 // Call of The Ancients
-                if (IsNull(power) && CanUseCallOfTheAncients && Sets.ImmortalKingsCall.IsFullyEquipped)
-                    power = PowerCallOfTheAncients;
+                if (CanUseCallOfTheAncients && Sets.ImmortalKingsCall.IsFullyEquipped)
+                    return PowerCallOfTheAncients;
 
                 // Sprint OOC
-                if (IsNull(power) && CanUseSprintOOC)
-                    power = PowerSprint;
+                if (CanUseSprintOOC)
+                    return PowerSprint;
             }
             else
             {
@@ -59,131 +52,131 @@ namespace Trinity.Combat.Abilities
             // Ignore Pain when near Frozen
             if ((ZetaDia.Me.IsFrozen || ZetaDia.Me.IsRooted || Trinity.ObjectCache.Any(o => o.AvoidanceType == AvoidanceType.IceBall)) && CanCastIgnorePain)
             {
-                power = PowerIgnorePain;
                 Logger.Log("Used Ignore Pain to prevent Frozen");
+                return PowerIgnorePain;
             }
 
             if (!UseOOCBuff)
             {
                 // Refresh Frenzy
-                if (IsNull(power) && CanCast(SNOPower.Barbarian_Frenzy) && TimeSincePowerUse(SNOPower.Barbarian_Frenzy) > 3000 && TimeSincePowerUse(SNOPower.Barbarian_Frenzy) < 4000)
-                    power = PowerFrenzy;
+                if (CanCast(SNOPower.Barbarian_Frenzy) && TimeSincePowerUse(SNOPower.Barbarian_Frenzy) > 3000 && TimeSincePowerUse(SNOPower.Barbarian_Frenzy) < 4000)
+                    return PowerFrenzy;
 
                 // Refresh Bash - Punish
-                if (IsNull(power) && CanCast(SNOPower.Barbarian_Bash) && TimeSincePowerUse(SNOPower.Barbarian_Bash) > 4000 && TimeSincePowerUse(SNOPower.Barbarian_Bash) < 5000)
-                    power = PowerBash;
+                if (CanCast(SNOPower.Barbarian_Bash) && TimeSincePowerUse(SNOPower.Barbarian_Bash) > 4000 && TimeSincePowerUse(SNOPower.Barbarian_Bash) < 5000)
+                    return PowerBash;
             }
+
             // Ignore Pain when low on health
-            if (IsNull(power) && CanCastIgnorePain)
-                power = PowerIgnorePain;
+            if (CanCastIgnorePain)
+                return PowerIgnorePain;
 
             // WOTB
-            if (IsNull(power) && CanUseWrathOfTheBerserker)
-                power = PowerWrathOfTheBerserker;
+            if (CanUseWrathOfTheBerserker)
+                return PowerWrathOfTheBerserker;
 
             // Call of the Ancients
-            if (IsNull(power) && CanUseCallOfTheAncients)
-                power = PowerCallOfTheAncients;
+            if (CanUseCallOfTheAncients)
+                return PowerCallOfTheAncients;
 
             // Leap with Earth Set.
-            if (IsNull(power) && CanUseLeap && Sets.MightOfTheEarth.IsThirdBonusActive)
-                power = PowerLeap;
+            if (CanUseLeap && Sets.MightOfTheEarth.IsThirdBonusActive)
+                return PowerLeap;
 
             // Earthquake
-            if (IsNull(power) && CanUseEarthquake)
-                power = PowerEarthquake;
+            if (CanUseEarthquake)
+                return PowerEarthquake;
 
             // Avalanche
-            if (IsNull(power) && CanUseAvalanche)
-                power = PowerAvalanche;
+            if (CanUseAvalanche)
+                return PowerAvalanche;
 
             // War Cry
-            if (IsNull(power) && CanUseWarCry)
-                power = PowerWarCry;
+            if (CanUseWarCry)
+                return PowerWarCry;
 
             // Battle Rage
-            if (IsNull(power) && CanUseBattleRage)
-                power = PowerBattleRage;
+            if (CanUseBattleRage)
+                return PowerBattleRage;
 
             // Rend
-            if (IsNull(power) && CanUseRend)
-                power = PowerRend;
+            if (CanUseRend)
+                return PowerRend;
 
             // Overpower
-            if (IsNull(power) && CanUseOverPower)
-                power = PowerOverpower;
+            if (CanUseOverPower)
+                return PowerOverpower;
 
             // Threatening Shout
-            if (IsNull(power) && CanUseThreatingShout)
-                power = PowerThreateningShout;
+            if (CanUseThreatingShout)
+                return PowerThreateningShout;
 
             // Ground Stomp
-            if (IsNull(power) && CanUseGroundStomp)
-                power = PowerGroundStomp;
+            if (CanUseGroundStomp)
+                return PowerGroundStomp;
 
             // Revenge
-            if (IsNull(power) && CanUseRevenge)
-                power = PowerRevenge;
+            if (CanUseRevenge)
+                return PowerRevenge;
 
             // Ancient Spear
-            if (IsNull(power) && CanUseAncientSpear)
-                power = PowerAncientSpear;
+            if (CanUseAncientSpear)
+                return PowerAncientSpear;
 
             // Sprint
-            if (IsNull(power) && CanUseSprint)
-                power = PowerSprint;
+            if (CanUseSprint)
+                return PowerSprint;
 
             // Furious Charge
-            if (IsNull(power) && CanUseFuriousCharge)
-                power = PowerFuriousCharge;
+            if (CanUseFuriousCharge)
+                return PowerFuriousCharge;
 
             // Leap
-            if (IsNull(power) && CanUseLeap)
-                power = PowerLeap;
+            if (CanUseLeap)
+                return PowerLeap;
 
             // Seismic Slam
-            if (IsNull(power) && CanUseSeismicSlam)
-                power = PowerSeismicSlam;
+            if (CanUseSeismicSlam)
+                return PowerSeismicSlam;
 
             // Bash to 3 stacks (Punish)
-            if (IsNull(power) && CanUseBashTo3)
-                power = PowerBash;
+            if (CanUseBashTo3)
+                return PowerBash;
 
             // Frenzy to 5 stacks (Maniac)
-            if (IsNull(power) && CanUseFrenzyTo5)
-                power = PowerFrenzy;
+            if (CanUseFrenzyTo5)
+                return PowerFrenzy;
 
             // HOTA Elites
-            if (IsNull(power) && CanUseHammerOfTheAncientsElitesOnly)
-                power = PowerHammerOfTheAncients;
+            if (CanUseHammerOfTheAncientsElitesOnly)
+                return PowerHammerOfTheAncients;
 
             // Whirlwind
-            if (IsNull(power) && CanUseWhirlwind)
-                power = PowerWhirlwind;
+            if (CanUseWhirlwind)
+                return PowerWhirlwind;
 
             // Hammer of the Ancients
-            if (IsNull(power) && CanUseHammerOfTheAncients)
-                power = PowerHammerOfTheAncients;
+            if (CanUseHammerOfTheAncients)
+                return PowerHammerOfTheAncients;
 
             // Weapon Throw
-            if (IsNull(power) && CanUseWeaponThrow)
-                power = PowerWeaponThrow;
+            if (CanUseWeaponThrow)
+                return PowerWeaponThrow;
 
             // Frenzy Fury Generator
-            if (IsNull(power) && CanUseFrenzy)
-                power = PowerFrenzy;
+            if (CanUseFrenzy)
+                return PowerFrenzy;
 
             // Bash Fury Generator
-            if (IsNull(power) && CanUseBash)
-                power = PowerBash;
+            if (CanUseBash)
+                return PowerBash;
 
             // Cleave Fury Generator
-            if (IsNull(power) && CanUseCleave)
-                power = PowerCleave;
+            if (CanUseCleave)
+                return PowerCleave;
 
             // Default Attacks
-            if (IsNull(power))
-                power = DefaultPower;
+            return DefaultPower;
 
             return power;
         }
@@ -335,7 +328,7 @@ namespace Trinity.Combat.Abilities
             get
             {
                 var shouldRefreshTaeguk = GetHasBuff(SNOPower.ItemPassive_Unique_Gem_015_x1) && !Hotbar.Contains(SNOPower.Barbarian_Whirlwind) &&
-                    Skills.Barbarian.BattleRage.TimeSinceUse >= 2500 && Skills.Barbarian.BattleRage.TimeSinceUse <= 3000;
+                    Skills.Barbarian.BattleRage.TimeSinceUse >= 2300 && Skills.Barbarian.BattleRage.TimeSinceUse <= 3000;
 
                 return !Player.IsIncapacitated && CanCast(SNOPower.Barbarian_BattleRage, CanCastFlags.NoTimer) &&
                     (!GetHasBuff(SNOPower.Barbarian_BattleRage) || ShouldFuryDump || shouldRefreshTaeguk) &&
@@ -434,7 +427,7 @@ namespace Trinity.Combat.Abilities
                 var currentEliteTargetInRange = CurrentTarget.RadiusDistance > 7f && CurrentTarget.IsBossOrEliteRareUnique && CurrentTarget.RadiusDistance <= 35f;
                 var shouldRegenFury = CurrentTarget.NearbyUnitsWithinDistance(10) >= 3 && Player.PrimaryResource <= 40;
 
-                if (Sets.BastionsOfWill.IsFullyEquipped && !Sets.TheLegacyOfRaekor.IsFullyEquipped)
+                if ((Sets.BastionsOfWill.IsFullyEquipped || Legendary.StrongarmBracers.IsEquipped) && !Sets.TheLegacyOfRaekor.IsFullyEquipped)
                     return CanCast(SNOPower.Barbarian_FuriousCharge, CanCastFlags.NoTimer) && !IsCurrentlyAvoiding &&
                         Skills.Barbarian.FuriousCharge.Charges > 0 && (TimeSincePowerUse(SNOPower.Barbarian_FuriousCharge) > 4000 || shouldRegenFury);
 
@@ -597,7 +590,7 @@ namespace Trinity.Combat.Abilities
                     // Check for energy reservation amounts
                     Player.PrimaryResource >= V.D("Barbarian.Whirlwind.MinFury") &&
                     // If they have battle-rage, make sure it's up
-                    (!Hotbar.Contains(SNOPower.Barbarian_BattleRage) || (Hotbar.Contains(SNOPower.Barbarian_BattleRage) && GetHasBuff(SNOPower.Barbarian_BattleRage)));
+                    (!Hotbar.Contains(SNOPower.Barbarian_BattleRage) || GetHasBuff(SNOPower.Barbarian_BattleRage));
             }
         }
 
@@ -703,8 +696,7 @@ namespace Trinity.Combat.Abilities
             get
             {
                 // For Call of Arreat rune. Will do all quakes on top of each other
-                bool hasCallOfArreat = CacheData.Hotbar.ActiveSkills.Any(p => p.Power == SNOPower.Barbarian_Leap && p.RuneIndex == 0);
-                if (Legendary.LutSocks.IsEquipped && hasCallOfArreat)
+                if (Legendary.LutSocks.IsEquipped && Runes.Barbarian.CallOfArreat.IsActive)
                 {
                     Vector3 aoeTarget = TargetUtil.GetBestClusterPoint(7f, 9f, false);
                     return new TrinityPower(SNOPower.Barbarian_Leap, V.F("Barbarian.Leap.UseRange"), aoeTarget);
@@ -718,8 +710,20 @@ namespace Trinity.Combat.Abilities
         }
         public static TrinityPower PowerRend { get { return new TrinityPower(SNOPower.Barbarian_Rend, V.I("Barbarian.Rend.TickDelay"), V.I("Barbarian.Rend.TickDelay")); } }
         public static TrinityPower PowerOverpower { get { return new TrinityPower(SNOPower.Barbarian_Overpower); } }
-        public static TrinityPower PowerSeismicSlam { get { return new TrinityPower(SNOPower.Barbarian_SeismicSlam, V.F("Barbarian.SeismicSlam.UseRange"), CurrentTarget.ACDGuid); } }
-        public static TrinityPower PowerAncientSpear
+
+        public static TrinityPower PowerSeismicSlam
+        {
+            get
+            {
+                var target = TargetUtil.UnitsPlayerFacing(20f) >= 6 ? TargetUtil.GetClosestUnit(12f) : TargetUtil.GetBestClusterUnit(12f, 12f);
+
+                if (target != null)
+                    return new TrinityPower(SNOPower.Barbarian_SeismicSlam, V.F("Barbarian.HammerOfTheAncients.UseRange"), target.Position);
+                return new TrinityPower(SNOPower.Barbarian_SeismicSlam, V.F("Barbarian.HammerOfTheAncients.UseRange"), CurrentTarget.Position);
+            }
+        }
+
+    public static TrinityPower PowerAncientSpear
         {
             get
             {
@@ -790,23 +794,6 @@ namespace Trinity.Combat.Abilities
             set { _allowSprintOoc = value; }
         }
 
-        private static bool BarbHasNoPrimary
-        {
-            get
-            {
-                return !(Hotbar.Contains(SNOPower.Barbarian_Frenzy) ||
-                    Hotbar.Contains(SNOPower.Barbarian_Bash) ||
-                    Hotbar.Contains(SNOPower.Barbarian_Cleave));
-            }
-        }
-
-        private static bool HasMoreThanOnePrimary
-        {
-            get
-            {
-                return Hotbar.Count(i => i == SNOPower.Barbarian_Frenzy || i == SNOPower.Barbarian_Bash || i == SNOPower.Barbarian_Cleave) > 1;
-            }
-        }
         private static bool ShouldFuryDump
         {
             get

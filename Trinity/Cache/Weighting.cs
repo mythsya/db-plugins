@@ -102,16 +102,7 @@ namespace Trinity
                 bool usingTownPortal = TownRun.IsTryingToTownPortal();
 
                 bool shouldIgnoreTrashMobs =
-                    (!(isKillBounty || Player.InActiveEvent) &&
-                     !CombatBase.IsQuestingMode &&
-                     !inQuestArea &&
-                     !usingTownPortal &&
-                     !profileTagCheck &&
-                     movementSpeed >= 1 &&
-                     Settings.Combat.Misc.TrashPackSize > 1 &&
-                     Player.Level >= 15 &&
-                     Player.CurrentHealthPct > 0.10 &&
-                     DateTime.UtcNow.Subtract(PlayerMover.LastRecordedAnyStuck).TotalMilliseconds > 500);
+                    !usingTownPortal;
 
                 bool shouldIgnoreBosses = healthGlobeEmergency || getHiPriorityShrine || getHiPriorityContainer;
 
@@ -195,7 +186,7 @@ namespace Trinity
                                     break;
                                 }
 
-                                // If any units between us and target, reduce weight, for monk only
+                                // If any units between us and target, reduce weight, for monk and barb
                                 if (CombatBase.KiteDistance <= 0 && cacheObject.RadiusDistance > 9f &&
                                     CacheData.MonsterObstacles.Any(cp => MathUtil.IntersectsPath(cp.Position, cp.Radius * 1.2f, Player.Position, cacheObject.Position)))
                                 {
@@ -226,12 +217,12 @@ namespace Trinity
                                     int nearbyMonsterCount = ObjectCache.Count(u => u.ACDGuid != cacheObject.ACDGuid && u.IsTrashMob && u.HitPoints > 0 &&
                                         cacheObject.Position.Distance2D(u.Position) <= Settings.Combat.Misc.NonEliteRange);
 
-                                    bool shouldIgnoreTrashMob = shouldIgnoreTrashMobs && nearbyMonsterCount < Settings.Combat.Misc.TrashPackSize && (CombatBase.IgnoringElites || !elitesInRangeOfUnit);
+                                    bool shouldIgnoreTrashMob = shouldIgnoreTrashMobs && nearbyMonsterCount < Settings.Combat.Misc.TrashPackSize;
 
-                                    // Ignore trash mobs < 15% health or 50% health with a DoT
-                                    if (cacheObject.IsTrashMob && shouldIgnoreTrashMob &&
+                                    // Ignore trash mobs
+                                    if (cacheObject.IsTrashMob && (shouldIgnoreTrashMob ||
                                         (cacheObject.HitPointsPct < Settings.Combat.Misc.IgnoreTrashBelowHealth ||
-                                         cacheObject.HitPointsPct < Settings.Combat.Misc.IgnoreTrashBelowHealthDoT && cacheObject.HasDotDPS) && !cacheObject.IsQuestMonster && !cacheObject.IsMinimapActive)
+                                         cacheObject.HitPointsPct < Settings.Combat.Misc.IgnoreTrashBelowHealthDoT && cacheObject.HasDotDPS)))
                                     {
                                         objWeightInfo += "Ignoring Health/DoT ";
                                         ignoring = true;
@@ -262,7 +253,7 @@ namespace Trinity
                                 if (CombatBase.ShouldIgnore(cacheObject))
                                 {
                                     Logger.Log(LogCategory.Weight, "Ignoring {0} due to ignore setting", cacheObject.InternalName);
-                                    objWeightInfo += "ReflectsDamage ";
+                                    objWeightInfo += "Ignoring ";
                                     break;
                                 }
 

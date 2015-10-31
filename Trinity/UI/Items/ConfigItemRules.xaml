@@ -27,41 +27,41 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0"  Text="Item Rules Configuration" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+        <TextBlock Grid.Row="0"  Text="物品规则设置" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
 
         <UniformGrid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Rows="3" Columns="2">
-            <TextBlock Text="Use Rule Set: " Margin="0,0,10,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <TextBlock Text="使用规则设置: " Margin="0,0,10,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
             <ComboBox Width="150" SelectedValuePath="Tag" SelectedValue="{Binding Path=ItemRules.ItemRuleType}">
-                <ComboBoxItem Content="Soft" Tag="Soft" IsSelected="True" ToolTip="Use ItemRules\\Soft\\" />
-                <ComboBoxItem Content="Hard" Tag="Hard" ToolTip="Use ItemRules\\Hard\\" />
-                <ComboBoxItem Content="Custom* RTFM!" Tag="Custom" ToolTip="Use Custom Path" Foreground="Red" />
+                <ComboBoxItem Content="宽松" Tag="Soft" IsSelected="True" ToolTip="Use ItemRules\\Soft\\" />
+                <ComboBoxItem Content="严格" Tag="Hard" ToolTip="Use ItemRules\\Hard\\" />
+                <ComboBoxItem Content="自定义* 新手慎用!" Tag="Custom" ToolTip="Use Custom Path" Foreground="Red" />
             </ComboBox>
-            <TextBlock Text="Pickup Log Level: " Margin="0,0,10,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <TextBlock Text="拾取物品等级: " Margin="0,0,10,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
             <ComboBox Width="150" SelectedValuePath="Tag" SelectedValue="{Binding Path=ItemRules.PickupLogLevel}">
-                <ComboBoxItem Content="Legendary" Tag="Legendary" ToolTip="Log Legendary Items Only" Foreground="Orange" Background="Black" />
-                <ComboBoxItem Content="Rare" Tag="Rare" IsSelected="True" ToolTip="Log Legendary Rare And Higher Only" Foreground="Yellow" Background="Black" />
-                <ComboBoxItem Content="Magic" Tag="Magic" ToolTip="Log Magic Items And Higher Only" Foreground="Blue" Background="Black" />
-                <ComboBoxItem Content="Normal" Tag="Normal" ToolTip="Log Normal Items And Higher Only" Foreground="White" Background="Black" />
+                <ComboBoxItem Content="传奇物品" Tag="Legendary" ToolTip="Log Legendary Items Only" Foreground="Orange" Background="Black" />
+                <ComboBoxItem Content="稀有物品" Tag="Rare" IsSelected="True" ToolTip="Log Legendary Rare And Higher Only" Foreground="Yellow" Background="Black" />
+                <ComboBoxItem Content="魔法物品" Tag="Magic" ToolTip="Log Magic Items And Higher Only" Foreground="Blue" Background="Black" />
+                <ComboBoxItem Content="普通" Tag="Normal" ToolTip="Log Normal Items And Higher Only" Foreground="White" Background="Black" />
             </ComboBox>
-            <TextBlock Text="Keep Log Level: " Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <TextBlock Text="存储日志等级: " Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
             <ComboBox Width="150" SelectedValuePath="Tag" SelectedValue="{Binding Path=ItemRules.KeepLogLevel}">
-                <ComboBoxItem Content="Legendary" Tag="Legendary" ToolTip="Log Legendary Items Only" Foreground="Orange" Background="Black" />
-                <ComboBoxItem Content="Rare" Tag="Rare" IsSelected="True" ToolTip="Log Legendary Rare And Higher Only" Foreground="Yellow" Background="Black" />
-                <ComboBoxItem Content="Magic" Tag="Magic" ToolTip="Log Magic Items And Higher Only" Foreground="Blue" Background="Black" />
-                <ComboBoxItem Content="Normal" Tag="Normal" ToolTip="Log Normal Items And Higher Only" Foreground="White" Background="Black" />
+                <ComboBoxItem Content="传奇物品" Tag="Legendary" ToolTip="Log Legendary Items Only" Foreground="Orange" Background="Black" />
+                <ComboBoxItem Content="稀有物品" Tag="Rare" IsSelected="True" ToolTip="Log Legendary Rare And Higher Only" Foreground="Yellow" Background="Black" />
+                <ComboBoxItem Content="魔法物品" Tag="Magic" ToolTip="Log Magic Items And Higher Only" Foreground="Blue" Background="Black" />
+                <ComboBoxItem Content="普通" Tag="Normal" ToolTip="Log Normal Items And Higher Only" Foreground="White" Background="Black" />
             </ComboBox>
         </UniformGrid>
         <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Stretch">
-            <CheckBox Margin="25,5" IsChecked="{Binding Path=ItemRules.Debug}">Debug ItemRules</CheckBox>
-            <CheckBox Margin="25,5" IsChecked="{Binding Path=ItemRules.UseItemIDs}">Use Item ID's instead of names</CheckBox>
+            <CheckBox Margin="25,5" IsChecked="{Binding Path=ItemRules.Debug}">调试物品规则</CheckBox>
+            <CheckBox Margin="25,5" IsChecked="{Binding Path=ItemRules.UseItemIDs}">使用物品ID替代名称</CheckBox>
         </StackPanel>
         <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding Path=ItemRules.ItemRuleType, Converter={StaticResource enumVisibilityConverter}, ConverterParameter=Custom}">
-            <TextBlock Text="Optional Custom Item Rule Set Path:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0" />
+            <TextBlock Text="选择自定义规则的路径:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0" />
             <TextBox Width="150" IsEnabled="True" Text="{Binding Path=ItemRules.ItemRuleSetPath}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <Button Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding LoadItemRuleSetCommand}">Browse</Button>
+            <Button Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding LoadItemRuleSetCommand}">浏览</Button>
         </StackPanel>
         <StackPanel Grid.Row="6" >
-            <CheckBox Margin="25,5" IsChecked="{Binding Path=ItemRules.AlwaysStashAncients}">Always Stash Ancients</CheckBox>
+            <CheckBox Margin="25,5" IsChecked="{Binding Path=ItemRules.AlwaysStashAncients}">总是储存远古</CheckBox>
         </StackPanel>
 
         <!--Reset Buttons -->
@@ -70,8 +70,8 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button Margin="5" Grid.Column="0" HorizontalAlignment="Center" Command="{Binding ResetItemCommand}">Reset Trinity Defaults</Button>
-            <Button Margin="5" Grid.Column="1" HorizontalAlignment="Center" Command="{Binding ReloadScriptRulesCommand}">Reload Script Rules</Button>
+            <Button Margin="5" Grid.Column="0" HorizontalAlignment="Center" Command="{Binding ResetItemCommand}">恢复默认</Button>
+            <Button Margin="5" Grid.Column="1" HorizontalAlignment="Center" Command="{Binding ReloadScriptRulesCommand}">载入脚本规则</Button>
         </Grid>
 
 

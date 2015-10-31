@@ -19,22 +19,22 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TabControl>
-            <TabItem Header="Combat" Foreground="{DynamicResource TextBrush}">
+            <TabItem Header="战斗" Foreground="{DynamicResource TextBrush}">
                 <Border Tag="ConfigCombat.xaml"/>
             </TabItem>
-            <TabItem Header="Objects" Foreground="{DynamicResource TextBrush}">
+            <TabItem Header="物体" Foreground="{DynamicResource TextBrush}">
                 <Border Tag="ConfigObjects.xaml"/>
             </TabItem>
-            <TabItem Header="Items" Foreground="{DynamicResource TextBrush}">
+            <TabItem Header="物品" Foreground="{DynamicResource TextBrush}">
                 <Border Tag="ConfigItems.xaml"/>
             </TabItem>
-            <TabItem Header="Advanced" Foreground="{DynamicResource TextBrush}">
+            <TabItem Header="高级" Foreground="{DynamicResource TextBrush}">
                 <Border Tag="ConfigAdvanced.xaml"/>
             </TabItem>
-            <TabItem Header="Variables" Foreground="{DynamicResource TextBrush}">
+            <TabItem Header="变量" Foreground="{DynamicResource TextBrush}">
                 <Border Tag="ConfigTVars.xaml"/>
             </TabItem>
-            <TabItem Header="Debug" Foreground="{DynamicResource TextBrush}" Visibility="{Binding Path=DebugVisibility}">
+            <TabItem Header="调试" Foreground="{DynamicResource TextBrush}" Visibility="{Binding Path=DebugVisibility}">
                 <Border Tag="DebugTab.xaml"/>
             </TabItem>
         </TabControl>
@@ -46,8 +46,8 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="1" Command="{Binding ResetAllCommand}" Margin="4">Reset all settings</Button>
-            <Button Grid.Column="3" Command="{Binding SaveCommand}" Margin="4">Save settings</Button>
+            <Button Grid.Column="1" Command="{Binding ResetAllCommand}" Margin="4">重置所有设置</Button>
+            <Button Grid.Column="3" Command="{Binding SaveCommand}" Margin="4">保存设置</Button>
         </Grid>
     </Grid>
 </UserControl>

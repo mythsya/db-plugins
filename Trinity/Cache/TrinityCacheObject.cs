@@ -284,10 +284,10 @@ namespace Trinity
         public bool HasBeenInLoS { get; set; }
 
         [NoCopy]
-        public bool IsBossOrEliteRareUnique { get { return (this.IsUnit && (IsEliteRareUnique || IsBoss)); } }
+        public bool IsBossOrEliteRareUnique { get { return (IsUnit && (IsEliteRareUnique || IsBoss)); } }
 
         [NoCopy]
-        public bool IsTrashMob { get { return (this.IsUnit && !(IsEliteRareUnique || IsBoss || IsTreasureGoblin)); } }
+        public bool IsTrashMob { get { return (IsUnit && !(IsEliteRareUnique || IsBoss || IsTreasureGoblin || IsMinion)); } }
 
         [NoCopy]
         public bool IsMe { get { return RActorGuid == Trinity.Player.RActorGuid; } }

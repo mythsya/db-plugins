@@ -24,8 +24,8 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 
-                <TextBlock Margin="2" Text="Radius" FontWeight="Bold" Grid.Column="1" TextAlignment="Center"/>
-                <TextBlock Margin="2" Text="Health %" FontWeight="Bold" Grid.Column="2" TextAlignment="Center"/>
+                <TextBlock Margin="2" Text="半径" FontWeight="Bold" Grid.Column="1" TextAlignment="Center"/>
+                <TextBlock Margin="2" Text="血量 %" FontWeight="Bold" Grid.Column="2" TextAlignment="Center"/>
             </Grid>
             <!-- Arcane -->
             <Grid>
@@ -34,7 +34,7 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="2" Text="Arcane" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock Margin="2" Text="强奥" FontWeight="Bold" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
@@ -55,7 +55,7 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="2" Text="Azmo Bodies" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock Margin="2" Text="阿兹莫丹落尸" FontWeight="Bold" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="60" Minimum="2" 
                             SmallChange="1" LargeChange="5"
@@ -76,7 +76,7 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="2" Text="Azmo Pools" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock Margin="2" Text="阿兹莫丹黑水" FontWeight="Bold" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="60" Minimum="2" 
                             SmallChange="1" LargeChange="5"
@@ -97,7 +97,7 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="2" Text="Bee/Wasps" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock Margin="2" Text="小蜜蜂" FontWeight="Bold" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
@@ -118,7 +118,7 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="2" Text="Desecrator" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock Margin="2" Text="亵渎" FontWeight="Bold" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
@@ -139,7 +139,7 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="2" Text="FrozenPulse" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock Margin="2" Text="冰冻冲击" FontWeight="Bold" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
@@ -160,7 +160,7 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="2" Text="Ghom Gas" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock Margin="2" Text="冈姆毒气云" FontWeight="Bold" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
@@ -181,7 +181,7 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="2" Text="Grotesque" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock Margin="2" Text="囊肿怪尸爆" FontWeight="Bold" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
@@ -202,7 +202,7 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="2" Text="Ice Balls" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock Margin="2" Text="冰冻" FontWeight="Bold" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
@@ -223,7 +223,7 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="2" Text="Orbiter" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock Margin="2" Text="轰炮" FontWeight="Bold" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
@@ -244,7 +244,7 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="2" Text="Molten Core" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock Margin="2" Text="熔火" FontWeight="Bold" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
@@ -265,7 +265,7 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="2" Text="Molten Trail" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock Margin="2" Text="火链" FontWeight="Bold" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
@@ -286,7 +286,7 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="2" Text="Poison Enchanted" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock Margin="2" Text="毒素加持" FontWeight="Bold" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
@@ -307,7 +307,7 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="2" Text="Poison Tree" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock Margin="2" Text="毒树" FontWeight="Bold" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
@@ -328,7 +328,7 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="2" Text="Plague Cloud" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock Margin="2" Text="瘟疫" FontWeight="Bold" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
@@ -349,7 +349,7 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="2" Text="Plague Hands" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock Margin="2" Text="瘟疫之手" FontWeight="Bold" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
@@ -370,7 +370,7 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="2" Text="Shaman Fire" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock Margin="2" Text="萨满火球" FontWeight="Bold" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
@@ -391,7 +391,7 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="2" Text="Wormhole" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock Margin="2" Text="漩涡" FontWeight="Bold" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"
@@ -412,7 +412,7 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="2" Text="Thunderstorm" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock Margin="2" Text="雷霆风暴" FontWeight="Bold" VerticalAlignment="Center"/>
                 <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="500" Maximum="30" Minimum="2" 
                             SmallChange="1" LargeChange="5"

@@ -788,15 +788,14 @@ namespace Trinity.DbProvider
                 }
 
                 // Dashing Strike OOC
-                if (Trinity.Player.ActorClass == ActorClass.Monk && CombatBase.CanCast(SNOPower.X1_Monk_DashingStrike) && Trinity.Settings.Combat.Monk.UseDashingStrikeOOC && destinationDistance > 15f)
+                if (Trinity.Player.ActorClass == ActorClass.Monk && CombatBase.CanCast(SNOPower.X1_Monk_DashingStrike) && Trinity.Settings.Combat.Monk.UseDashingStrikeOOC && destinationDistance > 15f
+                    && (!Legendary.Ingeom.IsEquipped || CurrentTarget != null && CurrentTarget.Type == TrinityObjectType.Item && Skills.Monk.DashingStrike.TimeSinceUse > 800))
                 {
                     var charges = Skills.Monk.DashingStrike.Charges;
 
                     //Logger.LogVerbose("OOC Dash Charges={0}", charges);
-                    if (Sets.ThousandStorms.IsSecondBonusActive &&
-                        ((charges > 1 && Trinity.Player.PrimaryResource >= 75) || CacheData.BuffsCache.Instance.HasCastingShrine ||
-                        CurrentTarget != null && NavHelper.CanRayCast(Trinity.Player.Position, CurrentTarget.Position)) && 
-                        !Trinity.ShouldWaitForLootDrop)
+                    if (Sets.ThousandStorms.IsSecondBonusActive && !Trinity.ShouldWaitForLootDrop &&
+                        ((charges > 1 && Trinity.Player.PrimaryResource >= 75) || CacheData.BuffsCache.Instance.HasCastingShrine))
                     {
                         if (Trinity.Settings.Advanced.LogCategories.HasFlag(LogCategory.Movement))
                             Logger.Log(TrinityLogLevel.Debug, LogCategory.Movement, "Using Dashing Strike for OOC movement, distance={0} charges={1}", destinationDistance, Skills.Monk.DashingStrike.Charges);

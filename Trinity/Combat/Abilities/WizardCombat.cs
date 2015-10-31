@@ -75,8 +75,8 @@ namespace Trinity.Combat.Abilities
 
             // Frost Nova
             if (CanCast(SNOPower.Wizard_FrostNova) && !Player.IsIncapacitated &&
-                ((Runes.Wizard.DeepFreeze.IsActive && TargetUtil.AnyMobsInRange(25, 5)) || (!Runes.Wizard.DeepFreeze.IsActive && (TargetUtil.AnyMobsInRange(25, 1) || Player.CurrentHealthPct <= 0.7)) &&
-                CurrentTarget.RadiusDistance <= 25f))
+                ((Runes.Wizard.DeepFreeze.IsActive && TargetUtil.AnyMobsInRange(25, 5)) || TargetUtil.AnyMobsInRange(25, 1) || Player.CurrentHealthPct <= 0.7) &&
+                CurrentTarget.RadiusDistance <= 25f)
             {
                 return new TrinityPower(SNOPower.Wizard_FrostNova, 20f);
             }
@@ -275,11 +275,17 @@ namespace Trinity.Combat.Abilities
             }
 
             // Frost Nova
-            if (CanCast(SNOPower.Wizard_FrostNova) && !Player.IsIncapacitated && !ShouldWaitForConventionElement(Skills.Wizard.FrostNova) &&
-                ((Runes.Wizard.DeepFreeze.IsActive && TargetUtil.AnyMobsInRange(25, 5)) || (!Runes.Wizard.DeepFreeze.IsActive && (TargetUtil.AnyMobsInRange(25, 1) || Player.CurrentHealthPct <= 0.7)) &&
-                CurrentTarget.RadiusDistance <= 25f))
+            if (!Legendary.HaloOfArlyse.IsEquipped && !Sets.VyrsAmazingArcana.IsFullyEquipped)
             {
-                return new TrinityPower(SNOPower.Wizard_FrostNova, 20f);
+                if (CanCast(SNOPower.Wizard_FrostNova) && !Player.IsIncapacitated &&
+                    !ShouldWaitForConventionElement(Skills.Wizard.FrostNova) &&
+                    ((Runes.Wizard.DeepFreeze.IsActive && TargetUtil.AnyMobsInRange(25, 5)) ||
+                     (!Runes.Wizard.DeepFreeze.IsActive &&
+                      (TargetUtil.AnyMobsInRange(25, 1) || Player.CurrentHealthPct <= 0.7)) &&
+                     CurrentTarget.RadiusDistance <= 25f))
+                {
+                    return new TrinityPower(SNOPower.Wizard_FrostNova, 20f);
+                }
             }
 
             // Check to see if we have a signature spell on our hotbar, for energy twister check

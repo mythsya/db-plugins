@@ -313,10 +313,7 @@ namespace Trinity.Objects
         /// <summary>
         /// Gets the current skill charge count
         /// </summary>
-        public int Charges
-        {
-            get { return CombatBase.GetSkillCharges(SNOPower); }
-        }
+        public int Charges { get{ return CombatBase.GetSkillCharges(SNOPower); }}
 
         /// <summary>
         /// This skill as TrinityPower

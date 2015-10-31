@@ -26,9 +26,9 @@
                 <StackPanel>
                     <!-- Boolean Options -->
                     <UniformGrid>
-                        <CheckBox IsChecked="{Binding Path=Crusader.SteedChargeOOC}" ToolTip="Use Steed Charge OOC" Content="Use Steed Charge OOC" />
-                        <CheckBox IsChecked="{Binding Path=Crusader.SpamAkarats}" Content="Use Akarats off CD" />
-                        <CheckBox IsChecked="{Binding Path=Crusader.SpamLawsOfValor}" Content="Use Laws of Valor off CD" />
+                        <CheckBox IsChecked="{Binding Path=Crusader.SteedChargeOOC}" ToolTip="Use Steed Charge OOC" Content="非战斗状态使用“战马冲锋”" />
+                        <CheckBox IsChecked="{Binding Path=Crusader.SpamAkarats}" Content="“阿卡拉特勇士”好了就用" />
+                        <CheckBox IsChecked="{Binding Path=Crusader.SpamLawsOfValor}" Content="“勇气律法”好了就用" />
                     </UniformGrid>
 
                     <!--Emergency Health-->
@@ -37,7 +37,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="2*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Potion %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="生命药水 %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                         <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                                 Interval="500" Maximum="99" Minimum="0" 
                                 SmallChange="1" LargeChange="5"
@@ -53,21 +53,21 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Globe Health %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="血球回血 %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                         <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}"
                               Interval="500" Maximum="100" Minimum="0"
                               SmallChange="1" LargeChange="5"
                               TickPlacement="None"
                               Value="{Binding Path=Crusader.HealthGlobeLevel, Converter={StaticResource percentConverter}}"
                               HorizontalAlignment="Stretch" Margin="2"/>
-                        <TextBlock Grid.Column="2" Text="Globe Resource %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="2" Text="血球回能 %" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                         <Slider Grid.Column="3" Template="{DynamicResource SliderEditable}"
                               Interval="500" Maximum="100" Minimum="0"
                               SmallChange="1" LargeChange="5"
                               TickPlacement="None"
                               Value="{Binding Path=Crusader.HealthGlobeLevelResource, Converter={StaticResource percentConverter}}"
                               HorizontalAlignment="Stretch" Margin="2"
-                              ToolTip="Only applies when Reaper's Wraps are equipped"/>
+                              ToolTip="仅穿戴“夺魂者护腕”时生效"/>
                     </Grid>
 
                     <!--SweepAttackAoECount-->
@@ -76,7 +76,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Sweep Attack AoE Count" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="0" Text="“横扫攻击” 最少怪物数量" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                         <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                                 Interval="1" Maximum="10" Minimum="1"
                                 SmallChange="1" LargeChange="10"
@@ -91,7 +91,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Judgement AoE Count" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="0" Text="“审判” 最少怪物数量" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                         <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                                 Interval="1" Maximum="10" Minimum="1"
                                 SmallChange="1" LargeChange="10"
@@ -106,7 +106,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Shield Glare AoE Count" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="0" Text="“盾闪” 最少怪物数量" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                         <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                                 Interval="1" Maximum="10" Minimum="1"
                                 SmallChange="1" LargeChange="10"
@@ -121,7 +121,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Iron Skin Health Pct" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="0" Text="“钢铁之肤” 最低血量%" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                         <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                                 Interval="1" Maximum="99" Minimum="0"
                                 SmallChange="1" LargeChange="10"
@@ -136,7 +136,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Consecration Health Pct" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="0" Text="“奉献” 最低血量%" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                         <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                                 Interval="1" Maximum="99" Minimum="0"
                                 SmallChange="1" LargeChange="10"
@@ -151,7 +151,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Laws of Hope Health Pct" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="0" Text="“希望律法” 最低血量%" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                         <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                                 Interval="1" Maximum="99" Minimum="0"
                                 SmallChange="1" LargeChange="10"
@@ -166,7 +166,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Laws of Justice Health Pct" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="0" Text="“正义律法” 最低血量%" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                         <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                                 Interval="1" Maximum="99" Minimum="0"
                                 SmallChange="1" LargeChange="10"
@@ -181,7 +181,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Bombardment AoE Count" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="0" Text="“轰击” 最少怪物数量" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                         <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                                 Interval="1" Maximum="10" Minimum="1"
                                 SmallChange="1" LargeChange="10"
@@ -196,7 +196,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Falling Sword AoE Count" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="0" Text="“天罚之剑” 最少怪物数量" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                         <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="1" Maximum="10" Minimum="1"
                             SmallChange="1" LargeChange="10"
@@ -211,7 +211,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Heavens Fury AoE Count" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="0" Text="“天堂之怒” 最少怪物数量" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                         <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="1" Maximum="10" Minimum="1"
                             SmallChange="1" LargeChange="10"
@@ -226,7 +226,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Condemn AoE Count" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="0" Text="“天谴” 最少怪物数量" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                         <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="1" Maximum="10" Minimum="1"
                             SmallChange="1" LargeChange="10"
@@ -240,7 +240,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Provoke AoE Count" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="0" Text="“挑衅” 最少怪物数量" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                         <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="1" Maximum="10" Minimum="1"
                             SmallChange="1" LargeChange="10"
@@ -255,7 +255,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Steed Charge Min Range" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="0" Text="“战马冲锋” 最短距离" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                         <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}" 
                             Interval="1" Maximum="50" Minimum="1"
                             SmallChange="1" LargeChange="10"
@@ -270,7 +270,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Fist of Heavens Distance" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="0" Text="“天堂之拳” 最近距离" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
                         <Slider Grid.Column="1" Template="{DynamicResource SliderEditable}"
                         Interval="1" Maximum="80" Minimum="5"
                         SmallChange="1" LargeChange="10"
@@ -286,7 +286,7 @@
                 <ScrollViewer Tag="Combat\Avoidance.xaml" DataContext="{Binding Path=Crusader}"/>
             </Grid>
             <!--Reset Button-->
-            <Button Grid.Row="2" Margin="5" HorizontalAlignment="Center" Command="{Binding ResetCrusaderCommand}">Reset</Button>
+            <Button Grid.Row="2" Margin="5" HorizontalAlignment="Center" Command="{Binding ResetCrusaderCommand}">重置为默认值</Button>
         </Grid>
     </ScrollViewer>
 </UserControl>
