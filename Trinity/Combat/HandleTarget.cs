@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using Trinity.Combat;
 using Trinity.Combat.Abilities;
@@ -10,6 +11,10 @@ using Trinity.DbProvider;
 using Trinity.Items;
 using Trinity.Reference;
 using Trinity.Technicals;
+using Trinity.Config;
+using Trinity.Helpers;
+using Trinity.Objects;
+using Trinity.UIComponents;
 using Zeta.Bot;
 using Zeta.Bot.Logic;
 using Zeta.Bot.Navigation;
@@ -20,11 +25,14 @@ using Zeta.Game.Internals.SNO;
 using Zeta.TreeSharp;
 using Logger = Trinity.Technicals.Logger;
 
+
+
 namespace Trinity
 {
     public partial class Trinity
     {
-
+        private static Assembly _Assembly;
+        private static Type _simplefollowClass;
         /// <summary>
         /// Returns the current DiaPlayer
         /// </summary>
@@ -67,9 +75,71 @@ namespace Trinity
                 extras += " " + CombatBase.CurrentPower;
 
             Logger.Log(TrinityLogLevel.Debug, LogCategory.Behavior, "HandleTarget returning {0} to tree from " + location + " " + extras, status);
+
             return status;
 
         }
+
+
+        private static bool IsNearLeader()
+        {
+            Logger.Log("1111111111111111111111111111111111111111111");
+            bool bNearLeader = true;
+            try
+            {
+                if (_Assembly == null || _simplefollowClass == null)
+                {
+                    Logger.Log("222222222222222222222222222222222222222222222222222222");
+                    foreach (var _trinityAssembly in AppDomain.CurrentDomain.GetAssemblies().Where(x => x.GetName().Name.ToLower().StartsWith("simplefollow")))
+                    {
+                        Logger.Log("3333333333333333333333333333333333333333333333333");
+                        if (_trinityAssembly != null)
+                        {
+                            try
+                            {
+                                _simplefollowClass = _trinityAssembly.GetType("SimpleFollow.SimpleFollow");
+                                _Assembly = _trinityAssembly;
+                                Logger.Log("4444444444444444444444444444444444444444444444444");
+                            }
+                            catch (Exception ex)
+                            {
+                                Logger.Log("ERROR111111111111111111111");
+                            }
+                        }
+                    }
+                }
+
+                if (_Assembly != null && _simplefollowClass != null)
+                {
+                    Logger.Log("55555555555555555555555555555555555555555555555555555555");
+                    bool IsLeader = (bool)_simplefollowClass.GetProperty("IsLeader", BindingFlags.Static | BindingFlags.Public).GetValue(null, null);
+                    Logger.Log("6666666666666666666666666666666666666666");
+                    if (IsLeader)
+                    {
+                        Logger.Log("I am leader");
+                        bNearLeader = true;
+                    }
+                    else
+                    {
+                        Logger.Log("77777777777777777777777777777777777777777");
+                        bNearLeader = (bool)_simplefollowClass.GetProperty("IsNearLeader", BindingFlags.Static | BindingFlags.Public).GetValue(null, null);
+                        Logger.Log("888888888888888888888888888888888888888888888");
+                        Logger.Log("I am follow {0}", bNearLeader);
+                    }
+                }
+                else
+                {
+                    Logger.Log("Maybe simplefollow plugin is not start");
+                }
+            }
+            catch
+            {
+                Logger.Log("ERROR2222222222222222");
+            }
+
+            return bNearLeader;
+        }
+
 
         private static int _waitedTicks = 0;
 
@@ -213,6 +283,7 @@ namespace Trinity
 
                     // Refresh the object Cache every time
                     RefreshDiaObjectCache();
+
 
                     if (CombatBase.CombatMovement.IsQueuedMovement & CombatBase.IsCombatAllowed)
                     {
@@ -371,7 +442,10 @@ namespace Trinity
 
                             UpdateStatusTextTarget(true);
 
-                            HandleObjectInRange();
+                            if (!HandleObjectInRange())
+                            {
+                                return GetRunStatus(RunStatus.Failure, "CurrentTargetNull");
+                            }
                             return GetRunStatus(RunStatus.Running, "HandleObjectInRange");
                         }
                     }
@@ -623,7 +697,7 @@ namespace Trinity
             return false;
         }
 
-        private static void HandleObjectInRange()
+        private static bool HandleObjectInRange()
         {
             switch (CurrentTarget.Type)
             {
@@ -636,6 +710,10 @@ namespace Trinity
                 // Unit, use our primary power to attack
                 case TrinityObjectType.Unit:
                     {
+                        if (!IsNearLeader())
+                        {
+                            return false;
+                        }
                         if (CombatBase.CurrentPower.SNOPower != SNOPower.None)
                         {
                             if (_isWaitingForPower && CombatBase.CurrentPower.ShouldWaitBeforeUse)
@@ -860,6 +938,7 @@ namespace Trinity
                         break;
                     }
             }
+			return true;
         }
 
         private static bool HandleTargetDistanceCheck()

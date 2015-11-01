@@ -702,7 +702,8 @@ namespace Trinity.Combat.Abilities
 
         private static bool CanCastInnerSanctuary()
         {
-            return TargetUtil.EliteOrTrashInRange(16f) && CanCast(SNOPower.X1_Monk_InnerSanctuary);
+            return (TargetUtil.EliteOrTrashInRange(16f) || TargetUtil.AnyMobsInRange(15, 3) || (CurrentTarget.IsBossOrEliteRareUnique && CurrentTarget.RadiusDistance <= 15f) ) 
+			&& CanCast(SNOPower.X1_Monk_InnerSanctuary);
         }
 
         private static bool CanCastMysticAirAlly()
