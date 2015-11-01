@@ -261,13 +261,13 @@ namespace Trinity.Combat.Abilities
                     CacheData.Buffs.HasCastingShrine && Sets.ThousandStorms.IsFullyEquipped))
                 {
                     RefreshSweepingWind(true);
-                    if (CurrentTarget.IsBossOrEliteRareUnique)
+                    if (CurrentTarget.IsBoss||CurrentTarget.IsTreasureGoblin)
                         return new TrinityPower(SNOPower.X1_Monk_DashingStrike, MaxDashingStrikeRange, CurrentTarget.Position);
 
                     if (!Sets.ThousandStorms.IsFullyEquipped)
                         return new TrinityPower(SNOPower.X1_Monk_DashingStrike, MaxDashingStrikeRange, TargetUtil.GetBestClusterPoint());
 
-                    return new TrinityPower(SNOPower.X1_Monk_DashingStrike, MaxDashingStrikeRange, TargetUtil.GetBestPierceTarget(50f, true).Position);
+                    return new TrinityPower(SNOPower.X1_Monk_DashingStrike, MaxDashingStrikeRange, TargetUtil.GetBestPierceTarget(35f, true).Position);
                 }
 
                 if (!Sets.ThousandStorms.IsSecondBonusActive)
@@ -365,8 +365,13 @@ namespace Trinity.Combat.Abilities
                 CanCast(SNOPower.Monk_WayOfTheHundredFists) && Runes.Monk.FistsOfFury.IsActive)
             {
                 var nearbyEnemyCount = Trinity.ObjectCache.Count(u => u.IsUnit && u.HitPoints > 0 && u.Distance <= 30f);
-
-                if (!CurrentTarget.HasDebuff(SNOPower.Monk_FistsofThunder) || nearbyEnemyCount == 1)
+				var BossCount = Trinity.ObjectCache.Count(u => u.IsBoss && u.HitPoints > 0 && u.Distance <= 30f);
+				if (Skills.Monk.DashingStrike.TimeSinceUse < SpellHistory.TimeSinceGeneratorCast)
+                {
+                    Logger.Log(LogCategory.Behavior, "Putting WayOfTheHundredFists on Current Target {0}", CurrentTarget.InternalName);
+                    return new TrinityPower(SNOPower.Monk_WayOfTheHundredFists, 9f, CurrentTarget.ACDGuid);
+                }
+                if (!CurrentTarget.HasDebuff(SNOPower.Monk_FistsofThunder) || nearbyEnemyCount <=2 || BossCount>2)
                 {
                     Logger.Log(LogCategory.Behavior, "Putting Static Charge on Current Target {0}", CurrentTarget.InternalName);
                     return new TrinityPower(SNOPower.Monk_FistsofThunder, 12f, CurrentTarget.ACDGuid);
@@ -375,11 +380,15 @@ namespace Trinity.Combat.Abilities
                 if (ShouldSpreadStaticCharge())
                 {
                     var target = GetNewStaticChargeTarget() ?? CurrentTarget;
-                    if (target != null && !target.IsBoss)
+                    if (target != null )
                     {
                         return new TrinityPower(SNOPower.Monk_FistsofThunder, 12f, target.ACDGuid);
                     }                  
                 }
+				if(SpellHistory.TimeSinceGeneratorCast>500)
+				{
+					return new TrinityPower(SNOPower.Monk_FistsofThunder, 9f);
+				}
 
                 return new TrinityPower(SNOPower.Monk_WayOfTheHundredFists, 9f, CurrentTarget.ACDGuid);
             }
@@ -853,7 +862,15 @@ namespace Trinity.Combat.Abilities
 
         internal static TrinityCacheObject GetNewStaticChargeTarget()
         {          
-            var bestTarget = TargetUtil.ClosestUnit(20f, t => t.ACDGuid != CurrentTarget.ACDGuid && !t.HasDebuff(SNOPower.Monk_FistsofThunder));            
+            var Boss = TargetUtil.ClosestUnit(30f, t => t.ACDGuid != CurrentTarget.ACDGuid && !t.HasDebuff(SNOPower.Monk_FistsofThunder) && (t.IsBoss || t.IsTreasureGoblin));  
+			if (Boss != null)
+			{
+				return Boss;
+				_lastTargetChange = DateTime.UtcNow;
+				Logger.Log(LogCategory.Behavior, "Blacklisting {0} {1} for 1 second", CurrentTarget.InternalName, CurrentTarget.CommonData.ACDGuid);				
+			}
+                
+			var bestTarget = TargetUtil.ClosestUnit(20f, t => t.ACDGuid != CurrentTarget.ACDGuid && !t.HasDebuff(SNOPower.Monk_FistsofThunder));            
             if (bestTarget == null)
                 return CurrentTarget;
 
