@@ -7,12 +7,19 @@ using SimpleFollow.Party;
 using SimpleFollow.UI;
 using Zeta.Bot;
 using Zeta.Bot.Profile;
+using Zeta.Bot.Logic;
+using Zeta.Bot.Navigation;
+using Zeta.Common;
+using Zeta.Game;
+using Zeta.Game.Internals.Actors;
+using Zeta.Game.Internals.SNO;
+using Zeta.TreeSharp;
 
 namespace SimpleFollow
 {
     public class SimpleFollow
     {
-        public static Version PluginVersion = new Version(3, 0, 1);
+        public static Version PluginVersion = new Version(3, 0, 2);
 
         /// <summary>
         /// The leader message
@@ -34,6 +41,22 @@ namespace SimpleFollow
         public static bool Enabled
         {
             get { return Plugin.Enabled; }
+        }
+
+        public static bool IsNearLeader
+        {
+            get 
+            {
+                if (Leader.Position.Distance2D(ZetaDia.Me.Position) > 10)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+               
+            }
         }
 
         public static void Pulse()
@@ -59,7 +82,7 @@ namespace SimpleFollow
         private static bool _isFollower;
         private static DateTime _lastCheckedIsFollower = DateTime.MinValue;
 
-        internal static bool IsLeader
+        public static bool IsLeader
         {
             get { return !IsFollower; }
         }
